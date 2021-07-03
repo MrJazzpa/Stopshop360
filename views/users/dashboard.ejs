@@ -1,0 +1,311 @@
+<%-include('User_templates/user_header')%>
+<body>
+    <div class="page-wrapper">
+       <%-include('User_templates/header')%>
+        <main class="main">
+        	<div class="page-header text-center" style="background-image: url('assets/images/page-header-bg.jpg')">
+        		<div class="container">
+        			<h1 class="page-title">POST AD<span>SELL</span></h1>
+        		</div><!-- End .container -->
+        	</div><!-- End .page-header -->
+            <nav aria-label="breadcrumb" class="breadcrumb-nav mb-3">
+                <div class="container">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="/">Home</a></li>
+                        <li class="breadcrumb-item"><a href="/userdashboard">user</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">My Account</li>
+					
+                    </ol>
+                </div><!-- End .container -->
+            </nav><!-- End .breadcrumb-nav -->
+
+            <div class="page-content">
+            	<div class="dashboard">
+	                <div class="container">
+	                	<div class="row">
+	                		<aside class="col-md-4 col-lg-3">
+	                			<ul class="nav nav-dashboard flex-column mb-3 mb-md-0" role="tablist">
+								    <li class="nav-item">
+								        <a class="nav-link active" id="tab-dashboard-link" data-toggle="tab" href="#tab-dashboard" role="tab" aria-controls="tab-dashboard" aria-selected="true">Dashboard</a>
+								    </li>
+								    <li class="nav-item">
+								        <a class="nav-link" id="tab-orders-link" data-toggle="tab" href="#tab-orders" role="tab" aria-controls="tab-orders" aria-selected="false">Orders</a>
+								    </li>
+								    <li class="nav-item">
+								        <a class="nav-link" id="tab-downloads-link" data-toggle="tab" href="#tab-downloads" role="tab" aria-controls="tab-downloads" aria-selected="false">Downloads</a>
+								    </li>
+								    <li class="nav-item">
+								        <a class="nav-link" id="tab-address-link" data-toggle="tab" href="#tab-address" role="tab" aria-controls="tab-address" aria-selected="false">Adresses</a>
+								    </li>
+								    <li class="nav-item">
+								        <a class="nav-link" id="tab-account-link" data-toggle="tab" href="#tab-account" role="tab" aria-controls="tab-account" aria-selected="false">Account Details</a>
+								    </li>
+								    <li class="nav-item">
+								        <a class="nav-link" href="#">Sign Out</a>
+								    </li>
+								</ul>
+	                		</aside><!-- End .col-lg-3 -->
+                              <!--SECTION TO SELL PRODUCT-->
+
+	                		<div class="col-md-8 col-lg-9">
+	                			<div class="tab-content">
+								    <div class="tab-pane fade show active" id="tab-dashboard" role="tabpanel" aria-labelledby="tab-dashboard-link">
+								    	
+                                        <form method="post" action="">
+
+                                        <div class="container">
+                                            <div class="row">
+                                              <div class="col-md-8">
+                                                <div class="card mt-3 tab-card">
+                                                <div class="card-header tab-card-header">
+                                                    <ul class="nav nav-tabs card-header-tabs" id="myTab" role="tablist">
+                                                      <li class="nav-item" >
+                                                          <a class="nav-link" id="one-tab" data-toggle="tab" href="#one" role="tab" aria-controls="One" aria-selected="true"><i class="fa fa-reply font-arrow" aria-hidden="true"></i>
+														  </a>
+                                                      </li>
+                                                      <li class="nav-item">
+                                                          <a class="nav-link" id="two-tab" data-toggle="tab" href="#two" role="tab" aria-controls="Two" aria-selected="false"><i class="fa fa-share" aria-hidden="true"></i>
+														  </a>
+                                                      </li>
+                                                      
+                                                    </ul>
+                                                  </div>
+                                          
+                                                  <div class="tab-content" id="myTabContent">
+                                                    <div class="tab-pane fade show active p-3" id="one" role="tabpanel" aria-labelledby="one-tab">
+                                                     <!--FORM SHOULD BE HERE-->
+                                                    
+                                                   <div class="medium">
+
+                                                      <select class="form-select form-select-lg mb-2 col-sm-5 s" aria-label=".form-select-lg example" id="category">
+                                                        <option selected value="Select Category">Select Category</option>
+                                                        <option value="1">Cloths</option>
+                                                        <option value="2">Bags</option>
+                                                        <option value="3">bridal dressing</option>
+                                                        <option value="3">Party Accessories</option>
+                                                        <option value="3">Hair dressing</option>
+                                                      </select>
+                                                      
+                                                      <select class="form-select form-select-lg  col-sm-5 s" aria-label=".form-select-lg example" id="location">
+                                                        <option selected>Select Location</option>
+                                                        <option value="1">One</option>
+                                                        <option value="2">Two</option>
+                                                        <option value="3">Three</option>
+                                                      </select>
+                                                      <h5 class="card-title left">Add Photo</h5>
+                                                     <p class="card-text left">Add at least 1 photo for this category. </p>    
+                                                     </div>
+                                                      <!--file upload-->
+                                                     <div class="form-group">
+
+
+                                                        <input type="file" id="default-file" hidden="hidden" />
+
+                                                        <!-- Button Markup -->
+                                                        <button id="custom-btn" type="button" class="prev_btn left">
+                                                          CHOOSE FILE
+                                                        </button>
+                                                  
+                                                        <!-- Choose File TEXT Markup -->
+                                                        <span id="custom-space"> <strong> No</strong> File, Selected!</span>
+  
+                                                        <!--PREVIEW -->
+                                                        <div class="preview_holder">
+                                                          <div id="preview">
+                                                            <img src="" id="preview_img" class="preview_img" />
+                                                            <span id="preview_text" class="preview_text">Image Preview</span>
+                                                          </div>
+                                                        </div>
+
+                                                     </div>
+
+
+                                                      <div class="form-group">
+                                                        
+                                                        <a data-toggle="tab" href="#two"  class="btn btn-secondry btn-round btn-center">Next</a>  
+
+                                                      </div>
+
+                                                    </div>
+                                                    <div class="tab-pane fade p-3" id="two" role="tabpanel" aria-labelledby="two-tab">
+														<div class="row">
+															<div class="col-sm-6">
+																<label>title *</label>
+																<input type="text" class=" form-control f" name="title" required style="color: black;">
+															</div><!-- End .col-sm-6 -->
+			
+														</div><!-- End .row -->
+														
+														<div class="row">
+															<div class="col-sm-6">
+																<label>First Name *</label>
+																<div include="form-input-select()">
+																	<select required name="type">
+																	  <option value="" >type</option>
+																	  <option value="1">Ruben</option>
+																	  <option value="2">David</option>
+																	  <option value="3">James</option>
+																	  <option value="4">Marc</option>
+																	  <option value="5">Anthony</option>
+																	</select>
+															 </div>
+															</div><!-- End .col-sm-6 -->
+			
+															<div class="col-sm-6">
+																<label>Last Name *</label>
+																<div include="form-input-select()">
+																	<select required name="condition">
+																	  <option value="" hidden>condition</option>
+																	  <option value="1">Ruben</option>
+																	  <option value="2">David</option>
+																	  <option value="3">James</option>
+																	  <option value="4">Marc</option>
+																	  <option value="5">Anthony</option>
+																	</select>
+															 </div>
+															</div><!-- End .col-sm-6 -->
+														</div><!-- End .row -->
+
+														<div class="row">
+															<div class="col-sm-12">
+																<label>title *</label>
+																<textarea class="form-control rounded-0" name="description" id="exampleFormControlTextarea1" rows="5" tyle="color: black;"></textarea>
+															</div><!-- End .col-sm-6 -->
+														</div><!-- End .row -->
+
+														<div class="row">
+															<div class="col-sm-6">
+																<label>price #</label>
+																<input type="text" class="form-control" name="price" required tyle="color: black;">
+															</div><!-- End .col-sm-6 -->
+			
+														</div><!-- End .row -->
+
+
+														<div class="row">
+															<div class="col-sm-6">
+																<label>Your Phone *</label>
+																<input type="text" class="form-control" name="phone" required>
+															</div>
+															
+															<div class="col-sm-6">
+																<label>Name *</label>
+																<input type="text" class="form-control" name="name" required>
+															</div>
+															
+															
+														</div><!-- End .row -->
+
+
+                                                     
+                                                      <button type="submit" class="btn btn-primary btn-round btn-center">Post AD</button>              
+                                                    </div>
+                                                    <div class="tab-pane fade p-3" id="three" role="tabpanel" aria-labelledby="three-tab">
+                                                      <h5 class="card-title">Tab Card Three</h5>
+                                                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                                      <a href="#" class="btn btn-primary">Go somewhere</a>              
+                                                    </div>
+                                          
+                                                  </div>
+                                                </div>
+                                              </div>
+                                            </div>
+                                          </div>
+
+                                        </form>
+
+								    </div><!-- .End .tab-pane -->
+
+								    <div class="tab-pane fade" id="tab-orders" role="tabpanel" aria-labelledby="tab-orders-link">
+								    	<p>No order has been made yet.</p>
+								    	<a href="category.html" class="btn btn-outline-primary-2"><span>GO SHOP</span><i class="icon-long-arrow-right"></i></a>
+								    </div><!-- .End .tab-pane -->
+
+								    <div class="tab-pane fade" id="tab-downloads" role="tabpanel" aria-labelledby="tab-downloads-link">
+								    	<p>No downloads available yet.</p>
+								    	<a href="category.html" class="btn btn-outline-primary-2"><span>GO SHOP</span><i class="icon-long-arrow-right"></i></a>
+								    </div><!-- .End .tab-pane -->
+
+								    <div class="tab-pane fade" id="tab-address" role="tabpanel" aria-labelledby="tab-address-link">
+								    	<p>The following addresses will be used on the checkout page by default.</p>
+
+								    	<div class="row">
+								    		<div class="col-lg-6">
+								    			<div class="card card-dashboard">
+								    				<div class="card-body">
+								    					<h3 class="card-title">Billing Address</h3><!-- End .card-title -->
+
+														<p>User Name<br>
+														User Company<br>
+														John str<br>
+														New York, NY 10001<br>
+														1-234-987-6543<br>
+														yourmail@mail.com<br>
+														<a href="#">Edit <i class="icon-edit"></i></a></p>
+								    				</div><!-- End .card-body -->
+								    			</div><!-- End .card-dashboard -->
+								    		</div><!-- End .col-lg-6 -->
+
+								    		<div class="col-lg-6">
+								    			<div class="card card-dashboard">
+								    				<div class="card-body">
+								    					<h3 class="card-title">Shipping Address</h3><!-- End .card-title -->
+
+														<p>You have not set up this type of address yet.<br>
+														<a href="#">Edit <i class="icon-edit"></i></a></p>
+								    				</div><!-- End .card-body -->
+								    			</div><!-- End .card-dashboard -->
+								    		</div><!-- End .col-lg-6 -->
+								    	</div><!-- End .row -->
+								    </div><!-- .End .tab-pane -->
+
+								    <div class="tab-pane fade" id="tab-account" role="tabpanel" aria-labelledby="tab-account-link">
+								    	<form action="#">
+			                				<div class="row">
+			                					<div class="col-sm-6">
+			                						<label>First Name *</label>
+			                						<input type="text" class="form-control" required>
+			                					</div><!-- End .col-sm-6 -->
+
+			                					<div class="col-sm-6">
+			                						<label>Last Name *</label>
+			                						<input type="text" class="form-control" required>
+			                					</div><!-- End .col-sm-6 -->
+			                				</div><!-- End .row -->
+
+		            						<label>Display Name *</label>
+		            						<input type="text" class="form-control" required>
+		            						<small class="form-text">This will be how your name will be displayed in the account section and in reviews</small>
+
+		                					<label>Email address *</label>
+		        							<input type="email" class="form-control" required>
+
+		            						<label>Current password (leave blank to leave unchanged)</label>
+		            						<input type="password" class="form-control">
+
+		            						<label>New password (leave blank to leave unchanged)</label>
+		            						<input type="password" class="form-control">
+
+		            						<label>Confirm new password</label>
+		            						<input type="password" class="form-control mb-2">
+
+		                					<button type="submit" class="btn btn-outline-primary-2">
+			                					<span>SAVE CHANGES</span>
+			            						<i class="icon-long-arrow-right"></i>
+			                				</button>
+			                			</form>
+								    </div><!-- .End .tab-pane -->
+								</div>
+	                		</div><!-- End .col-lg-9 -->
+	                	</div><!-- End .row -->
+	                </div><!-- End .container -->
+                </div><!-- End .dashboard -->
+            </div><!-- End .page-content -->
+        </main><!-- End .main -->
+   
+
+
+      
+    </div><!-- End .page-wrapper -->
+
+    <%-include('User_templates/user_footer')%>
