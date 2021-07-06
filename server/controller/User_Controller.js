@@ -12,7 +12,6 @@ const session = require('express-session');
 
     service: 'gmail',
     auth: {
-
         user: 'wizzyjazzpa4blinks@gmail.com',
         pass: 'Wizzyjazzpa@1'
     }
@@ -164,8 +163,5 @@ exports.email_verification=(req,res)=>{
         res.status(500).send({message: "error retrieving user"})
 
   })
-    
-
-    
-   
+ 
 }
