@@ -30,25 +30,35 @@ exports.create= async(req,res)=>{
 }
 
 
-type:"POST",
-            url: "/api/users/verification/",
-            data:{
-                verification_code:verification_code
-            },
-            success:function(data){
-
-                if(data.status==200){
-                    alert("worked");
-                }
-                else if(data.status==400){
-
-                    alert("did not work");
-                }
-                else{
-
-                    alert(data.message)
-                }
-            }
+const email=req.query.email;
+const pass = req.query.password;
+shop360.findOne({email:email})
+.then(data=>{
+    if(!data){
+        res.json({ status:400,message:"email not found"});
+    }
+    else{
 
 
+        const validatepassword= await bcrypt.compare(pass,data.password);
+        if(validatepassword)
+         {
 
+            res.json({
+              status:200,
+              message: "Login successfull"
+           });
+
+         }
+         else{
+               res.json({status:404, message:"password is incorrerct"});
+         }
+
+    }
+
+
+})
+.catch(error=>{
+
+       res.json({status:500,message:error.message});
+})

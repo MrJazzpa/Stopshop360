@@ -110,5 +110,116 @@ $('#letgo').submit(function(event){
 });
 
 
+$('#signin').submit(function(event){
+    event.preventDefault();
+    var getmail=$('#email').val();
+    var getpass=$('#password').val();
+    if(getmail== "" || getpass == ""){
 
+        $('#getmsg').show().html("<div style='border-radius:4px' id='alert-danger' class='alert alert-danger'>field is empty </div>");
+    }
+    else{
+             
+         $.ajax({
+
+            type:"GET",
+            url: "/api/users/login",
+            data:{
+                   email:getmail,
+                   password:getpass
+            },
+            success:function(data){
+
+                if(data.status==200){
+                    console.log("status:"+data.status+'\n'+"Email: "+data.Email)
+                    window.location.href = "/dashboard";
+    
+                   
+                }
+                else if(data.status==404){
+
+                    $('#getmsg').show().html("<div style='border-radius:4px' id='alert-danger' class='alert alert-danger'>login details does not match </div>");
+                }
+                else{
+
+                    alert(data.message)
+                }
+            }
+         });
+    }
+});
+
+
+$('#forgot_email').submit(function(event){
+    event.preventDefault();
+    var email_forgot =$('#email_forgot').val();
+    if(email_forgot == ""){
+
+        $('#msg').show().html("<div style='border-radius:4px' id='alert-danger' class='alert alert-danger'> email field is empty </div>");
+    }
+    else{
+             
+        window.location.href = "/change_password";
+        /* $.ajax({
+
+            type:"GET",
+            url: "/api/users/verification/",
+            data:{
+                   verification_code:code_verify
+            },
+            success:function(data){
+
+                if(data.status==200){
+                    console.log("status:"+data.status+'\n'+"Verification Code: "+data.verification_code+'\n'+"Email: "+data.Email)
+                    window.location.href = "/dashboard";
+                }
+                else if(data.status==400){
+
+                    $('#msg').show().html("<div style='border-radius:4px' id='alert-danger' class='alert alert-danger'>Code is incorrect </div>");
+                }
+                else{
+
+                    alert(data.message)
+                }
+            }
+         });*/
+    }
+});
+
+
+$('#changepass').submit(function(event){
+    event.preventDefault();
+    var changepassword=$('#change_password').val();
+    if(changepassword == ""){
+
+        $('#msg').show().html("<div style='border-radius:4px' id='alert-danger' class='alert alert-danger'> password  field is empty </div>");
+    }
+    else{
+             
+        window.location.href = "/dashboard";
+        /* $.ajax({
+
+            type:"GET",
+            url: "/api/users/verification/",
+            data:{
+                   verification_code:code_verify
+            },
+            success:function(data){
+
+                if(data.status==200){
+                    console.log("status:"+data.status+'\n'+"Verification Code: "+data.verification_code+'\n'+"Email: "+data.Email)
+                    window.location.href = "/dashboard";
+                }
+                else if(data.status==400){
+
+                    $('#msg').show().html("<div style='border-radius:4px' id='alert-danger' class='alert alert-danger'>Code is incorrect </div>");
+                }
+                else{
+
+                    alert(data.message)
+                }
+            }
+         });*/
+    }
+});
 </script>

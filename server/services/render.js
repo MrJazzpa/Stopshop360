@@ -1,8 +1,17 @@
 const { response } = require("express");
+const axios = require('axios');
 
 exports.homeRoutes =(req,res)=>{
+    
+    res.render('index');
+}
+exports.forgot_email=(req,res)=>{
 
-    res.render('index', {test:"i am checking this thing"});
+  res.render('forgot_email');
+}
+exports.change_password=(req,res)=>{
+
+  res.render('change_password')
 }
 exports.ProductPage =(req,res)=>{
 
@@ -20,5 +29,7 @@ exports.verify_code =(req,res)=>{
 
 // User Section
 exports.User_Darshboard = (req,res)=>{
-  res.render('users/dashboard');
+ 
+ res.render('users/dashboard');
+  
 }

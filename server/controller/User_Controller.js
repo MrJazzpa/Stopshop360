@@ -3,6 +3,7 @@ var shop360 = require('../model/model');
 const bcrypt= require("bcrypt");
 const nodemailer = require('nodemailer');
 const { response } = require('express');
+const session = require('express-session');
 
 
  // creating a mail function
@@ -18,7 +19,7 @@ const { response } = require('express');
  });
 
 
- exports.create= async(req,res)=>{
+ exports.User_Registration= async(req,res)=>{
 
     if(!req.body)
     {
@@ -80,8 +81,49 @@ const { response } = require('express');
 
 
 //userlogin
-exports.userlogin=(req,res)=>{
+exports.userlogin =(req,res)=>{
 
+    const email=req.query.email;
+    const pass = req.query.password;
+    
+    shop360.findOne({email:email})
+    
+    .then(data=>{
+        if(!data){
+            res.json({ status:400,message:"email not found"});
+        }
+        else{
+
+
+            //const validatepassword= bcrypt.compare(pass,data.password);
+             bcrypt.compare(pass, data.password, function(err, isMatch) {
+                if (err) {
+                  throw err
+                } else if (!isMatch) {
+                    
+                    res.json({status:404, message:"password is incorrerct"});
+                    console.log("Password doesn't match!")
+                } 
+                else {
+                    req.session.getemail=data.email;
+                    res.json({
+                        status:200,
+                        message: "Login successfull",
+                        getSession : req.session.getemail
+                     });
+                     
+                  console.log("Password matches!")
+                }
+              })
+
+        }
+
+
+    })
+    .catch(error=>{
+
+           res.json({status:500,message:error.message});
+    })
 
 }
 
