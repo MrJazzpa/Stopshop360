@@ -7,22 +7,22 @@ exports.homeRoutes =(req,res)=>{
 }
 exports.forgot_email=(req,res)=>{
 
-  res.render('forgot_email');
+  res.render('users/forgot_email');
 }
 exports.change_password=(req,res)=>{
 
-  res.render('change_password')
+  res.render('users/change_password')
 }
 exports.ProductPage =(req,res)=>{
 
-    res.render('product');
+    res.render('users/product');
 
 }
 
 
 exports.verify_code =(req,res)=>{
 
-  res.render('verify_code');
+  res.render('users/verify_code');
 
 }
 
@@ -30,6 +30,6 @@ exports.verify_code =(req,res)=>{
 // User Section
 exports.User_Darshboard = (req,res)=>{
  
- res.render('users/dashboard');
+ res.render('users/User_dashboard/dashboard');
   
 }

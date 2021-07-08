@@ -1,7 +1,7 @@
-<%-include('User_templates/user_header')%>
+<%-include('../templates/header')%>
 <body>
     <div class="page-wrapper">
-       <%-include('User_templates/header')%>
+       <%-include('dashboard_header')%>
         <main class="main">
         	<div class="page-header text-center" style="background-image: url('assets/images/page-header-bg.jpg')">
         		<div class="container">
@@ -11,7 +11,7 @@
             <nav aria-label="breadcrumb" class="breadcrumb-nav mb-3">
                 <div class="container">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="/">Home</a></li>
+                        <li class="breadcrumb-item" href="."><a href="/">Home</a></li>
                         <li class="breadcrumb-item"><a href="/userdashboard">user</a></li>
                         <li class="breadcrumb-item active" aria-current="page">My Account</li>
 						<li class="breadcrumb-item active" aria-current="page" id="access_session"></li>
@@ -309,6 +309,6 @@
       
     </div><!-- End .page-wrapper -->
 
-    <%-include('User_templates/user_footer')%>
-	<%-include('../templates/footer_scripts')%>
+    <%-include('dashboard_footer')%>
+
 	
