@@ -1,42 +1,108 @@
-const express = require('express');
+const express = require("express");
 const app = express();
-const dotenv = require('dotenv');
-const path = require('path');
-const morgan = require('morgan');
-const bodyParser = require('body-parser');
-const session= require('express-session');
+const dotenv = require("dotenv");
+const path = require("path");
+const config = require("config");
+const minifyHTML = require("express-minify-html");
+const compression = require("compression");
+const session = require("express-session");
+const passport = require("passport");
+const cookieParser = require("cookie-parser");
+const formData = require("express-form-data");
+const uglifyJs = require("uglify-js");
+const fs = require("fs");
+const morgan = require("morgan");
+require("./startup/cors")(app);
+require("./startup/db")();
 
-//importing connection
-const connectDB = require('./server/database/connection');
+const apiRoutes = require("./server/routes/apiRoutes");
+const usersViewRoutes = require("./server/routes/viewsRoute/users");
+const adminViewRoutes = require("./server/routes/viewsRoute/adminRoute");
 
-dotenv.config({path:'config.env'});
+dotenv.config({ path: "config.env" });
 
-const PORT = process.env.PORT || 8080;
-  
+app.use(morgan("tiny"));
+app.use(formData.parse());
+app.use(cookieParser());
 //log request
-app.use(morgan('tiny'));
+app.use(
+  session({
+    secret: config.get("session_secret"),
+    resave: false,
+    saveUninitialized: true,
+  })
+);
+app.use(passport.initialize());
+app.use(passport.session());
+app.use((req, res, next) => {
+  res.locals.user = req.user;
+  next();
+});
 
-//parse request to body-parser
-app.use(bodyParser.urlencoded({extended:true}));
-app.use(session({secret: 'exrtyuixweryt',saveUninitialized: true,resave: true}));
-
-//method to connect the database
-connectDB();
-
+app.use(
+  minifyHTML({
+    override: true,
+    exception_url: false,
+    htmlMinifier: {
+      removeComments: true,
+      collapseWhitespace: true,
+      collapseBooleanAttributes: true,
+      removeAttributeQuotes: true,
+      removeEmptyAttributes: true,
+      minifyJS: true,
+    },
+  })
+);
+app.use(compression());
 
 //set view engine
-app.set("view engine","ejs")
+app.set("views", path.join(__dirname, "views"));
+app.set("view engine", "ejs");
 
-//loading all the assets
-app.use('/css',express.static(path.resolve(__dirname,"assets/css")))
-app.use('/js',express.static(path.resolve(__dirname,"assets/js")))
-//app.use('/dist',express.static(path.resolve(__dirname,"assets/dist")))
-app.use('/images',express.static(path.resolve(__dirname,"assets/images")))
-app.use('/fonts',express.static(path.resolve(__dirname,"assets/fonts")))
-app.use('/vendor',express.static(path.resolve(__dirname,"assets/vendor")))
-//loading assets and route
-app.use('/',require("./server/routes/router"))
+const appClientFiles = [
+  fs.readFileSync("assets/js/bootstrap-input-spinner.js", "utf8"),
+  fs.readFileSync("assets/js/bootstrap.bundle.min.js", "utf8"),
+  fs.readFileSync("assets/js/fileupload.js", "utf8"),
+  fs.readFileSync("assets/js/imagesloaded.pkgd.min.js", "utf8"),
+  fs.readFileSync("assets/js/isotope.pkgd.min.js", "utf8"),
+  fs.readFileSync("assets/js/jquery.countdown.min.js", "utf8"),
+  fs.readFileSync("assets/js/jquery.countTo.js", "utf8"),
+  fs.readFileSync("assets/js/jquery.elevateZoom.min.js", "utf8"),
+  fs.readFileSync("assets/js/jquery.hoverIntent.min.js", "utf8"),
+  fs.readFileSync("assets/js/jquery.magnific-popup.min.js", "utf8"),
+  fs.readFileSync("assets/js/jquery.min.js", "utf8"),
+  fs.readFileSync("assets/js/jquery.plugin.min.js", "utf8"),
+  fs.readFileSync("assets/js/jquery.sticky-kit.min.js", "utf8"),
+  fs.readFileSync("assets/js/jquery.waypoints.min.js", "utf8"),
+  fs.readFileSync("assets/js/main.js", "utf8"),
+  fs.readFileSync("assets/js/nouislider.min.js", "utf8"),
+  fs.readFileSync("assets/js/owl.carousel.min.js", "utf8"),
+  fs.readFileSync("assets/js/superfish.min.js", "utf8"),
+  fs.readFileSync("assets/js/wNumb.js", "utf8"),
+  fs.readFileSync("assets/js/demos/demo-3.js", "utf8"),
+];
 
-app.listen(PORT,()=>{
-    console.log('server is running on http://localhost:',PORT)
+let uglifiedClient = uglifyJs.minify(appClientFiles, { compress: false });
+fs.writeFile("assets/js/shop.min.js", uglifiedClient.code, function (err) {
+  if (err) {
+    console.log(err);
+  } else {
+    console.log("Script generated and saved: shop.min.js");
+  }
 });
+
+app.use(express.static(path.join(__dirname, "assets")));
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+app.use(cookieParser());
+
+app.use("/", usersViewRoutes);
+app.use("/admin", adminViewRoutes);
+app.use("/api/users", apiRoutes);
+
+const port = process.env.PORT || config.get("port");
+const server = app.listen(port, () =>
+  console.log(`server is running on http://localhost:${port}...`)
+);
+
+module.exports = server;

@@ -1,0 +1,7 @@
+{
+    "jwtPrivateKey": "unsecureKey",
+    "session_secret":"coin_index_1122334455E_XCODE",
+    "db": "mongodb://localhost:27017/Shop360",
+    "port": "5000",
+    "requiresAuth": true
+  }

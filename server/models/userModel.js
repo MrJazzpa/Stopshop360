@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
- var schema = new mongoose.Schema({
+const userSchema = new mongoose.Schema({
 
     email:{
         type : String ,
@@ -25,15 +25,9 @@ const mongoose = require('mongoose');
     },
 
     verification_code:{
-
         type: String
     }
-
-
-
  })
  
- const Stopshop360 = mongoose.model('registration',schema);
- 
-
- module.exports = Stopshop360;
+const userModel = mongoose.model('User', userSchema);
+module.exports = userModel;
