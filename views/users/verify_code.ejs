@@ -9,7 +9,10 @@
                                     <div class="header-dropdown">
                                         <a href="#">Usd</a>
                                         <div class="header-menu">
-                                            
+                                            <ul>
+                                                <li><a href="#">Eur</a></li>
+                                                <li><a href="#">Usd</a></li>
+                                            </ul>
                                         </div><!-- End .header-menu -->
                                     </div><!-- End .header-dropdown -->
             
@@ -39,20 +42,20 @@
                             <div class="container">
                                 <div class="form-box">
                                     <div class="form-tab">
-                                        <label for="verification" style="text-align: center; width: 100%;">Change Password</label>
+                                        <label for="verification" style="text-align: center; width: 100%;">Please enter the 4 digit code sent to your mail</label>
                                         <div class="tab-content">
                                             
                                             </div><!-- .End .tab-pane -->
                                             <div class="tab-pane fade show active" id="register-2" role="tabpanel" aria-labelledby="register-tab-2">
-                                                <form  id="changepass">
+                                                <form  id="letgo">
                                                     <div class="form-group">
-                                                        <label for="register-email-2">Enter new Password</label>
-                                                        <input type="text" class="form-control" id="change_password" name="change_password" style="color:black;">
+                                                        <label for="register-email-2">verification Code</label>
+                                                        <input type="text" class="form-control" id="verification_code" name="verification_code" style="color:black;">
                                                     </div><!-- End .form-group -->
                                                    
                                                     <div class="form-footer" >
                                                         <button type="submit" class="btn btn-outline-primary-2 btn-center" style="width:60rem; color:white; font-size:2rem; margin:auto;border-radius: 4px; background-color:#fcb941">
-                                                            <span>send</span>
+                                                            <span>Verify</span>
                                                             <i class="icon-long-arrow-right"></i>
                                                         </button>
             
@@ -70,4 +73,16 @@
                     </main><!-- End .main -->
             
                 </div><!-- End .page-wrapper -->
-<%-include('templates/footer')%>
+            
+<<<<<<< HEAD:views/verify_code.ejs
+                <%-include('templates/footer')%>
+    
+=======
+                
+                <%-include('templates/footer')%>
+            </body>
+            
+            
+            <!-- molla/login.html  22 Nov 2019 10:04:03 GMT -->
+            </html>
+>>>>>>> 90e3fb04574e0afefc0b3d8fd79aa094cc8da295:views/users/verify_code.ejs
