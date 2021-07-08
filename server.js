@@ -4,6 +4,7 @@ const dotenv = require('dotenv');
 const path = require('path');
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
+const session= require('express-session');
 
 //importing connection
 const connectDB = require('./server/database/connection');
@@ -17,6 +18,7 @@ app.use(morgan('tiny'));
 
 //parse request to body-parser
 app.use(bodyParser.urlencoded({extended:true}));
+app.use(session({secret: 'exrtyuixweryt',saveUninitialized: true,resave: true}));
 
 //method to connect the database
 connectDB();
