@@ -4,6 +4,7 @@ const nodemailer = require("nodemailer");
 const router = express.Router();
 const passport = require("passport");
 const User = require("../models/userModel");
+const { userRegValidationRules, regValidate} = require('../../middleware/validator');
 
 let transporter = nodemailer.createTransport({
   service: "gmail",
@@ -13,11 +14,11 @@ let transporter = nodemailer.createTransport({
   },
 });
 
-router.post("/register", async (req, res) => {
+router.post("/register", userRegValidationRules(), regValidate, async (req, res) => {
   const salt = await bcrypt.genSalt(10);
   const encrypt_password = await bcrypt.hash(req.body.password, salt);
-  var verify_code = Math.floor(1000 + Math.random() * 9000);
-  var mailOptions = {
+  const verify_code = Math.floor(1000 + Math.random() * 9000);
+  const mailOptions = {
     from: "wizzyjazzpa4blinks@gmail.com",
     to: req.body.email,
     subject: "Welcome",
@@ -43,17 +44,13 @@ router.post("/register", async (req, res) => {
       console.log(data);
       transporter.sendMail(mailOptions, function (error, info) {
         if (error) {
-          console.log(error);
-          res.json({ status: 400, message: error });
-        } else {
-          res.json({ status: 200, message: "success" });
-        }
+          console.log(error.message);
+          return res.status(400).json({ status: 400, message: "Request not completed" });
+        } 
+         return res.status(200).json({ status: 200, message: "success" });
       });
-
-      return;
     })
     .catch((err) => {
-      //var msg="Email already exists";
       res.json({ status: 500, message: err.message });
     });
 });

@@ -1,7 +1,201 @@
 // Main Js File
 $(document).ready(function () {
     'use strict';
+//user registration block
+    const userReg = document.getElementById("register-form");
+    userReg.addEventListener("submit", function (e) {
+      e.preventDefault();
+      $("#btn-reg").html("Please wait...");
+      $.ajax({
+        url: "/api/users/register",
+        method: "POST",
+        dataType: "json",
+        data: JSON.stringify({
+          email: jQuery("#email").val(),
+          firstname: jQuery("#firstname").val(),
+          lastname: jQuery("#lastname").val(),
+          phone: jQuery("#phone").val(),
+          password: jQuery("#regPassword").val(),
+          confirmPassword: jQuery("#conPassword").val(),
+        }),
+        contentType: "application/json",
+        success: function (response) {
+          if (response.status == 200) {
+            $(".successMsg").html(
+              "<div class = 'alert alert-success alert-dismissible fade show' role = 'alert'><button type = 'button' class = 'close' data-dismiss = 'alert' aria-label= 'close'> <span aria-hidden = 'true'>&times;</span></button>"+response.msg+"</div>"
+            );
+            $("#btn-reg").html("<span>SIGN UP</span><i class='icon-long-arrow-right'></i>");
+            $("#register-form")[0].reset();
+            window.location = '/verify_code';
+          }
+        },
+        error: function (jqXhr) {
+          if (jqXhr.status == 400) {
+            $("#btn-reg").html("<span>SIGN UP</span><i class='icon-long-arrow-right'></i>");
+            let json = $.parseJSON(jqXhr.responseText);
+            console.log(json)
+            let errorsContainer = $(".successMsg");
+            errorsContainer.innerHTML = "";
+            let errorsList = "";
+            for (let i = 0; i < json.extractedErrors.length; i++) {
+              errorsList += `<div class = 'alert alert-danger alert-dismissible fade show' role = 'alert'><button type = 'button' class = 'close' data-dismiss = 'alert' aria-label= 'close'> <span aria-hidden = 'true'>&times;</span></button> ${json.extractedErrors[i].msg}
+              </div>
+                `;
+            }
+            errorsContainer.html(errorsList);
+          }
+        },
+      });
+    });
+  
+$('#letgo').submit(function(event){
+    event.preventDefault();
+    var code_verify =$('#verification_code').val();
+    if(code_verify == ""){
 
+        $('#msg').show().html("<div style='border-radius:4px' id='alert-danger' class='alert alert-danger'>field is empty </div>");
+    }
+    else{
+             
+         $.ajax({
+
+            type:"GET",
+            url: "/api/users/verification/",
+            data:{
+                   verification_code:code_verify
+            },
+            success:function(data){
+
+                if(data.status==200){
+                    console.log("status:"+data.status+'\n'+"Verification Code: "+data.verification_code+'\n'+"Email: "+data.Email)
+                    window.location.href = "/dashboard";
+                }
+                else if(data.status==400){
+
+                    $('#msg').show().html("<div style='border-radius:4px' id='alert-danger' class='alert alert-danger'>Code is incorrect </div>");
+                }
+                else{
+
+                    alert(data.message)
+                }
+            }
+         });
+    }
+});
+
+
+$('#signin').submit(function(event){
+    event.preventDefault();
+    var getmail=$('#email').val();
+    var getpass=$('#password').val();
+    if(getmail== "" || getpass == ""){
+
+        $('#getmsg').show().html("<div style='border-radius:4px' id='alert-danger' class='alert alert-danger'>field is empty </div>");
+    }
+    else{
+             
+         $.ajax({
+
+            type:"GET",
+            url: "/api/users/login",
+            data:{
+                   email:getmail,
+                   password:getpass
+            },
+            success:function(data){
+
+                if(data.status==200){
+                    console.log("status:"+data.status+'\n'+"Email: "+data.Email)
+                    window.location.href = "/dashboard";
+    
+                   
+                }
+                else if(data.status==404){
+
+                    $('#getmsg').show().html("<div style='border-radius:4px' id='alert-danger' class='alert alert-danger'>login details does not match </div>");
+                }
+                else{
+
+                    alert(data.message)
+                }
+            }
+         });
+    }
+});
+
+
+$('#forgot_email').submit(function(event){
+    event.preventDefault();
+    var email_forgot =$('#email_forgot').val();
+    if(email_forgot == ""){
+
+        $('#msg').show().html("<div style='border-radius:4px' id='alert-danger' class='alert alert-danger'> email field is empty </div>");
+    }
+    else{
+             
+        window.location.href = "/change_password";
+        /* $.ajax({
+
+            type:"GET",
+            url: "/api/users/verification/",
+            data:{
+                   verification_code:code_verify
+            },
+            success:function(data){
+
+                if(data.status==200){
+                    console.log("status:"+data.status+'\n'+"Verification Code: "+data.verification_code+'\n'+"Email: "+data.Email)
+                    window.location.href = "/dashboard";
+                }
+                else if(data.status==400){
+
+                    $('#msg').show().html("<div style='border-radius:4px' id='alert-danger' class='alert alert-danger'>Code is incorrect </div>");
+                }
+                else{
+
+                    alert(data.message)
+                }
+            }
+         });*/
+    }
+});
+
+
+$('#changepass').submit(function(event){
+    event.preventDefault();
+    var changepassword=$('#change_password').val();
+    if(changepassword == ""){
+
+        $('#msg').show().html("<div style='border-radius:4px' id='alert-danger' class='alert alert-danger'> password  field is empty </div>");
+    }
+    else{
+             
+        window.location.href = "/dashboard";
+        /* $.ajax({
+
+            type:"GET",
+            url: "/api/users/verification/",
+            data:{
+                   verification_code:code_verify
+            },
+            success:function(data){
+
+                if(data.status==200){
+                    console.log("status:"+data.status+'\n'+"Verification Code: "+data.verification_code+'\n'+"Email: "+data.Email)
+                    window.location.href = "/dashboard";
+                }
+                else if(data.status==400){
+
+                    $('#msg').show().html("<div style='border-radius:4px' id='alert-danger' class='alert alert-danger'>Code is incorrect </div>");
+                }
+                else{
+
+                    alert(data.message)
+                }
+            }
+         });*/
+    }
+});
     owlCarousels();
     quantityInputs();
 
