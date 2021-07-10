@@ -23,11 +23,12 @@ const userSchema = new mongoose.Schema({
         type: Number,
         required:true
     },
-
-    verification_code:{
-        type: String
-    }
- })
+    isConfirmed:{type: Number, default: 0, required:true},
+},
+{
+ timestamps: true,
+}
+);
  
 const userModel = mongoose.model('User', userSchema);
 module.exports = userModel;

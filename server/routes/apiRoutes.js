@@ -4,6 +4,7 @@ const nodemailer = require("nodemailer");
 const router = express.Router();
 const passport = require("passport");
 const User = require("../models/userModel");
+const Code = require("../models/codesModel");
 const { userRegValidationRules, 
   regValidate,
   checkCodeRules,
@@ -19,6 +20,17 @@ let transporter = nodemailer.createTransport({
 });
 
 router.post("/register", userRegValidationRules(), regValidate, async (req, res) => {
+  const { email } = req.body;
+  const getUser = await User.findOne({ email });
+  if (getUser) {
+    return res
+      .json({
+        _id: getUser._id,
+        message: "Please Activate Your Account",
+      })
+      .status(201);
+  }
+
   const salt = await bcrypt.genSalt(10);
   const encrypt_password = await bcrypt.hash(req.body.password, salt);
   const verify_code = Math.floor(1000 + Math.random() * 9000);
@@ -40,24 +52,30 @@ router.post("/register", userRegValidationRules(), regValidate, async (req, res)
     firstname: req.body.firstname,
     lastname: req.body.lastname,
     phone: req.body.phone,
-    verification_code: verify_code,
   });
-  register
-    .save(register)
-    .then((data) => {
-      console.log(data);
+  const newUser = await register.save();
+   console.log(newUser);
+
+   const emailCode = await new Code({
+     token: verify_code,
+     email: req.body.email,
+     userId: newUser._id
+   })
+   await emailCode.save();
       transporter.sendMail(mailOptions, function (error, info) {
         if (error) {
           console.log(error.message);
           return res.status(400).json({ status: 400, message: "Request not completed" });
         } 
-         return res.status(200).json({ status: 200, message: "success" });
+         return res.status(200).json({ status: 200, message:"successful registration", _id: newUser._id });
       });
-    })
-    .catch((err) => {
-      res.json({ status: 500, message: err.message });
-    });
 });
+
+
+
+
+
+
 
 router.post("/login", async (req, res, next) => {
   passport.authenticate("local", function (err, user, info) {

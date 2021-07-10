@@ -49,8 +49,7 @@ $(document).ready(function () {
       });
     });
 
-    const userVerify = document.getElementById("verifier");
-    userVerify.addEventListener("submit", function (e) {
+    $("#verifier").submit(function (e) {
     e.preventDefault();
     $("#submit-code").html("Please wait...");
     $.ajax({
