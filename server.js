@@ -23,7 +23,7 @@ dotenv.config({ path: "config.env" });
 app.use(morgan("tiny"));
 app.use(formData.parse());
 app.use(cookieParser());
-//log request
+
 app.use(
   session({
     secret: config.get("session_secret"),
@@ -31,6 +31,7 @@ app.use(
     saveUninitialized: true,
   })
 );
+
 app.use(passport.initialize());
 app.use(passport.session());
 app.use((req, res, next) => {
@@ -71,5 +72,4 @@ const port = process.env.PORT || config.get("port");
 const server = app.listen(port, () =>
   console.log(`server is running on http://localhost:${port}...`)
 );
-
 module.exports = server;
