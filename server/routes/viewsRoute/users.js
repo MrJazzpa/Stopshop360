@@ -15,7 +15,7 @@ router.get("/forgot_email", (req, res) => {
 });
 
 router.get("/verify_code", (req, res) => {
-  res.render("verify_code");
+  res.render("users/verify_code");
 });
 
 router.get("/contact", (req, res) => {

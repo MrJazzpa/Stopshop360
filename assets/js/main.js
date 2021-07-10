@@ -1,6 +1,94 @@
 // Main Js File
+
 $(document).ready(function () {
     'use strict';
+//user registration block
+    const userReg = document.getElementById("register-form");
+    userReg.addEventListener("submit", function (e) {
+      e.preventDefault();
+      $("#btn-reg").html("Please wait...");
+      $.ajax({
+        url: "/api/users/register",
+        method: "POST",
+        dataType: "json",
+        data: JSON.stringify({
+          email: jQuery("#email").val(),
+          firstname: jQuery("#firstname").val(),
+          lastname: jQuery("#lastname").val(),
+          phone: jQuery("#phone").val(),
+          password: jQuery("#regPassword").val(),
+          confirmPassword: jQuery("#conPassword").val(),
+        }),
+        contentType: "application/json",
+        success: function (response) {
+          if (response.status == 200) {
+            $(".successMsg").html(
+              "<div class = 'alert alert-success alert-dismissible fade show' role = 'alert'><button type = 'button' class = 'close' data-dismiss = 'alert' aria-label= 'close'> <span aria-hidden = 'true'>&times;</span></button>"+response.msg+"</div>"
+            );
+            $("#btn-reg").html("<span>SIGN UP</span><i class='icon-long-arrow-right'></i>");
+            $("#register-form")[0].reset();
+            window.location = '/verify_code';
+          }
+        },
+        error: function (jqXhr) {
+          if (jqXhr.status == 400) {
+            $("#btn-reg").html("<span>SIGN UP</span><i class='icon-long-arrow-right'></i>");
+            let json = $.parseJSON(jqXhr.responseText);
+            console.log(json)
+            let errorsContainer = $(".successMsg");
+            errorsContainer.innerHTML = "";
+            let errorsList = "";
+            for (let i = 0; i < json.extractedErrors.length; i++) {
+              errorsList += `<div class = 'alert alert-danger alert-dismissible fade show' role = 'alert'><button type = 'button' class = 'close' data-dismiss = 'alert' aria-label= 'close'> <span aria-hidden = 'true'>&times;</span></button> ${json.extractedErrors[i].msg}
+              </div>
+                `;
+            }
+            errorsContainer.html(errorsList);
+          }
+        },
+      });
+    });
+
+    const userVerify = document.getElementById("verifier");
+    userVerify.addEventListener("submit", function (e) {
+    e.preventDefault();
+    $("#submit-code").html("Please wait...");
+    $.ajax({
+      url: "/api/users/verify_code",
+      method: "POST",
+      dataType: "json",
+      data: JSON.stringify({
+        code: jQuery("#verification_code").val(),
+      }),
+      contentType: "application/json",
+      success: function (response) {
+        if (response.status == 200) {
+          $(".codeMsg").html(
+            "<div class = 'alert alert-success alert-dismissible fade show' role = 'alert'><button type = 'button' class = 'close' data-dismiss = 'alert' aria-label= 'close'> <span aria-hidden = 'true'>&times;</span></button>"+response.msg+"</div>"
+          );
+          $("#submit-code").html("<span>Verify</span><i class='icon-long-arrow-right'></i>");
+          $("#verify_code")[0].reset();
+          window.location = '/login';
+        }
+      },
+      error: function (jqXhr) {
+        if (jqXhr.status == 400) {
+        $("#submit-code").html(" <span>Verify</span><i class='icon-long-arrow-right'></i>");
+         let json = $.parseJSON(jqXhr.responseText);
+          console.log(json)
+          let errorsContainer = $(".codeMsg");
+          errorsContainer.innerHTML = "";
+          let errorsList = "";
+          for (let i = 0; i < json.clientErrors.length; i++) {
+            errorsList += `<div class = 'mb-3 alert alert-danger alert-dismissible fade show' role = 'alert'><button type = 'button' class = 'close' data-dismiss = 'alert' aria-label= 'close'> <span aria-hidden = 'true'>&times;</span></button> ${json.clientErrors[i].msg}
+            </div>
+              `;
+          }
+          errorsContainer.html(errorsList);
+        }
+      },
+    });
+  });
 
     owlCarousels();
     quantityInputs();
@@ -779,4 +867,5 @@ $(document).ready(function () {
             }, 500)
         }, 10000)
     }
+
 });

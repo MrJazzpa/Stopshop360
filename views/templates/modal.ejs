@@ -1,36 +1,4 @@
 
-Skip to content
-Pull requests
-Issues
-Marketplace
-Explore
-@emmabase
-MrJazzpa /
-Stopshop360
-
-1
-0
-
-    0
-
-Code
-Issues
-Pull requests
-Actions
-Projects
-Wiki
-Security
-
-    Insights
-
-Stopshop360/views/templates/modal.ejs
-@MrJazzpa
-MrJazzpa forgot password
-Latest commit 096f88d 2 days ago
-History
-1 contributor
-114 lines (102 sloc) 7.72 KB
-
     <!-- Sign in / Register Modal -->
     <div class="modal fade" id="signin-modal" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
@@ -39,7 +7,6 @@ History
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true"><i class="icon-close"></i></span>
                     </button>
-                   
                     <div class="form-box">
                         <div class="form-tab">
                             <ul class="nav nav-pills nav-fill nav-border-anim" role="tablist">
@@ -52,10 +19,11 @@ History
                             </ul>
                             <div class="tab-content" id="tab-content-5">
                                 <div class="tab-pane fade show active" id="signin" role="tabpanel" aria-labelledby="signin-tab">
+                                    <div class="successMsg"></div>
                                     <form  id="signin" >
                                         <div class="form-group">
-                                            <label for="singin-email">Username or email address *</label>
-                                            <input type="text" class="form-control" id="email" name="email" >
+                                            <label for="signinEmail">Username or email address *</label>
+                                            <input type="text" class="form-control" id="signinEmail" name="signinEmail" >
                                         </div><!-- End .form-group -->
 
                                         <div class="form-group">
@@ -77,19 +45,13 @@ History
                                             <a href="/forgot_email" class="forgot-link">Forgot Your Password?</a>
                                         </div><!-- End .form-footer -->
                                     </form>
-                                    <div id="getmsg"></div>
                                 </div><!-- .End .tab-pane -->
                                 <div class="tab-pane fade" id="register" role="tabpanel" aria-labelledby="register-tab">
-                                    <div id="msgDiv"></div>
-                                    <form id="registeration" >
+                                    <div class="successMsg"></div>
+                                    <form id="register-form" >
                                         <div class="form-group">
-                                            <label for="register-email">Your email address *</label>
+                                            <label for="email">Your email address *</label>
                                             <input type="email" class="form-control" id="email" name="email">
-                                        </div><!-- End .form-group -->
-
-                                        <div class="form-group">
-                                            <label for="register-password">Password *</label>
-                                            <input type="password" class="form-control" id="password" name="password" >
                                         </div><!-- End .form-group -->
 
                                         <div class="form-group">
@@ -107,8 +69,18 @@ History
                                             <input type="text" class="form-control" id="phone" name="phone" >
                                         </div><!-- End .form-group -->
 
+                                        <div class="form-group">
+                                            <label for="regPassword">Password *</label>
+                                            <input type="password" class="form-control" id="regPassword" name="regPassword" >
+                                        </div><!-- End .form-group -->
+
+                                        <div class="form-group">
+                                            <label for="conPassword">Password *</label>
+                                            <input type="password" class="form-control" id="conPassword" name="conPassword" >
+                                        </div><!-- End .form-group -->
+
                                         <div class="form-footer">
-                                            <button type="submit" class="btn btn-outline-primary-2">
+                                            <button type="submit" id="btn-reg" class="btn btn-outline-primary-2">
                                                 <span>SIGN UP</span>
                                                 <i class="icon-long-arrow-right"></i>
                                             </button>
@@ -144,19 +116,3 @@ History
             </div><!-- End .modal-content -->
         </div><!-- End .modal-dialog -->
     </div><!-- End .modal -->
-
-    © 2021 GitHub, Inc.
-    Terms
-    Privacy
-    Security
-    Status
-    Docs
-
-    Contact GitHub
-    Pricing
-    API
-    Training
-    Blog
-    About
-
-Loading complete

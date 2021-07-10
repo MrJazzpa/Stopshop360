@@ -1,5 +1,5 @@
 const { body, validationResult } = require("express-validator");
-const User = require("./models/userModel");
+const User = require("./../server/models/userModel");
 
 const userValidationRules = () => {
   return [
@@ -25,7 +25,7 @@ const validate = (req, res, next) => {
 
 const userRegValidationRules = () => {
   return [
-    body("email").isEmail().withMessage('must be a valid email')
+    body("email").isEmail().withMessage('Please provide a valid email')
     .custom( async (email) => {
       return User.findOne({email}).then(user => {
         if (user) {
@@ -38,6 +38,11 @@ const userRegValidationRules = () => {
       .trim()
       .isLength({ min: 3 })
       .withMessage("Firstname must be at least 3 chars long"),
+      body("lastname", "Last name is required")
+      .notEmpty()
+      .trim()
+      .isLength({ min: 3 })
+      .withMessage("Last name must be at least 3 chars long"),
     body("phone", "Phone number is required")
       .notEmpty()
       //.isNumeric()
@@ -71,9 +76,36 @@ const regValidate = (req, res, next) => {
   });
 };
 
+const checkCodeRules = () => {
+  return [
+    body("code")
+      .trim()
+      .escape()
+      .isNumeric()
+      .withMessage("Code must be 4 digits")
+      .notEmpty()
+      .withMessage("Please provide a valid code"),
+  ];
+};
+
+const codeValidate = (req, res, next) => {
+  const errors = validationResult(req);
+  const clientErrors = [];
+  errors.array().map((err) => clientErrors.push({ msg: err.msg }));
+  if (clientErrors.length == 0) {
+    return next();
+  }
+  console.log(clientErrors);
+  return res.status(400).send({
+    clientErrors,
+  });
+};
+
 module.exports = {
   userValidationRules,
   validate,
   userRegValidationRules,
   regValidate,
+  checkCodeRules,
+  codeValidate
 };

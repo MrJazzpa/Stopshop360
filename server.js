@@ -9,11 +9,10 @@ const session = require("express-session");
 const passport = require("passport");
 const cookieParser = require("cookie-parser");
 const formData = require("express-form-data");
-const uglifyJs = require("uglify-js");
-const fs = require("fs");
 const morgan = require("morgan");
 require("./startup/cors")(app);
 require("./startup/db")();
+require("./startup/compressors")();
 
 const apiRoutes = require("./server/routes/apiRoutes");
 const usersViewRoutes = require("./server/routes/viewsRoute/users");
@@ -24,7 +23,7 @@ dotenv.config({ path: "config.env" });
 app.use(morgan("tiny"));
 app.use(formData.parse());
 app.use(cookieParser());
-//log request
+
 app.use(
   session({
     secret: config.get("session_secret"),
@@ -32,6 +31,7 @@ app.use(
     saveUninitialized: true,
   })
 );
+
 app.use(passport.initialize());
 app.use(passport.session());
 app.use((req, res, next) => {
@@ -59,38 +59,6 @@ app.use(compression());
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 
-const appClientFiles = [
-  fs.readFileSync("assets/js/bootstrap-input-spinner.js", "utf8"),
-  fs.readFileSync("assets/js/bootstrap.bundle.min.js", "utf8"),
-  fs.readFileSync("assets/js/fileupload.js", "utf8"),
-  fs.readFileSync("assets/js/imagesloaded.pkgd.min.js", "utf8"),
-  fs.readFileSync("assets/js/isotope.pkgd.min.js", "utf8"),
-  fs.readFileSync("assets/js/jquery.countdown.min.js", "utf8"),
-  fs.readFileSync("assets/js/jquery.countTo.js", "utf8"),
-  fs.readFileSync("assets/js/jquery.elevateZoom.min.js", "utf8"),
-  fs.readFileSync("assets/js/jquery.hoverIntent.min.js", "utf8"),
-  fs.readFileSync("assets/js/jquery.magnific-popup.min.js", "utf8"),
-  fs.readFileSync("assets/js/jquery.min.js", "utf8"),
-  fs.readFileSync("assets/js/jquery.plugin.min.js", "utf8"),
-  fs.readFileSync("assets/js/jquery.sticky-kit.min.js", "utf8"),
-  fs.readFileSync("assets/js/jquery.waypoints.min.js", "utf8"),
-  fs.readFileSync("assets/js/main.js", "utf8"),
-  fs.readFileSync("assets/js/nouislider.min.js", "utf8"),
-  fs.readFileSync("assets/js/owl.carousel.min.js", "utf8"),
-  fs.readFileSync("assets/js/superfish.min.js", "utf8"),
-  fs.readFileSync("assets/js/wNumb.js", "utf8"),
-  fs.readFileSync("assets/js/demos/demo-3.js", "utf8"),
-];
-
-let uglifiedClient = uglifyJs.minify(appClientFiles, { compress: false });
-fs.writeFile("assets/js/shop.min.js", uglifiedClient.code, function (err) {
-  if (err) {
-    console.log(err);
-  } else {
-    console.log("Script generated and saved: shop.min.js");
-  }
-});
-
 app.use(express.static(path.join(__dirname, "assets")));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -104,5 +72,4 @@ const port = process.env.PORT || config.get("port");
 const server = app.listen(port, () =>
   console.log(`server is running on http://localhost:${port}...`)
 );
-
 module.exports = server;
