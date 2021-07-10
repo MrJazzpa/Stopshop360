@@ -76,9 +76,36 @@ const regValidate = (req, res, next) => {
   });
 };
 
+const checkCodeRules = () => {
+  return [
+    body("code")
+      .trim()
+      .escape()
+      .isNumeric()
+      .withMessage("Code must be 4 digits")
+      .notEmpty()
+      .withMessage("Please provide a valid code"),
+  ];
+};
+
+const codeValidate = (req, res, next) => {
+  const errors = validationResult(req);
+  const clientErrors = [];
+  errors.array().map((err) => clientErrors.push({ msg: err.msg }));
+  if (clientErrors.length == 0) {
+    return next();
+  }
+  console.log(clientErrors);
+  return res.status(400).send({
+    clientErrors,
+  });
+};
+
 module.exports = {
   userValidationRules,
   validate,
   userRegValidationRules,
   regValidate,
+  checkCodeRules,
+  codeValidate
 };

@@ -4,7 +4,11 @@ const nodemailer = require("nodemailer");
 const router = express.Router();
 const passport = require("passport");
 const User = require("../models/userModel");
-const { userRegValidationRules, regValidate} = require('../../middleware/validator');
+const { userRegValidationRules, 
+  regValidate,
+  checkCodeRules,
+  codeValidate,
+} = require('../../middleware/validator');
 
 let transporter = nodemailer.createTransport({
   service: "gmail",
@@ -72,25 +76,49 @@ router.post("/login", async (req, res, next) => {
   })(req, res, next);
 });
 
-router.post("/email_verification", async (req, res) => {
-  const verify_code = req.query.verification_code;
-  shop360
-    .findOne({ verification_code: verify_code })
-    .then((data) => {
-      if (!data) {
-        res.json({ status: 400, message: "not fund" });
-      } else {
-        res.json({
-          Email: data.email,
-          verification_code: data.verification_code,
-          status: 200,
-        });
+router.post(
+  "/verify_code",
+  checkCodeRules(),
+  codeValidate,
+  async (req, res) => {
+    try {
+      const { token, userId } = req.body;
+      const getUser = await User.findById(userId);
+      if (getUser) {
+        const tokenRecord = await Tokens.findOne({ token });
+        if (tokenRecord) {
+          const diff = Math.abs(new Date() - new Date(tokenRecord.createdAt));
+          const minutes = Math.floor(diff / 1000 / 60);
+          if (Math.floor(minutes) >= 15) {
+            const removedToken = tokenRecord.remove();
+            return res
+              .status(400)
+              .json({ message: "Token is expired, please request new token" });
+          }
+          const updateUser = await User.updateOne(
+            { _id: userId },
+            { $set: { isConfirmed: 1 } }
+          );
+          const removedToken = tokenRecord.remove();
+          return res.status(200).json({
+            _id: getUser._id,
+            name: getUser.name,
+            email: getUser.email,
+            isConfirmed: 1,
+            isAdmin: getUser.isAdmin,
+            isMarketer: getUser.isMarketer,
+            token: generateToken(getUser),
+          });
+        }
+        return res
+          .status(400)
+          .send({ message: "Token does not exist, please request new" });
       }
-      //res.redirect('/dashboard');
-    })
-    .catch((err) => {
-      res.status(500).send({ message: "error retrieving user" });
-    });
-});
+      return res.status(401).send({ message: "Bad request, user not found" });
+    } catch (error) {
+      return res.status(500).send({ error: error.message });
+    }
+  }
+);
 
 module.exports = router;
