@@ -20,7 +20,7 @@
                             <div class="tab-content" id="tab-content-5">
                                 <div class="tab-pane fade show active" id="signin" role="tabpanel" aria-labelledby="signin-tab">
                                     <div class="successMsg"></div>
-                                    <form  id="signin" >
+                                    <form  id="signIn" >
                                         <div class="form-group">
                                             <label for="signinEmail">Username or email address *</label>
                                             <input type="text" class="form-control" id="signinEmail" name="signinEmail" >
@@ -32,22 +32,20 @@
                                         </div><!-- End .form-group -->
 
                                         <div class="form-footer">
-                                            <button type="submit" class="btn btn-outline-primary-2">
+                                            <button type="submit" id="btn-signin" class="btn btn-outline-primary-2">
                                                 <span>LOG IN</span>
                                                 <i class="icon-long-arrow-right"></i>
                                             </button>
-
                                             <div class="custom-control custom-checkbox">
                                                 <input type="checkbox" class="custom-control-input" id="signin-remember">
                                                 <label class="custom-control-label" for="signin-remember">Remember Me</label>
                                             </div><!-- End .custom-checkbox -->
-
-                                            <a href="/forgot_email" class="forgot-link">Forgot Your Password?</a>
+                                            <a href="/forgot_password" class="forgot-link">Forgot Your Password?</a>
                                         </div><!-- End .form-footer -->
                                     </form>
                                 </div><!-- .End .tab-pane -->
                                 <div class="tab-pane fade" id="register" role="tabpanel" aria-labelledby="register-tab">
-                                    <div class="successMsg"></div>
+                                    <div class="successRegMsg"></div>
                                     <form id="register-form" >
                                         <div class="form-group">
                                             <label for="email">Your email address *</label>

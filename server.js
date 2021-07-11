@@ -13,6 +13,7 @@ const morgan = require("morgan");
 require("./startup/cors")(app);
 require("./startup/db")();
 require("./startup/compressors")();
+require("./middleware/passport")(passport);
 
 const apiRoutes = require("./server/routes/apiRoutes");
 const usersViewRoutes = require("./server/routes/viewsRoute/users");

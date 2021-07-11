@@ -10,8 +10,8 @@ router.get("/", (req, res) => {
   res.render("index");
 });
 
-router.get("/forgot_email", (req, res) => {
-  res.render("forgot_email");
+router.get("/forgot_password", (req, res) => {
+  res.render("users/forgot_email");
 });
 
 router.get("/verify_code", (req, res) => {
