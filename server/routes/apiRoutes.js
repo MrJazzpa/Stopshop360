@@ -132,7 +132,8 @@ router.post(
           const diff = Math.abs(new Date() - new Date(tokenRecord.createdAt));
           const minutes = Math.floor(diff / 1000 / 60);
           if (Math.floor(minutes) >= 15) {
-            const removedToken = tokenRecord.remove();
+            //const removedToken = tokenRecord.remove();
+            await Code.deleteMany( { userId } );
             clientErrors.push({
               msg: "Code is expired, please request new code",
             });
@@ -142,7 +143,8 @@ router.post(
             { _id: userId },
             { $set: { isConfirmed: 1 } }
           );
-          const removedToken = tokenRecord.remove();
+          //const removedToken = tokenRecord.remove();
+           await Code.deleteMany( { userId } );
           return res.status(200).json({
             _id: getUser._id,
             status: 200,
