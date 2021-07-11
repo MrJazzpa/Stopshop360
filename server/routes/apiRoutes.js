@@ -81,13 +81,11 @@ router.post(
           .status(400)
           .json({ status: 400, message: "Request not completed" });
       }
-      return res
-        .status(200)
-        .json({
-          status: 200,
-          message: "successful registration",
-          _id: newUser._id,
-        });
+      return res.status(200).json({
+        status: 200,
+        message: "successful registration",
+        _id: newUser._id,
+      });
     });
   }
 );
@@ -133,7 +131,7 @@ router.post(
           const minutes = Math.floor(diff / 1000 / 60);
           if (Math.floor(minutes) >= 15) {
             //const removedToken = tokenRecord.remove();
-            await Code.deleteMany( { userId } );
+            await Code.deleteMany({ userId });
             clientErrors.push({
               msg: "Code is expired, please request new code",
             });
@@ -144,7 +142,7 @@ router.post(
             { $set: { isConfirmed: 1 } }
           );
           //const removedToken = tokenRecord.remove();
-           await Code.deleteMany( { userId } );
+          await Code.deleteMany({ userId });
           return res.status(200).json({
             _id: getUser._id,
             status: 200,
@@ -171,11 +169,9 @@ router.post("/request_code", async (req, res) => {
     const newUser = await User.findById(userId);
     if (newUser) {
       if (newUser.isConfirmed == 1) {
-        return res
-          .status(400)
-          .send({
-            message: "Account already Confirmed, please login to continue",
-          });
+        return res.status(400).send({
+          message: "Account already Confirmed, please login to continue",
+        });
       }
       const tokenVal = Math.floor(1000 + Math.random() * 9000);
       const mailOptions = {
@@ -203,20 +199,16 @@ router.post("/request_code", async (req, res) => {
             .status(400)
             .json({ status: 400, message: "Request not completed" });
         }
-        return res
-          .status(200)
-          .json({
-            status: 200,
-            message: `New Code has been resent to ${newUser.email}, expires in 15mins`,
-            _id: newUser._id,
-          });
+        return res.status(200).json({
+          status: 200,
+          message: `New Code has been resent to ${newUser.email}, expires in 15mins`,
+          _id: newUser._id,
+        });
       });
     } else {
-      return res
-        .status(401)
-        .json({
-          message: "Unauthorized request, please register and continue",
-        });
+      return res.status(401).json({
+        message: "Unauthorized request, please register and continue",
+      });
     }
   } catch (error) {
     return res.status(500).json({ error: error.message });
@@ -227,7 +219,9 @@ router.post("/logout", async (req, res, next) => {
   //await User.updateOne({_id:req.user._id},{$set :{connected : false}})
   console.log(req.user._id);
   req.session.destroy(function () {
-   return res.status(200).send({status:200, message:"Operation was successful"});
+    return res
+      .status(200)
+      .send({ status: 200, message: "Operation was successful" });
   });
 });
 

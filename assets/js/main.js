@@ -84,7 +84,7 @@ $(document).ready(function () {
           );
           $("#verifier")[0].reset();
           $("#signin-modal").modal("show");
-          localStorage.removeItem('userIdentity');
+          localStorage.removeItem("userIdentity");
         }
       },
       error: function (jqXhr) {
@@ -127,12 +127,12 @@ $(document).ready(function () {
         success: function (response) {
           console.log(response);
           if (response.status == 200) {
+            $("#requester").html("Request new");
             $(".codeMsg").html(
               "<div class = 'mb-3 alert alert-success alert-dismissible fade show' role = 'alert'><button type = 'button' class = 'close' data-dismiss = 'alert' aria-label= 'close'> <span aria-hidden = 'true'>&times;</span></button>" +
                 response.message +
                 "</div>"
             );
-            $("#requester").html("Request new");
           }
         },
         error: function (jqXhr) {
@@ -155,45 +155,45 @@ $(document).ready(function () {
     $("#signIn").on("submit", function (e) {
       e.preventDefault();
       $("#btn-signin").html("Please wait...");
-    $.ajax({
-      url: "/api/users/login",
-      method: "POST",
-      dataType: "json",
-      data: JSON.stringify({
-        email: jQuery("#signinEmail").val(),
-        password: jQuery("#password").val(),
-      }),
-      contentType: "application/json",
-      success: function (response) {
-        if (response.status == 200) {
-          console.log(response);
-          $(".successMsg").html(
-            "<div class = 'alert alert-success alert-dismissible fade show' role = 'alert'><button type = 'button' class = 'close' data-dismiss = 'alert' aria-label= 'close'> <span aria-hidden = 'true'>&times;</span></button>" +
-              response.message +
-              "</div>"
-          );
+      $.ajax({
+        url: "/api/users/login",
+        method: "POST",
+        dataType: "json",
+        data: JSON.stringify({
+          email: jQuery("#signinEmail").val(),
+          password: jQuery("#password").val(),
+        }),
+        contentType: "application/json",
+        success: function (response) {
+          if (response.status == 200) {
+            console.log(response);
+            $(".successMsg").html(
+              "<div class = 'alert alert-success alert-dismissible fade show' role = 'alert'><button type = 'button' class = 'close' data-dismiss = 'alert' aria-label= 'close'> <span aria-hidden = 'true'>&times;</span></button>" +
+                response.message +
+                "</div>"
+            );
+            $("#btn-signin").html(
+              "<span>LOG IN</span><i class='icon-long-arrow-right'></i>"
+            );
+            $("#signIn")[0].reset();
+            //localStorage.setItem("userIdentity", JSON.stringify(response._id));
+            window.location = "/";
+          }
+        },
+        error: function (jqXhr) {
           $("#btn-signin").html(
             "<span>LOG IN</span><i class='icon-long-arrow-right'></i>"
           );
-          $("#signIn")[0].reset();
-          //localStorage.setItem("userIdentity", JSON.stringify(response._id));
-          window.location = "/";
-        }
-      },
-      error: function (jqXhr) {
-            $("#btn-signin").html(
-                "<span>LOG IN</span><i class='icon-long-arrow-right'></i>"
-            );
-        
-        if (jqXhr.status >= 400) {
-            $("#btn-signin").html(
-                "<span>LOG IN</span><i class='icon-long-arrow-right'></i>"
-            );
-          let json = $.parseJSON(jqXhr.responseText);
-          console.log(json);
-          let errorsContainer = $(".successMsg");
 
-          if(json.extractedErrors){
+          if (jqXhr.status >= 400) {
+            $("#btn-signin").html(
+              "<span>LOG IN</span><i class='icon-long-arrow-right'></i>"
+            );
+            let json = $.parseJSON(jqXhr.responseText);
+            console.log(json);
+            let errorsContainer = $(".successMsg");
+
+            if (json.extractedErrors) {
               errorsContainer.innerHTML = "";
               let errorsList = "";
               for (let i = 0; i < json.extractedErrors.length; i++) {
@@ -201,21 +201,21 @@ $(document).ready(function () {
                   </div>
                     `;
               }
-              errorsContainer.html(errorsList);  
-          }else{
-            $(".successMsg")
-            .html(`<div class = 'mb-3 alert alert-danger alert-dismissible fade show' role = 'alert'><button type = 'button' class = 'close' data-dismiss = 'alert' aria-label= 'close'> <span aria-hidden = 'true'>&times;</span></button> ${json.error}
+              errorsContainer.html(errorsList);
+            } else {
+              $(".successMsg")
+                .html(`<div class = 'mb-3 alert alert-danger alert-dismissible fade show' role = 'alert'><button type = 'button' class = 'close' data-dismiss = 'alert' aria-label= 'close'> <span aria-hidden = 'true'>&times;</span></button> ${json.error}
                 </div>
               `);
+            }
           }
-        }
-      },
+        },
+      });
     });
   });
-});
 
-//logout
-$(function () {
+  //logout
+  $(function () {
     $("#logout").on("click", function (e) {
       e.preventDefault();
       $("#logout").html("Please wait...");
@@ -223,7 +223,7 @@ $(function () {
         url: "/api/users/logout",
         method: "POST",
         dataType: "json",
-        data:{},
+        data: {},
         contentType: "application/json",
         success: function (response) {
           console.log(response);
