@@ -1,5 +1,8 @@
 .welcomeUser {
-  color: green;
+  color:whitesmoke;
+}
+.welcomeUser:hover{
+  color: maroon;
 }
 .btn-logout {
   cursor: pointer;

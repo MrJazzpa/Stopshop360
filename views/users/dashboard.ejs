@@ -1,4 +1,4 @@
-<%-include('templates/header')%>
+<%-include('../templates/header')%>
 <body>
     <div class="page-wrapper">
         <main class="main">
@@ -130,7 +130,7 @@
                                                     <div class="tab-pane fade p-3" id="two" role="tabpanel" aria-labelledby="two-tab">
 														<div class="row">
 															<div class="col-sm-6">
-																<label>title *</label>
+																<label>title</label>
 																<input type="text" class=" form-control f" name="title" required style="color: black;">
 															</div><!-- End .col-sm-6 -->
 			
@@ -138,7 +138,7 @@
 														
 														<div class="row">
 															<div class="col-sm-6">
-																<label>First Name *</label>
+																<label>Type</label>
 																<div include="form-input-select()">
 																	<select required name="type">
 																	  <option value="" >type</option>
@@ -152,7 +152,7 @@
 															</div><!-- End .col-sm-6 -->
 			
 															<div class="col-sm-6">
-																<label>Last Name *</label>
+																<label>Brand</label>
 																<div include="form-input-select()">
 																	<select required name="condition">
 																	  <option value="" hidden>condition</option>
@@ -168,7 +168,7 @@
 
 														<div class="row">
 															<div class="col-sm-12">
-																<label>title *</label>
+																<label>Product Description</label>
 																<textarea class="form-control rounded-0" name="description" id="exampleFormControlTextarea1" rows="5" tyle="color: black;"></textarea>
 															</div><!-- End .col-sm-6 -->
 														</div><!-- End .row -->
@@ -184,12 +184,12 @@
 
 														<div class="row">
 															<div class="col-sm-6">
-																<label>Your Phone *</label>
+																<label>Phone Number *</label>
 																<input type="text" class="form-control" name="phone" required>
 															</div>
 															
 															<div class="col-sm-6">
-																<label>Name *</label>
+																<label>Name</label>
 																<input type="text" class="form-control" name="name" required>
 															</div>
 															
@@ -303,5 +303,5 @@
             </div><!-- End .page-content -->
         </main><!-- End .main -->
     </div><!-- End .page-wrapper -->
-    <%-include('templates/footer')%>
+    <%-include('../templates/footer')%>
 	

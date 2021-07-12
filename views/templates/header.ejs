@@ -35,6 +35,8 @@
     <link rel="stylesheet" href="css/demos/demo-3.css">
     <link rel="stylesheet" href="css/plugins/nouislider/nouislider.css">
     <link rel="stylesheet" href="css/private.css">
+    <link rel="stylesheet" href="css/custom.css">
+    <link  rel="stylesheet" href="css/style.css">
 
 </head>
 <header class="header header-intro-clearance header-3">
@@ -76,7 +78,7 @@
                             </li>
                             <% if (user) { %>
                                <li class="welcomeUser"> <a href="/dashboard"> Welcome! <%= user.firstname %></a></li>
-                                <li class="btn btn-sm btn-secondary btn-logout" id="logout">Logout</li>
+                                <li class="welcomeUser" id="logout"><a href="">Logout</a></li>
                             <% }else{ %>
                             <li><a href="#signin-modal" data-toggle="modal">Sign in / Sign up</a></li>
                             <% } %>
