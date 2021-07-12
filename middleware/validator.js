@@ -3,10 +3,12 @@ const User = require("./../server/models/userModel");
 
 const userValidationRules = () => {
   return [
-    body("email").isEmail().withMessage("Must be a valid email"),
-    body("password")
+    body("email").isEmail().escape().withMessage("Please provide valid email"),
+    body("password", "Password is required")
+      .notEmpty()
+      .escape()
       .isLength({ min: 5 })
-      .withMessage("must be at least 5 chars long"),
+      .withMessage("Password must be at least 5 chars long"),
   ];
 };
 
@@ -16,40 +18,44 @@ const validate = (req, res, next) => {
     return next();
   }
   const extractedErrors = [];
-  errors.array().map((err) => extractedErrors.push({ [err.param]: err.msg }));
+  errors.array().map((err) => extractedErrors.push({msg: err.msg }));
   console.log(extractedErrors);
   return res.status(400).json({
-    errors: extractedErrors,
+    extractedErrors
   });
 };
 
 const userRegValidationRules = () => {
   return [
-    body("email").isEmail().withMessage('Please provide a valid email')
-    .custom( async (email) => {
-      return User.findOne({email}).then(user => {
-        if (user) {
-          return Promise.reject('E-mail already in use');
-        }
-      });
-    }).withMessage("already taken"),
+    body("email").isEmail().withMessage('Please provide a valid email'),
+    // .custom( async (email) => {
+    //   return User.findOne({email}).then(user => {
+    //     if (user) {
+    //       return Promise.reject('E-mail already in use');
+    //     }
+    //   });
+    // }).withMessage("Email already taken"),
     body("firstname", "first name is required")
       .notEmpty()
       .trim()
+      .escape()
       .isLength({ min: 3 })
       .withMessage("Firstname must be at least 3 chars long"),
       body("lastname", "Last name is required")
       .notEmpty()
+      .escape()
       .trim()
       .isLength({ min: 3 })
       .withMessage("Last name must be at least 3 chars long"),
     body("phone", "Phone number is required")
       .notEmpty()
+      .escape()
       //.isNumeric()
       .isLength({ min: 11 })
       .withMessage("Phone no must be a number between 0-9"),
     body("password", "password is required")
       .notEmpty()
+      .escape()
       .isLength({ min: 5 })
       .withMessage("Password must be atleast 5 chars long")
       .custom((value, {req }) => {

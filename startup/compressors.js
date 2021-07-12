@@ -1,8 +1,8 @@
 const fs = require("fs");
 const uglifyJs = require("uglify-js");
 
-module.exports = function(){
-const appClientFiles = [
+module.exports = function () {
+  const appClientFiles = [
     fs.readFileSync("assets/js/bootstrap-input-spinner.js", "utf8"),
     fs.readFileSync("assets/js/bootstrap.bundle.min.js", "utf8"),
     fs.readFileSync("assets/js/fileupload.js", "utf8"),
@@ -24,7 +24,7 @@ const appClientFiles = [
     fs.readFileSync("assets/js/wNumb.js", "utf8"),
     fs.readFileSync("assets/js/demos/demo-3.js", "utf8"),
   ];
-  
+
   let uglifiedClient = uglifyJs.minify(appClientFiles, { compress: false });
   fs.writeFile("assets/js/shop.min.js", uglifiedClient.code, function (err) {
     if (err) {
@@ -33,4 +33,4 @@ const appClientFiles = [
       console.log("Script generated and saved: shop.min.js");
     }
   });
-}
+};

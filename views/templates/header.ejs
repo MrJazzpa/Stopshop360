@@ -34,6 +34,8 @@
     <link rel="stylesheet" href="css/skins/skin-demo-3.css">
     <link rel="stylesheet" href="css/demos/demo-3.css">
     <link rel="stylesheet" href="css/plugins/nouislider/nouislider.css">
+    <link rel="stylesheet" href="css/private.css">
+
 </head>
 <header class="header header-intro-clearance header-3">
     <div class="header-top">
@@ -72,7 +74,12 @@
                                     </div><!-- End .header-menu -->
                                 </div>
                             </li>
+                            <% if (user) { %>
+                               <li class="welcomeUser"> <a href="/dashboard"> Welcome! <%= user.firstname %></a></li>
+                                <li class="btn btn-sm btn-secondary btn-logout" id="logout">Logout</li>
+                            <% }else{ %>
                             <li><a href="#signin-modal" data-toggle="modal">Sign in / Sign up</a></li>
+                            <% } %>
                         </ul>
                     </li>
                 </ul><!-- End .top-menu -->

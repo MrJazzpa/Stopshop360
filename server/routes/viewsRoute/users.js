@@ -10,7 +10,7 @@ router.get("/", (req, res) => {
   res.render("index");
 });
 
-router.get("/forgot_email", (req, res) => {
+router.get("/forgot_password", (req, res) => {
   res.render("users/forgot_email");
 });
 
