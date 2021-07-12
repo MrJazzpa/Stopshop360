@@ -11,7 +11,7 @@ router.get("/", (req, res) => {
 });
 
 router.get("/forgot_email", (req, res) => {
-  res.render("forgot_email");
+  res.render("users/forgot_email");
 });
 
 router.get("/verify_code", (req, res) => {
