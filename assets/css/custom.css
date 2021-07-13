@@ -10,6 +10,8 @@ Bootstrap4 Card with Tabs by @mdeuerlein
     --border-btn:#edf2f4;
     --yellow:#fcb941;
     --blue: #007bff;
+    --red: #dc3545;
+    
 }
 
 .card {
@@ -115,7 +117,8 @@ Bootstrap4 Card with Tabs by @mdeuerlein
     justify-content: center;
     width:20rem;
     min-height: 10px;
-    border: dotted;
+    border: dotted red;
+    color:red;
    
   }
   .preview_img {
@@ -127,15 +130,15 @@ Bootstrap4 Card with Tabs by @mdeuerlein
       margin-left:20rem;
       width: 40rem;
       box-shadow: 2px 4px 10px 0 rgba(0, 34, 51, 0.05), 2px 4px 10px 0 rgba(0, 34, 51, 0.05);
-      background-color:var(--yellow);
-      border-color: var(--yellow);
+      background-color:red;
+      border-color: red;
       color:var(--border-btn)
   }
 
   .btn-center:hover
   {
-    background-color: var(--yellow);
-    border-color: var(--yellow);
+    background-color: var(--red);
+    border-color: var(--red);
     color:var(--border-btn);
   }
   .btn-center:visited
@@ -146,7 +149,7 @@ Bootstrap4 Card with Tabs by @mdeuerlein
     color:var(--yellow);
   }
   .active{
-    color: var(--yellow);
+    color: var(--red);
   }
   .focus{
     border-color: var(--yellow) ;
@@ -253,4 +256,7 @@ Bootstrap4 Card with Tabs by @mdeuerlein
   }
   .f{
     color: var(--dark);
+  }
+  .change:hover{
+    background-color: red;
   }

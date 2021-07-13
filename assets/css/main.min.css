@@ -115,7 +115,7 @@ body {
   border-color: #cd9967;
 }
 .btn-primary:hover {
-  background-color: #cd9967;
+  background-color:red;
   color: #fff;
 }
 .d-flex {
@@ -197,7 +197,7 @@ a {
 a:active,
 a:focus,
 a:hover {
-  color: #fcb941;
+  color:red;
   text-decoration: none;
 }
 .section {
@@ -613,7 +613,7 @@ section.banner .btn {
 }
 .star-rating {
   font-size: 16px;
-  color: #c96;
+  color:red;
 }
 .star-rating i {
   margin: 0 0.8rem;

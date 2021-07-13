@@ -78,7 +78,7 @@ img {
   background-color: #f4f5f8 !important;
 }
 .bg-primary {
-  background-color: #c96 !important;
+  background-color: red !important;
 }
 .bg-secondary {
   background-color: #a6c76c !important;
@@ -162,20 +162,20 @@ h6,
   letter-spacing: -0.01em;
 }
 a {
-  color: #c96;
+  color:red;
   text-decoration: none;
   transition: color 0.3s ease;
 }
 a:hover,
 a:focus {
-  color: #bf8040;
+  color: red;
   text-decoration: none;
 }
 .link-underline {
-  box-shadow: 0 1px 0 0 #c96;
+  box-shadow: 0 1px 0 0 red;
 }
 .text-primary {
-  color: #c96 !important;
+  color: red!important;
 }
 .text-secondary {
   color: #fff!important;
@@ -643,7 +643,7 @@ blockquote.text-white cite span {
   margin-top: -0.2rem;
 }
 .top-menu span {
-  color: #c96;
+  color: red;
   margin-left: 0.3rem;
 }
 .header-dropdown {
@@ -732,7 +732,7 @@ blockquote.text-white cite span {
 }
 .header-menu a:hover,
 .header-menu a:focus {
-  color: #c96;
+  color: red;
 }
 .header-right .header-menu,
 .header-right .header-dropdown:first-child .header-menu {
@@ -917,7 +917,7 @@ blockquote.text-white cite span {
   margin-left: 0.2rem;
   margin-top: 0.1rem;
   color: #fff;
-  background-color: #c96;
+  background-color: red;
 }
 .cart-dropdown .dropdown-cart-products {
   margin-top: -1rem;
@@ -1361,11 +1361,13 @@ blockquote.text-white cite span {
   max-width: 95%;
 }
 .header-intro-clearance .dropdown.category-dropdown .dropdown-toggle {
-  color: #333;
+  color: white;
   text-transform: none;
   padding-left: 5.5rem;
   min-width: 100%;
+  background-color: red;
 }
+
 .header-intro-clearance .dropdown.category-dropdown .dropdown-toggle i {
   font-size: 1rem;
   position: absolute;
@@ -1379,6 +1381,7 @@ blockquote.text-white cite span {
   position: absolute;
   margin-left: 0;
   left: 1.5rem;
+  
 }
 .header-intro-clearance .header-menu ul {
   display: block;
@@ -1851,7 +1854,9 @@ blockquote.text-white cite span {
 .menu li:hover > a,
 .menu li.show > a,
 .menu li.active > a {
-  color: #c96;
+  color:red;
+  
+ 
 }
 .demo-list {
   display: flex;
@@ -2015,13 +2020,13 @@ blockquote.text-white cite span {
   right: 0;
   bottom: 0;
   height: 1px;
-  background-color: #c96;
+  background-color:red;
   transition: all 0.35s;
 }
 .category-dropdown .dropdown-toggle:hover,
 .category-dropdown .dropdown-toggle:focus {
   color: #fff;
-  background-color: #c96;
+  background-color:red;
   outline: none !important;
 }
 .category-dropdown:not(.is-on):hover .dropdown-menu {
@@ -2029,7 +2034,7 @@ blockquote.text-white cite span {
 }
 .category-dropdown:not(.is-on):hover .dropdown-toggle {
   color: #fff !important;
-  background-color: #c96;
+  background-color: red;
 }
 .category-dropdown:not(.is-on):hover .dropdown-toggle:after {
   content: "\f191";
@@ -2069,9 +2074,10 @@ blockquote.text-white cite span {
   font-weight: 500;
   background-color: #f9f9f9;
 }
+
 .category-dropdown .dropdown-item:hover,
 .category-dropdown .dropdown-item:focus {
-  color: #c96;
+  color:red;
   background-color: #fff;
   outline: none !important;
 }
@@ -2194,7 +2200,7 @@ blockquote.text-white cite span {
   margin-top: -0.6rem;
 }
 .menu-vertical li > a {
-  color: #666;
+  color:red;
   font-weight: 300;
   font-size: 1.3rem;
   letter-spacing: 0;
@@ -2263,12 +2269,12 @@ blockquote.text-white cite span {
 .menu-vertical li:hover > a,
 .menu-vertical li.show > a,
 .menu-vertical li.active > a {
-  color: #c96;
+  color:red;
 }
 .menu-vertical > li:hover > a,
 .menu-vertical > li.show > a,
 .menu-vertical > li.active > a {
-  color: #c96;
+  color: red;
 }
 .menu-brands.menu-col {
   padding-top: 2rem;
@@ -2562,8 +2568,8 @@ blockquote.text-white cite span {
 .nav.nav-pills-mobile .nav-link.active,
 .nav.nav-pills-mobile .nav-link:hover,
 .nav.nav-pills-mobile .nav-link:focus {
-  color: #c96;
-  border-bottom-color: #c96;
+  color: red;
+  border-bottom-color:red;
 }
 .mobile-cats-nav .mobile-menu > li > a {
   text-transform: capitalize;
@@ -5541,7 +5547,7 @@ p {
 }
 .nav.nav-tabs .nav-link:hover,
 .nav.nav-tabs .nav-link:focus {
-  color: #c96;
+  color:red;
   border-color: transparent;
 }
 .nav.nav-tabs .nav-item + .nav-item {
@@ -5549,7 +5555,7 @@ p {
 }
 .nav.nav-tabs .nav-item.show .nav-link,
 .nav.nav-tabs .nav-item .nav-link.active {
-  color: #c96;
+  color: red;
   border-color: #d7d7d7;
   border-bottom-color: transparent;
 }
@@ -5593,7 +5599,7 @@ p {
 }
 .nav.nav-pills .nav-link:hover,
 .nav.nav-pills .nav-link:focus {
-  color: #c96;
+  color:red;
 }
 .nav.nav-pills .nav-link:focus {
   outline: none !important;
@@ -5603,9 +5609,9 @@ p {
 }
 .nav.nav-pills .nav-item.show .nav-link,
 .nav.nav-pills .nav-item .nav-link.active {
-  color: #c96;
+  color: red;
   border-color: #d7d7d7;
-  border-bottom-color: #c96;
+  border-bottom-color: red;
 }
 .nav-pills + .tab-content .tab-pane {
   padding: 1.4rem 0;
@@ -5679,7 +5685,7 @@ p {
   bottom: 0;
   width: 100%;
   height: 0.1rem;
-  background-color: #c96;
+  background-color:red;
   transform-origin: right center;
   transform: scale(0, 1);
   transition: transform 0.3s ease;
@@ -5820,9 +5826,9 @@ p {
   display: inline-block;
 }
 .btn-primary {
-  color: #fff;
-  background-color: #c96;
-  border-color: #c96;
+  color:white;
+  background-color:red;
+  border-color: red;
   box-shadow: none;
 }
 .btn-primary:hover,
@@ -5831,9 +5837,9 @@ p {
 .btn-primary:not(:disabled):not(.disabled):active,
 .btn-primary:not(:disabled):not(.disabled).active,
 .show > .btn-primary.dropdown-toggle {
-  color: #fff;
-  background-color: #a6c76c;
-  border-color: #a6c76c;
+  color: red;
+  background-color: white;
+  border-color: red;
   box-shadow: none;
 }
 .btn-primary.disabled,
@@ -6535,7 +6541,7 @@ p {
   font-weight: 400;
   font-size: 1.6rem;
   line-height: 1.25;
-  color: #c96;
+  color: red;
   margin-bottom: 1.3rem;
 }
 .new-price {
@@ -6651,10 +6657,10 @@ p {
   left: 0;
   white-space: nowrap;
   overflow: hidden;
-  color: #fcb941;
+  color: #a6c76c;
 }
 .ratings-primary .ratings-val {
-  color: #c96;
+  color:#a6c76c;
 }
 .ratings-text {
   color: #cccccc;
@@ -6780,7 +6786,7 @@ p {
   transition: all 0.35s ease;
   padding: 0;
   border-radius: 50%;
-  color: #c96;
+  color: red;
   background-color: #fff;
 }
 .btn-product-icon:before {
@@ -9461,7 +9467,7 @@ button:focus {
   margin-bottom: 0.5rem;
 }
 .intro-title {
-  color: #fff;
+  color: #333;
   font-weight: 700;
   font-size: 3rem;
   line-height: 1.2;
@@ -9896,7 +9902,7 @@ button:focus {
   line-height: 1.4em;
 }
 .newsletter-popup-container .banner-title span {
-  color: #c96;
+  color: red;
   font-weight: 700;
 }
 .newsletter-popup-container .banner-title light {
@@ -10768,8 +10774,8 @@ button:focus {
 .product-details-action .btn-cart {
   padding: 1rem 1.5rem;
   max-width: 198px;
-  color: #c96;
-  border: 0.1rem solid #c96;
+  color: red;
+  border: 0.1rem solid red;
 }
 .product-details-action .btn-cart span {
   font-size: 1.4rem;
@@ -10784,8 +10790,8 @@ button:focus {
 .product-details-action .btn-cart:hover,
 .product-details-action .btn-cart:focus {
   color: #fff;
-  border-color: #c96;
-  background-color: #c96;
+  border-color: white;
+  background-color: red;
 }
 .details-action-wrapper {
   display: flex;
