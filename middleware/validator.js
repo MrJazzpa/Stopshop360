@@ -135,7 +135,7 @@ const productCreationRules = () => {
       .trim()
       .escape()
       .withMessage("Condition is required"),
-    body("description", "Production Description is required")
+    body("description", "Product Description is required")
       .notEmpty()
       .trim()
       .escape()
