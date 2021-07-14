@@ -1,10 +1,64 @@
 // Main Js File
 
 $(document).ready(function () {
-  "use strict";
+    //"use strict";
+$("#create_product").submit(function (e) {
+  e.preventDefault();
+  e.stopImmediatePropagation();
+  // alert("hello");
+  let formData = new FormData(this);
+  $("#btn-create-Product").html("Please wait...");
+  $.ajax({
+    async: true,
+    type:  "POST",
+    url: "/api/products/upload_product",
+    data: formData,
+    cache: false,
+    processData: false,
+    contentType: false,
+    success: function (data) {
+      if (data.status == 200) {
+        $(".successMsg").html(
+          "<div class = 'alert alert-success alert-dismissible fade show' role = 'alert'><button type = 'button' class = 'close' data-dismiss = 'alert' aria-label= 'close'> <span aria-hidden = 'true'>&times;</span></button>" +
+            data.message +
+            "</div>"
+        );
+        $("#btn-create-Product").html("Post AD");
+        $("#create_product")[0].reset();
+      }
+    },
+    error: function (jqXhr) {
+      $("#btn-create-Product").html("Post AD");
+      if (jqXhr.status >= 400) {
+        $("#btn-signin").html(
+          "<span>LOG IN</span><i class='icon-long-arrow-right'></i>"
+        );
+        let json = $.parseJSON(jqXhr.responseText);
+        console.log(json);
+        let errorsContainer = $(".successMsg");
+
+        if (json.clientErrors) {
+          errorsContainer.innerHTML = "";
+          let errorsList = "";
+          for (let i = 0; i < json.clientErrors.length; i++) {
+            errorsList += `<div class = 'alert alert-danger alert-dismissible fade show' role = 'alert'><button type = 'button' class = 'close' data-dismiss = 'alert' aria-label= 'close'> <span aria-hidden = 'true'>&times;</span></button> ${json.clientErrors[i].msg}
+              </div>
+                `;
+          }
+          errorsContainer.html(errorsList);
+        } else {
+          $(".successMsg")
+            .html(`<div class = 'mb-3 alert alert-danger alert-dismissible fade show' role = 'alert'><button type = 'button' class = 'close' data-dismiss = 'alert' aria-label= 'close'> <span aria-hidden = 'true'>&times;</span></button> ${json.error}
+            </div>
+          `);
+        }
+      }
+    },
+});
+});
   //user registration block
-  const userReg = document.getElementById("register-form");
-  userReg.addEventListener("submit", function (e) {
+  $(function () {
+    $("#register-form").on("submit", function (e) {
     e.preventDefault();
     $("#btn-reg").html("Please wait...");
     $.ajax({
@@ -56,6 +110,8 @@ $(document).ready(function () {
       },
     });
   });
+});
+
 
   $("#verifier").submit(function (e) {
     e.preventDefault();
@@ -236,10 +292,16 @@ $(document).ready(function () {
     });
   });
 
+
+  
+
   owlCarousels();
   quantityInputs();
 
   // Header Search Toggle
+
+
+
 
   var $searchWrapper = $(".header-search-wrapper"),
     $body = $("body"),
@@ -662,6 +724,7 @@ $(document).ready(function () {
 
         galleryArr.push(obj);
       });
+    
 
     $("#btn-separated-gallery").on("click", function (e) {
       if ($.fn.magnificPopup) {
@@ -1094,3 +1157,4 @@ $(document).ready(function () {
     }, 10000);
   }
 });
+

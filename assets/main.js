@@ -1,6 +1,6 @@
 jQuery(document).ready(function($) {
 	'use strict';
-
+	
 	$('.demo-filter a').on('click', function(e) {
 		e.preventDefault();
 		var filter = $(this).attr('href').replace('#', '');

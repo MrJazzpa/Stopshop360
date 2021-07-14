@@ -107,11 +107,77 @@ const codeValidate = (req, res, next) => {
   });
 };
 
+
+const productCreationRules = () => {
+  return [
+    body("category", "Category is required")
+      .notEmpty()
+      .trim()
+      .escape()
+      .withMessage("Category is required"),
+    body("location", "Location is required")
+      .notEmpty()
+      .trim()
+      .escape()
+      .withMessage("Location is required"),
+    body("title", "Title is required")
+      .notEmpty()
+      .trim()
+      .escape()
+      .withMessage("Title is required"),
+    body("type", "Type is required")
+      .notEmpty()
+      .trim()
+      .escape()
+      .withMessage("Type is required"),
+    body("condition", "Condition is required")
+      .notEmpty()
+      .trim()
+      .escape()
+      .withMessage("Condition is required"),
+    body("description", "Production Description is required")
+      .notEmpty()
+      .trim()
+      .escape()
+      .withMessage("Product Description is required"),
+    body("price", "Product Price is required")
+      .notEmpty()
+      .trim()
+      .escape()
+      .withMessage("Product Price is required"),
+    body("phone", "Phone number is required")
+      .notEmpty()
+      .trim()
+      .escape()
+      .withMessage("Phone is required"),
+    body("name", "Product name is required")
+      .notEmpty()
+      .trim()
+      .escape()
+      .withMessage("Product name is required")
+  ];
+};
+
+const productValidate = (req, res, next) => {
+  const errors = validationResult(req);
+  const clientErrors = [];
+  errors.array().map((err) => clientErrors.push({ msg: err.msg }));
+  if (clientErrors.length == 0) {
+    return next();
+  }
+  console.log(clientErrors);
+  return res.status(400).send({
+    clientErrors,
+  });
+};
+
 module.exports = {
   userValidationRules,
   validate,
   userRegValidationRules,
   regValidate,
   checkCodeRules,
-  codeValidate
+  codeValidate,
+  productCreationRules,
+  productValidate
 };

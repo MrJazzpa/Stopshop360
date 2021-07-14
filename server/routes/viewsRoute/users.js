@@ -10,20 +10,20 @@ router.get("/", (req, res) => {
   res.render("index");
 });
 
-router.get("/forgot_password", (req, res) => {
+router.get("/forgot_password", alreadyAuthenticated, (req, res) => {
   res.render("users/forgot_email");
 });
 
-router.get("/verify_code", (req, res) => {
+router.get("/verify_code", alreadyAuthenticated, (req, res) => {
   res.render("users/verify_code");
 });
 
-router.get("/contact", (req, res) => {
+router.get("/contact",  (req, res) => {
   console.log("Request for contact page recieved");
   res.render("contact");
 });
 
-router.get("/change_password", (req, res) => {
+router.get("/change_password", alreadyAuthenticated, (req, res) => {
   res.render("change_password");
 });
 
@@ -31,8 +31,8 @@ router.get("/products", (req, res) => {
   res.render("product");
 });
 
-router.get("/dashboard", (req, res) => {
-  res.render("users/dashboard");
+router.get("/dashboard", ensureAuthenticated, (req, res) => {
+  res.render("dashboard");
 });
 
 module.exports = router;

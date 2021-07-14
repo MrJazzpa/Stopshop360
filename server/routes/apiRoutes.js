@@ -2,9 +2,13 @@ const express = require("express");
 const bcrypt = require("bcrypt");
 const nodemailer = require("nodemailer");
 const router = express.Router();
+const multer = require("multer");
+const fs = require("fs");
+
 const passport = require("passport");
 const User = require("../models/userModel");
 const Code = require("../models/codesModel");
+// const imageUpload = require('../../assets/images');
 const {
   userRegValidationRules,
   regValidate,
