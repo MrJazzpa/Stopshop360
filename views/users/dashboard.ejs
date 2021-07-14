@@ -32,7 +32,7 @@
 								        <a class="nav-link" id="tab-orders-link" data-toggle="tab" href="#tab-orders" role="tab" aria-controls="tab-orders" aria-selected="false"> uploaded products</a>
 								    </li>
 								    <li class="nav-item">
-								        <a class="nav-link" id="tab-downloads-link" data-toggle="tab" href="#tab-downloads" role="tab" aria-controls="tab-downloads" aria-selected="false">Downloads</a>
+								        <a class="nav-link" id="tab-downloads-link" data-toggle="tab" href="#tab-downloads" role="tab" aria-controls="tab-downloads" aria-selected="false">Booking Services Upload</a>
 								    </li>
 								    <li class="nav-item">
 								        <a class="nav-link" id="tab-address-link" data-toggle="tab" href="#tab-address" role="tab" aria-controls="tab-address" aria-selected="false">Billing</a>
@@ -60,11 +60,11 @@
                                                 <div class="card-header tab-card-header">
                                                     <ul class="nav nav-tabs card-header-tabs" id="myTab" role="tablist">
                                                       <li class="nav-item" >
-                                                          <a class="nav-link" id="one-tab" data-toggle="tab" href="#one" role="tab" aria-controls="One" aria-selected="true"><i class="fa fa-reply font-arrow" aria-hidden="true"></i>
+                                                          <a class="nav-link" id="one-tab" data-toggle="tab" href="#one" role="tab" aria-controls="One" aria-selected="true"><i class="fa fa-reply font-arrow" style="color:red" aria-hidden="true"></i>
 														  </a>
                                                       </li>
                                                       <li class="nav-item">
-                                                          <a class="nav-link" id="two-tab" data-toggle="tab" href="#two" role="tab" aria-controls="Two" aria-selected="false"><i class="fa fa-share" aria-hidden="true"></i>
+                                                          <a class="nav-link" id="two-tab" data-toggle="tab" href="#two" role="tab" aria-controls="Two" aria-selected="false"><i class="fa fa-share" aria-hidden="true" style="color:red"></i>
 														  </a>
                                                       </li>
                                                       
@@ -279,30 +279,46 @@
 			                				<div class="row">
 			                					<div class="col-sm-6">
 			                						<label>First Name *</label>
-			                						<input type="text" class="form-control" required>
+			                						<input type="text" class="form-control" name="first_name" id="first_name" required>
 			                					</div><!-- End .col-sm-6 -->
 
 			                					<div class="col-sm-6">
 			                						<label>Last Name *</label>
-			                						<input type="text" class="form-control" required>
+			                						<input type="text" class="form-control" name="last_name" id="last_name" required>
 			                					</div><!-- End .col-sm-6 -->
 			                				</div><!-- End .row -->
 
 		            						<label>Display Name *</label>
-		            						<input type="text" class="form-control" required>
+		            						<input type="text" class="form-control" name="display_name" id="display_name" required>
 		            						<small class="form-text">This will be how your name will be displayed in the account section and in reviews</small>
 
 		                					<label>Email address *</label>
-		        							<input type="email" class="form-control" required>
+		        							<input type="email" class="form-control" name="email_address" id="email_address" required>
 
-		            						<label>Current password (leave blank to leave unchanged)</label>
-		            						<input type="password" class="form-control">
+		            						<label>Phone Number(leave blank to leave unchanged)</label>
+		            						<input type="password" class="form-control" name="phone_number" id="phone_number" required>
 
-		            						<label>New password (leave blank to leave unchanged)</label>
-		            						<input type="password" class="form-control">
 
-		            						<label>Confirm new password</label>
-		            						<input type="password" class="form-control mb-2">
+
+											<div class="row">
+			                					<div class="col-sm-6">
+			                						<label>State / Region *</label>
+			                						<input type="text" class="form-control"name="state_region" id="state_region" required>
+			                					</div><!-- End .col-sm-6 -->
+
+			                					<div class="col-sm-6">
+			                						<label>City</label>
+			                						<input type="text" class="form-control" name="city" id="city" required>
+			                					</div><!-- End .col-sm-6 -->
+			                				</div><!-- End .row -->
+
+
+		            						<label>Address</label>
+		            						<textarea class="form-control" id="contact_address" name="contact_address"></textarea>
+
+
+											
+		            						
 
 		                					<button type="submit" class="btn btn-outline-primary-2">
 			                					<span>SAVE CHANGES</span>

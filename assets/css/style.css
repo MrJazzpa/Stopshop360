@@ -1,4 +1,5 @@
 ﻿@import url("https://fonts.googleapis.com/css?family=Poppins:200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800");
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css");
 html {
   font-size: 62.5%;
   -webkit-text-size-adjust: 100%;
@@ -6033,10 +6034,10 @@ p {
   background-color: transparent;
 }
 .btn-outline-primary-2 {
-  color: #c96;
+  color: red;
   background-color: transparent;
   background-image: none;
-  border-color: #c96;
+  border-color: red;
   box-shadow: none;
 }
 .btn-outline-primary-2:hover,
@@ -6046,8 +6047,8 @@ p {
 .btn-outline-primary-2:not(:disabled):not(.disabled).active,
 .show > .btn-outline-primary-2.dropdown-toggle {
   color: #fff;
-  background-color: #c96;
-  border-color: #c96;
+  background-color: red;
+  border-color: red;
   box-shadow: none;
 }
 .btn-outline-primary-2.disabled,
@@ -6804,7 +6805,7 @@ p {
   margin-top: 1rem;
 }
 .btn-cart:before {
-  content: "\e812";
+  content: "\f26e";
 }
 .btn-wishlist {
   font-size: 1.6rem;
@@ -8491,9 +8492,9 @@ select.form-control:not([size]):not([multiple]) {
   border-color: #fff;
 }
 .form-control:focus {
-  color: #fcb941;
+  color: #333;
   background-color: white;
-  border-color: #fcb941;
+  border-color: red;
   box-shadow: none;
   outline: none !important;
 }
@@ -13802,7 +13803,7 @@ button:focus {
 .nav-dashboard .nav-link:hover,
 .nav-dashboard .nav-link:focus,
 .nav-dashboard .nav-link.active {
-  color: #c96;
+  color: red;
 }
 .nav-dashboard .nav-link.active {
   padding-left: 2rem;

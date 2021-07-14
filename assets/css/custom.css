@@ -10,7 +10,7 @@ Bootstrap4 Card with Tabs by @mdeuerlein
     --border-btn:#edf2f4;
     --yellow:#fcb941;
     --blue: #007bff;
-    --red: #dc3545;
+    --red: red
     
 }
 
@@ -127,8 +127,8 @@ Bootstrap4 Card with Tabs by @mdeuerlein
     object-fit: cover;
   }
   .btn-center{
-      margin-left:20rem;
-      width: 40rem;
+      margin-left:25%;
+      width:50%;
       box-shadow: 2px 4px 10px 0 rgba(0, 34, 51, 0.05), 2px 4px 10px 0 rgba(0, 34, 51, 0.05);
       background-color:red;
       border-color: red;
@@ -189,8 +189,9 @@ Bootstrap4 Card with Tabs by @mdeuerlein
    
   }
   [include*="form-input-select()"] select:focus {
-    background-color: transparent;
+    background-color:transparent;
     outline: none;
+    
   }
   [include*="form-input-select()"] option {
     font-weight: normal;
@@ -221,17 +222,17 @@ Bootstrap4 Card with Tabs by @mdeuerlein
   }
    
    [include*="form-input-select()"]:hover select {
-    box-shadow:var(--yellow);
-    border-color: var(--yellow);
+    box-shadow:var(--red);
+    border-color: var(--red);
   } 
    [include*="form-input-select()"]:hover select:focus {
     outline-color: transparent;
   } 
   [include*="form-input-select()"]:hover::before {
-    border-bottom-color: var(--yellow);
+    border-bottom-color: var(--red);
   }
   [include*="form-input-select()"]:hover::after {
-    border-top-color: var(--yellow);
+    border-top-color: var(--red);
   }
   [include*="form-input-select()"] select {
     border: 3px solid #e6e6e6;
@@ -246,6 +247,7 @@ Bootstrap4 Card with Tabs by @mdeuerlein
     box-shadow:transparent inset;
     outline: 3px solid  transparent;
     outline-offset: -3px;
+    border:solid red
   }
   [include*="form-input-select()"] select[disabled], [include*="form-input-select()"] select:disabled {
     opacity: 0.4;
@@ -259,4 +261,24 @@ Bootstrap4 Card with Tabs by @mdeuerlein
   }
   .change:hover{
     background-color: red;
+  }
+  .hold_logo
+  {
+    
+    width:50%;
+    height:40px;
+  }
+  @media only screen and (max-width: 600px) {
+    .s{
+      width: 100%;
+      margin-left:0px;
+      height: 50px;
+  }
+  .review_img{
+    width: 100%;
+  }
+  .btn-center{
+    width: 100%;
+    margin:0px;
+  }
   }
