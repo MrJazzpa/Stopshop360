@@ -281,4 +281,13 @@ Bootstrap4 Card with Tabs by @mdeuerlein
     width: 100%;
     margin:0px;
   }
-  }
+}
+ .circle{
+   margin:auto;
+   width: 12%;
+   text-align:center;
+   font-size:medium;
+   font-weight: bolder;
+   border: solid 2px red;
+   border-radius: 50%;
+ }
