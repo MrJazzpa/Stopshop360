@@ -32,7 +32,7 @@ router.get("/products", (req, res) => {
 });
 
 router.get("/dashboard", ensureAuthenticated, (req, res) => {
-  res.render("dashboard");
+  res.render("users/dashboard");
 });
 
 module.exports = router;

@@ -51,13 +51,15 @@
 	                			<div class="tab-content">
 								    <div class="tab-pane fade show active" id="tab-dashboard" role="tabpanel" aria-labelledby="tab-dashboard-link">
 								    	
-                                        <form method="post" action="">
-
+                                        <form id="create_product" enctype="multipart/form-data">
+											
                                         <div class="container">
+											
                                             <div class="row">
                                               <div class="col-md-8">
                                                 <div class="card mt-3 tab-card">
                                                 <div class="card-header tab-card-header">
+													<div style="text-align:center"class="successMsg"></div>
                                                     <ul class="nav nav-tabs card-header-tabs" id="myTab" role="tablist">
                                                       <li class="nav-item" >
                                                           <a class="nav-link" id="one-tab" data-toggle="tab" href="#one" role="tab" aria-controls="One" aria-selected="true"><i class="fa fa-reply font-arrow" style="color:red" aria-hidden="true"></i>
@@ -77,7 +79,7 @@
                                                     
                                                    <div class="medium">
 
-                                                      <select class="form-select form-select-lg mb-2 col-sm-5 s" aria-label=".form-select-lg example" id="category">
+                                                      <select class="form-select form-select-lg mb-2 col-sm-5 s" aria-label=".form-select-lg example" id="category" name="category">
                                                         <option selected value="Select Category">Select Category</option>
                                                         <option value="1">Cloths</option>
                                                         <option value="2">Bags</option>
@@ -86,7 +88,7 @@
                                                         <option value="3">Hair dressing</option>
                                                       </select>
                                                       
-                                                      <select class="form-select form-select-lg  col-sm-5 s" aria-label=".form-select-lg example" id="location">
+                                                      <select class="form-select form-select-lg  col-sm-5 s" aria-label=".form-select-lg example" id="location" name="location">
                                                         <option selected>Select Location</option>
                                                         <option value="1">London</option>
                                                         <option value="2">West Midlands</option>
@@ -114,7 +116,7 @@
                                                      <div class="form-group">
 
 
-                                                        <input type="file" id="default-file" hidden="hidden" />
+                                                        <input type="file" id="default-file" name="images" hidden="hidden" />
 
                                                         <!-- Button Markup -->
                                                         <button id="custom-btn" type="button" class="prev_btn left">
