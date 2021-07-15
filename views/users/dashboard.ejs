@@ -2,11 +2,7 @@
 <body>
     <div class="page-wrapper">
         <main class="main">
-        	<div class="page-header text-center" style="background-image: url('assets/images/page-header-bg.jpg')">
-        		<div class="container">
-        			<h1 class="page-title">POST AD<span style="color:red">SELL</span></h1>
-        		</div><!-- End .container -->
-        	</div><!-- End .page-header -->
+        	
             <nav aria-label="breadcrumb" class="breadcrumb-nav mb-3">
                 <div class="container">
                     <ol class="breadcrumb">
@@ -29,7 +25,7 @@
 								        <a class="nav-link active" id="tab-dashboard-link" data-toggle="tab" href="#tab-dashboard" role="tab" aria-controls="tab-dashboard" aria-selected="true">Dashboard</a>
 								    </li>
 								    <li class="nav-item">
-								        <a class="nav-link" id="tab-orders-link" data-toggle="tab" href="#tab-orders" role="tab" aria-controls="tab-orders" aria-selected="false"> uploaded products</a>
+								        <a class="nav-link" id="tab-orders-link" data-toggle="tab" href="#tab-orders" role="tab" aria-controls="tab-orders" aria-selected="false"> Uploaded Products</a>
 								    </li>
 								    <li class="nav-item">
 								        <a class="nav-link" id="tab-downloads-link" data-toggle="tab" href="#tab-downloads" role="tab" aria-controls="tab-downloads" aria-selected="false">Booking Services Upload</a>
@@ -86,6 +82,12 @@
                                                         <option value="3">bridal dressing</option>
                                                         <option value="3">Party Accessories</option>
                                                         <option value="3">Hair dressing</option>
+														<option value="3">Catering</option>
+														<option value="3">Barber</option>
+														<option value="3">Makeup Artist</option>
+														<option value="3">Catering Services</option>
+														<option value="3">Wedding Planners</option>
+														<option value="3">Tailor Services</option>
                                                       </select>
                                                       
                                                       <select class="form-select form-select-lg  col-sm-5 s" aria-label=".form-select-lg example" id="location" name="location">
@@ -150,8 +152,16 @@
 																<label>title</label>
 																<input type="text" class=" form-control f" name="title" required style="color: black;">
 															</div><!-- End .col-sm-6 -->
-			
+															
+
+															<div class="col-sm-6">
+																<label>price #</label>
+																<input type="text" class="form-control" name="price" required tyle="color: black;">
+															</div><!-- End .col-sm-6 -->
+																
 														</div><!-- End .row -->
+
+														
 														
 														<div class="row">
 															<div class="col-sm-6">
@@ -173,11 +183,10 @@
 																<div include="form-input-select()">
 																	<select required name="condition">
 																	  <option value="" hidden>condition</option>
-																	  <option value="1">Ruben</option>
-																	  <option value="2">David</option>
-																	  <option value="3">James</option>
-																	  <option value="4">Marc</option>
-																	  <option value="5">Anthony</option>
+																	  <option value="Brand New">Brand New</option>
+																	  <option value="Used">Used</option>
+																	  <option value="Booking">Booking</option>
+																	  
 																	</select>
 															 </div>
 															</div><!-- End .col-sm-6 -->
@@ -190,30 +199,35 @@
 															</div><!-- End .col-sm-6 -->
 														</div><!-- End .row -->
 
-														<div class="row">
-															<div class="col-sm-6">
-																<label>price #</label>
-																<input type="text" class="form-control" name="price" required tyle="color: black;">
-															</div><!-- End .col-sm-6 -->
-			
-														</div><!-- End .row -->
+													
 
-
+														
 														<div class="row">
 															<div class="col-sm-6">
 																<label>Phone Number *</label>
-																<input type="text" class="form-control" name="phone" required>
+																<input type="text" class="form-control" name="phone" value="<%= user.phone %>" readonly>
 															</div>
 															
 															<div class="col-sm-6">
 																<label>Name</label>
-																<input type="text" class="form-control" name="name" required>
+																<input type="text" class="form-control" name="name" value="<%= user.firstname  %>" readonly>
 															</div>
 															
 															
 														</div><!-- End .row -->
 
-
+														<div class="col-sm-12">
+															<label>Sales Type</label>
+															<div include="form-input-select()">
+																<select required name="sales_type">
+																  <option value="" hidden>Sales Type</option>
+																  <option value="Brand New">Hiring</option>
+																  <option value="Used">Sales</option>
+																  <option value="Booking">Booking</option>
+																  
+																</select>
+														 </div>
+														</div><!-- End .col-sm-6 -->
                                                      
                                                       <button type="submit" class="btn btn-primary btn-round btn-center">Post AD</button>              
                                                     </div>
