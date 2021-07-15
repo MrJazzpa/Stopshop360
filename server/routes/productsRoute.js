@@ -2,11 +2,11 @@ const express = require("express");
 const router = express.Router();
 const path = require("path");
 const multer = require("multer");
-const Product = require('../models/productsModel');
+const Product = require("../models/productsModel");
 
 const {
   productCreationRules,
-  productValidate
+  productValidate,
 } = require("../../middleware/validator");
 
 const {
@@ -39,16 +39,26 @@ const imageUpload = multer({
 
 router.post(
   "/upload_product",
-  [imageUpload.array("images", 5), productCreationRules(), productValidate],
-    async (req, res) => {
+  [imageUpload.array("images", 5), productCreationRules(), productValidate, ensureAuthenticated],
+  async (req, res) => {
     if (req.files.length === 0) {
-     return res.status(400).send({ error: "No file selected"});
+      return res.status(400).send({ error: "No file selected" });
     }
-     //res.send(req.files)
-     const images=[];
-     req.files.map((items) => images.push(items.path));
-     const {category, location, title, type, condition, description, price, phone, name} = req.body;
-     const product = await new Product({
+    //res.send(req.files)
+    const images = [];
+    req.files.map((items) => images.push(items.path));
+    const {
+      category,
+      location,
+      title,
+      type,
+      condition,
+      description,
+      price,
+      phone,
+      name,
+    } = req.body;
+    const product = await new Product({
       name,
       seller: req.user._id,
       location,
@@ -59,13 +69,20 @@ router.post(
       phone,
       type,
       condition,
-      description
+      description,
     });
     const createdProduct = await product.save();
-    return res.status(200).send({status: 200, message: "Product was created successfull", product: createdProduct});
+    return res
+      .status(200)
+      .send({
+        status: 200,
+        message: "Product was created successfully",
+        product: createdProduct,
+      });
   },
   (error, req, res, next) => {
-   return res.status(400).send({ error: error.message });
-  });
+    return res.status(400).send({ error: error.message });
+  }
+);
 
 module.exports = router;
