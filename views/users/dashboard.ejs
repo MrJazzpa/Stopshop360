@@ -25,7 +25,7 @@
 								        <a class="nav-link active" id="tab-dashboard-link" data-toggle="tab" href="#tab-dashboard" role="tab" aria-controls="tab-dashboard" aria-selected="true">Dashboard</a>
 								    </li>
 								    <li class="nav-item">
-								        <a class="nav-link" id="tab-orders-link" data-toggle="tab" href="#tab-orders" role="tab" aria-controls="tab-orders" aria-selected="false"> Uploaded Products</a>
+								        <a class="nav-link" id="tab-orders-link" data-toggle="tab" href="#tab-orders" role="tab" aria-controls="tab-orders" aria-selected="false">Create Product</a>
 								    </li>
 								    <li class="nav-item">
 								        <a class="nav-link" id="tab-downloads-link" data-toggle="tab" href="#tab-downloads" role="tab" aria-controls="tab-downloads" aria-selected="false">Booking Services Upload</a>
@@ -47,209 +47,215 @@
 	                			<div class="tab-content">
 								    <div class="tab-pane fade show active" id="tab-dashboard" role="tabpanel" aria-labelledby="tab-dashboard-link">
 								    	
-                                        <form id="create_product" enctype="multipart/form-data">
+                                       <!--PLACE FOR DASHBOARD-->
+
+								    </div><!-- .End .tab-pane -->
+
+								    <div class="tab-pane fade" id="tab-orders" role="tabpanel" aria-labelledby="tab-orders-link">
+								    	
+
+										<form id="create_product" enctype="multipart/form-data">
 											
-                                        <div class="container">
-											
-                                            <div class="row">
-                                              <div class="col-md-8">
-                                                <div class="card mt-3 tab-card">
-                                                <div class="card-header tab-card-header">
-													<div style="text-align:center"class="successMsg"></div>
-                                                    <ul class="nav nav-tabs card-header-tabs" id="myTab" role="tablist">
-                                                      <li class="nav-item" >
-                                                          <a class="nav-link" id="one-tab" data-toggle="tab" href="#one" role="tab" aria-controls="One" aria-selected="true"><i class="fa fa-reply font-arrow" style="color:red" aria-hidden="true"></i>
-														  </a>
-                                                      </li>
-                                                      <li class="nav-item">
-                                                          <a class="nav-link" id="two-tab" data-toggle="tab" href="#two" role="tab" aria-controls="Two" aria-selected="false"><i class="fa fa-share" aria-hidden="true" style="color:red"></i>
-														  </a>
-                                                      </li>
-                                                      
-                                                    </ul>
-                                                  </div>
-                                          
-                                                  <div class="tab-content" id="myTabContent">
-                                                    <div class="tab-pane fade show active p-3" id="one" role="tabpanel" aria-labelledby="one-tab">
-                                                     <!--FORM SHOULD BE HERE-->
-                                                    
-                                                   <div class="medium">
-
-                                                      <select class="form-select form-select-lg mb-2 col-sm-5 s" aria-label=".form-select-lg example" id="category" name="category">
-                                                        <option selected value="Select Category">Select Category</option>
-                                                        <option value="1">Cloths</option>
-                                                        <option value="2">Bags</option>
-                                                        <option value="3">bridal dressing</option>
-                                                        <option value="3">Party Accessories</option>
-                                                        <option value="3">Hair dressing</option>
-														<option value="3">Catering</option>
-														<option value="3">Barber</option>
-														<option value="3">Makeup Artist</option>
-														<option value="3">Catering Services</option>
-														<option value="3">Wedding Planners</option>
-														<option value="3">Tailor Services</option>
-                                                      </select>
-                                                      
-                                                      <select class="form-select form-select-lg  col-sm-5 s" aria-label=".form-select-lg example" id="location" name="location">
-                                                        <option selected>Select Location</option>
-                                                        <option value="1">London</option>
-                                                        <option value="2">West Midlands</option>
-                                                        <option value="3">Greater Manchester</option>
-														<option value="3">West Yorkshire</option>
-														<option value="3">Kent</option>
-														<option value="3">Merseyside</option>
-														<option value="3">Essex</option>
-														<option value="3">south Yorkshire</option>
-														<option value="3">Hampshire</option>
-														<option value="3">Surrey</option>
-														<option value="3">Tyne and Wear</option>
-														<option value="3">Hertfordshire</option>
-														<option value="3">Lancashire</option>
-														<option value="3">Norttingharmshire</option>
-														<option value="3">Cheshire</option>
-														<option value="3">Staffordshire</option>
-														<option value="3">Debyshire</option>
-														<option value="3">Norfolk</option>
-                                                      </select>
-                                                      <h5 class="card-title left">Add Photo</h5>
-                                                     <p class="card-text left">Add at least 1 photo for this category. </p>    
-                                                     </div>
-                                                      <!--file upload-->
-                                                     <div class="form-group">
-
-
-                                                        <input type="file" id="default-file" name="images" hidden="hidden" />
-
-                                                        <!-- Button Markup -->
-                                                        <button id="custom-btn" type="button" class="prev_btn left">
-                                                          CHOOSE FILE
-                                                        </button>
-                                                  
-                                                        <!-- Choose File TEXT Markup -->
-                                                        <span id="custom-space"> <strong> No</strong> File, Selected!</span>
-  
-                                                        <!--PREVIEW -->
-                                                        <div class="preview_holder">
-                                                          <div id="preview">
-                                                            <img src="" id="preview_img" class="preview_img" />
-                                                            <span id="preview_text" class="preview_text">Image Preview</span>
-                                                          </div>
-                                                        </div>
-
-                                                     </div>
-
-
-                                                      <div class="form-group">
-                                                        
-                                                        <a data-toggle="tab" href="#two"  class="btn btn-secondry btn-round btn-center">Next</a>  
-
-                                                      </div>
-
-                                                    </div>
-                                                    <div class="tab-pane fade p-3" id="two" role="tabpanel" aria-labelledby="two-tab">
-														<div class="row">
-															<div class="col-sm-6">
-																<label>title</label>
-																<input type="text" class=" form-control f" name="title" required style="color: black;">
-															</div><!-- End .col-sm-6 -->
+											<div class="container">
+												
+												<div class="row">
+												  <div class="col-md-8">
+													<div class="card mt-3 tab-card">
+													<div class="card-header tab-card-header">
+														<div style="text-align:center"class="successMsg"></div>
+														<ul class="nav nav-tabs card-header-tabs" id="myTab" role="tablist">
+														  <li class="nav-item" >
+															  <a class="nav-link" id="one-tab" data-toggle="tab" href="#one" role="tab" aria-controls="One" aria-selected="true"><i class="fa fa-reply font-arrow" style="color:red" aria-hidden="true"></i>
+															  </a>
+														  </li>
+														  <li class="nav-item">
+															  <a class="nav-link" id="two-tab" data-toggle="tab" href="#two" role="tab" aria-controls="Two" aria-selected="false"><i class="fa fa-share" aria-hidden="true" style="color:red"></i>
+															  </a>
+														  </li>
+														  
+														</ul>
+													  </div>
+											  
+													  <div class="tab-content" id="myTabContent">
+														<div class="tab-pane fade show active p-3" id="one" role="tabpanel" aria-labelledby="one-tab">
+														 <!--FORM SHOULD BE HERE-->
+														
+													   <div class="medium">
+	
+														  <select class="form-select form-select-lg mb-2 col-sm-5 s" aria-label=".form-select-lg example" id="category" name="category">
+															<option selected value="Select Category">Select Category</option>
+															<option value="1">Cloths</option>
+															<option value="2">Bags</option>
+															<option value="3">bridal dressing</option>
+															<option value="3">Party Accessories</option>
+															<option value="3">Hair dressing</option>
+															<option value="3">Catering</option>
+															<option value="3">Barber</option>
+															<option value="3">Makeup Artist</option>
+															<option value="3">Catering Services</option>
+															<option value="3">Wedding Planners</option>
+															<option value="3">Tailor Services</option>
+														  </select>
+														  
+														  <select class="form-select form-select-lg  col-sm-5 s" aria-label=".form-select-lg example" id="location" name="location">
+															<option selected>Select Location</option>
+															<option value="1">London</option>
+															<option value="2">West Midlands</option>
+															<option value="3">Greater Manchester</option>
+															<option value="3">West Yorkshire</option>
+															<option value="3">Kent</option>
+															<option value="3">Merseyside</option>
+															<option value="3">Essex</option>
+															<option value="3">south Yorkshire</option>
+															<option value="3">Hampshire</option>
+															<option value="3">Surrey</option>
+															<option value="3">Tyne and Wear</option>
+															<option value="3">Hertfordshire</option>
+															<option value="3">Lancashire</option>
+															<option value="3">Norttingharmshire</option>
+															<option value="3">Cheshire</option>
+															<option value="3">Staffordshire</option>
+															<option value="3">Debyshire</option>
+															<option value="3">Norfolk</option>
+														  </select>
+														  <h5 class="card-title left">Add Photo</h5>
+														 <p class="card-text left">Add at least 1 photo for this category. </p>    
+														 </div>
+														  <!--file upload-->
+														 <div class="form-group">
+	
+	
+															<input type="file" id="default-file" name="images" hidden="hidden" />
+	
+															<!-- Button Markup -->
+															<button id="custom-btn" type="button" class="prev_btn left">
+															  CHOOSE FILE
+															</button>
+													  
+															<!-- Choose File TEXT Markup -->
+															<span id="custom-space"> <strong> No</strong> File, Selected!</span>
+	  
+															<!--PREVIEW -->
+															<div class="preview_holder">
+															  <div id="preview">
+																<img src="" id="preview_img" class="preview_img" />
+																<span id="preview_text" class="preview_text">Image Preview</span>
+															  </div>
+															</div>
+	
+														 </div>
+	
+	
+														  <div class="form-group">
 															
-
-															<div class="col-sm-6">
-																<label>price #</label>
-																<input type="text" class="form-control" name="price" required tyle="color: black;">
-															</div><!-- End .col-sm-6 -->
+															<a data-toggle="tab" href="#two"  class="btn btn-secondry btn-round btn-center">Next</a>  
+	
+														  </div>
+	
+														</div>
+														<div class="tab-pane fade p-3" id="two" role="tabpanel" aria-labelledby="two-tab">
+															<div class="row">
+																<div class="col-sm-6">
+																	<label>title</label>
+																	<input type="text" class=" form-control f" name="title" required style="color: black;">
+																</div><!-- End .col-sm-6 -->
 																
-														</div><!-- End .row -->
-
+	
+																<div class="col-sm-6">
+																	<label>price #</label>
+																	<input type="text" class="form-control" name="price" required tyle="color: black;">
+																</div><!-- End .col-sm-6 -->
+																	
+															</div><!-- End .row -->
+	
+															
+															
+															<div class="row">
+																<div class="col-sm-6">
+																	<label>Type</label>
+																	<div include="form-input-select()">
+																		<select required name="type">
+																		  <option value="" >type</option>
+																		  <option value="1">Ruben</option>
+																		  <option value="2">David</option>
+																		  <option value="3">James</option>
+																		  <option value="4">Marc</option>
+																		  <option value="5">Anthony</option>
+																		</select>
+																 </div>
+																</div><!-- End .col-sm-6 -->
+				
+																<div class="col-sm-6">
+																	<label>Brand</label>
+																	<div include="form-input-select()">
+																		<select required name="condition">
+																		  <option value="" hidden>condition</option>
+																		  <option value="Brand New">Brand New</option>
+																		  <option value="Used">Used</option>
+																		  <option value="Booking">Booking</option>
+																		  
+																		</select>
+																 </div>
+																</div><!-- End .col-sm-6 -->
+															</div><!-- End .row -->
+	
+															<div class="row">
+																<div class="col-sm-12">
+																	<label>Product Description</label>
+																	<textarea class="form-control rounded-0" name="description" id="exampleFormControlTextarea1" rows="5" tyle="color: black;"></textarea>
+																</div><!-- End .col-sm-6 -->
+															</div><!-- End .row -->
+	
 														
-														
-														<div class="row">
-															<div class="col-sm-6">
-																<label>Type</label>
+	
+															
+															<div class="row">
+																<div class="col-sm-6">
+																	<label>Phone Number *</label>
+																	<input type="text" class="form-control" name="phone" value="<%= user.phone %>" readonly>
+																</div>
+																
+																<div class="col-sm-6">
+																	<label>Name</label>
+																	<input type="text" class="form-control" name="name" value="<%= user.firstname  %>" readonly>
+																</div>
+																
+																
+															</div><!-- End .row -->
+	
+															<div class="col-sm-12">
+																<label>Sales Type</label>
 																<div include="form-input-select()">
-																	<select required name="type">
-																	  <option value="" >type</option>
-																	  <option value="1">Ruben</option>
-																	  <option value="2">David</option>
-																	  <option value="3">James</option>
-																	  <option value="4">Marc</option>
-																	  <option value="5">Anthony</option>
-																	</select>
-															 </div>
-															</div><!-- End .col-sm-6 -->
-			
-															<div class="col-sm-6">
-																<label>Brand</label>
-																<div include="form-input-select()">
-																	<select required name="condition">
-																	  <option value="" hidden>condition</option>
-																	  <option value="Brand New">Brand New</option>
-																	  <option value="Used">Used</option>
+																	<select required name="sales_type">
+																	  <option value="" hidden>Sales Type</option>
+																	  <option value="Brand New">Hiring</option>
+																	  <option value="Used">Sales</option>
 																	  <option value="Booking">Booking</option>
 																	  
 																	</select>
 															 </div>
 															</div><!-- End .col-sm-6 -->
-														</div><!-- End .row -->
+														 
+														  <button type="submit" class="btn btn-primary btn-round btn-center">Post AD</button>              
+														</div>
+														<div class="tab-pane fade p-3" id="three" role="tabpanel" aria-labelledby="three-tab">
+														  <h5 class="card-title">Tab Card Three</h5>
+														  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+														  <a href="#" class="btn btn-primary">Go somewhere</a>              
+														</div>
+											  
+													  </div>
+													</div>
+												  </div>
+												</div>
+											  </div>
+	
+											</form>
+	
 
-														<div class="row">
-															<div class="col-sm-12">
-																<label>Product Description</label>
-																<textarea class="form-control rounded-0" name="description" id="exampleFormControlTextarea1" rows="5" tyle="color: black;"></textarea>
-															</div><!-- End .col-sm-6 -->
-														</div><!-- End .row -->
 
-													
 
-														
-														<div class="row">
-															<div class="col-sm-6">
-																<label>Phone Number *</label>
-																<input type="text" class="form-control" name="phone" value="<%= user.phone %>" readonly>
-															</div>
-															
-															<div class="col-sm-6">
-																<label>Name</label>
-																<input type="text" class="form-control" name="name" value="<%= user.firstname  %>" readonly>
-															</div>
-															
-															
-														</div><!-- End .row -->
 
-														<div class="col-sm-12">
-															<label>Sales Type</label>
-															<div include="form-input-select()">
-																<select required name="sales_type">
-																  <option value="" hidden>Sales Type</option>
-																  <option value="Brand New">Hiring</option>
-																  <option value="Used">Sales</option>
-																  <option value="Booking">Booking</option>
-																  
-																</select>
-														 </div>
-														</div><!-- End .col-sm-6 -->
-                                                     
-                                                      <button type="submit" class="btn btn-primary btn-round btn-center">Post AD</button>              
-                                                    </div>
-                                                    <div class="tab-pane fade p-3" id="three" role="tabpanel" aria-labelledby="three-tab">
-                                                      <h5 class="card-title">Tab Card Three</h5>
-                                                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                                      <a href="#" class="btn btn-primary">Go somewhere</a>              
-                                                    </div>
-                                          
-                                                  </div>
-                                                </div>
-                                              </div>
-                                            </div>
-                                          </div>
-
-                                        </form>
-
-								    </div><!-- .End .tab-pane -->
-
-								    <div class="tab-pane fade" id="tab-orders" role="tabpanel" aria-labelledby="tab-orders-link">
-								    	<p>No order has been made yet.</p>
-								    	<a href="category.html" class="btn btn-outline-primary-2"><span>GO SHOP</span><i class="icon-long-arrow-right"></i></a>
 								    </div><!-- .End .tab-pane -->
 
 								    <div class="tab-pane fade" id="tab-downloads" role="tabpanel" aria-labelledby="tab-downloads-link">
