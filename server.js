@@ -16,6 +16,8 @@ require("./startup/compressors")();
 require("./middleware/passport")(passport);
 
 const apiRoutes = require("./server/routes/apiRoutes");
+const apiAdminRoutes = require("./server/routes/apiAdminRoutes");
+
 const productsRoutes = require("./server/routes/productsRoute");
 const usersViewRoutes = require("./server/routes/viewsRoute/users");
 const adminViewRoutes = require("./server/routes/viewsRoute/adminRoute");
@@ -64,6 +66,7 @@ app.use(express.json());
 app.use(cookieParser());
 app.use("/", usersViewRoutes);
 app.use("/admin", adminViewRoutes);
+app.use("/api/admin", apiAdminRoutes);
 app.use("/api/users", apiRoutes);
 app.use("/api/products", productsRoutes);
 

@@ -79,7 +79,7 @@
                             </li>
                             <% if (user) { %>
                                <li class="welcomeUser"> <a href="/dashboard"> Welcome! <%= user.firstname %></a></li>
-                                <li class="welcomeUser" id="logout"><a href="">Logout</a></li>
+                                <li class="welcomeUser" class="logout"><a href="">Logout</a></li>
                             <% }else{ %>
                             <li><a href="#signin-modal" data-toggle="modal">Sign in / Sign up</a></li>
                             <% } %>
@@ -188,7 +188,7 @@
                             <a href="/" class="" >Home</a>
                         </li>
                         <li>
-                            <a href="category.html" class="sf-with-ul">Shop</a>
+                            <a href="" class="sf-with-ul">Shop</a>
 
                             <div class="megamenu megamenu-md">
                                 <div class="row no-gutters">
@@ -198,8 +198,8 @@
                                                 <div class="col-md-6">
                                                     <div class="menu-title">Shop with sidebar</div><!-- End .menu-title -->
                                                     <ul>
-                                                        <li><a href="category-list.html">Shop List</a></li>
-                                                        <li><a href="category-2cols.html">Shop Grid 2 Columns</a></li>
+                                                        <li><a href="">Shop List</a></li>
+                                                        <li><a href="">Shop Grid 2 Columns</a></li>
                                                         <li><a href="category.html">Shop Grid 3 Columns</a></li>
                                                         <li><a href="category-4cols.html">Shop Grid 4 Columns</a></li>
                                                         <li><a href="category-market.html"><span>Shop Market<span class="tip tip-new">New</span></span></a></li>
@@ -234,7 +234,7 @@
                                     <div class="col-md-4">
                                         <div class="banner banner-overlay">
                                             <a href="category.html" class="banner banner-menu">
-                                                <img src="assets/images/menu/banner-1.jpg" alt="Banner">
+                                                <img src="/images/menu/banner-1.jpg" alt="Banner">
 
                                                 <div class="banner-content banner-content-top">
                                                     <div class="banner-title text-white">Last <br>Chance<br><span><strong>Sale</strong></span></div><!-- End .banner-title -->
@@ -269,7 +269,7 @@
                                     <div class="col-md-6">
                                         <div class="banner banner-overlay">
                                             <a href="category.html">
-                                                <img src="assets/images/menu/banner-2.jpg" alt="Banner">
+                                                <img src="/images/menu/banner-2.jpg" alt="Banner">
 
                                                 <div class="banner-content banner-content-bottom">
                                                     <div class="banner-title text-white">New Trends<br><span><strong>spring 2019</strong></span></div><!-- End .banner-title -->
