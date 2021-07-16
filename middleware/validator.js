@@ -1,5 +1,5 @@
 const { body, validationResult } = require("express-validator");
-const User = require("./../server/models/userModel");
+const Category = require("./../server/models/categoryModel");
 
 const userValidationRules = () => {
   return [
@@ -171,6 +171,37 @@ const productValidate = (req, res, next) => {
   });
 };
 
+
+const categoryRules = () => {
+  return [
+    body("category")
+        .custom(category => {
+         return Category.findOne({category}).then(record => {
+        if (record) {
+          return Promise.reject('Category already created');
+        }
+      });
+    })
+      .trim()
+      .escape()
+      .notEmpty()
+      .withMessage("Category field is required")
+  ];
+};
+
+const categoryValidate = (req, res, next) => {
+  const errors = validationResult(req);
+  const clientErrors = [];
+  errors.array().map((err) => clientErrors.push({ msg: err.msg }));
+  if (clientErrors.length == 0) {
+    return next();
+  }
+  console.log(clientErrors);
+  return res.status(400).send({
+    clientErrors,
+  });
+};
+
 module.exports = {
   userValidationRules,
   validate,
@@ -179,5 +210,7 @@ module.exports = {
   checkCodeRules,
   codeValidate,
   productCreationRules,
-  productValidate
+  productValidate,
+  categoryRules,
+  categoryValidate
 };

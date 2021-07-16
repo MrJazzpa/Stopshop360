@@ -270,6 +270,83 @@ $("#create_product").submit(function (e) {
     });
   });
 
+   $(function () {
+    $(".add_sub").on("click", function (e) {
+      e.preventDefault();
+      $.ajax({
+        url: "",
+        method: "POST",
+        dataType: "json",
+        data: {},
+        contentType: "application/json",
+        success: function (response) {
+          // console.log(response);
+          // if (response.status == 200) {
+          //   window.location = "/";
+          // }
+        },
+        error: function (jqXhr) {},
+      });
+    });
+  });
+
+  $(function () {
+    $("#create_category").on("submit", function (e) {
+      e.preventDefault();
+      $("#category_submit").html("Please wait...");
+      $.ajax({
+        url: "/api/admin/create_category",
+        method: "POST",
+        dataType: "json",
+        data: JSON.stringify({
+          category: jQuery("#add_category").val(),
+        }),
+        contentType: "application/json",
+        success: function (response) {
+          if (response.status == 200) {
+            console.log(response);
+            $(".categoryAddMsg").html(
+              "<div class = 'alert alert-success alert-dismissible fade show' role = 'alert'><button type = 'button' class = 'close' data-dismiss = 'alert' aria-label= 'close'> <span aria-hidden = 'true'>&times;</span></button>" +
+                response.message +
+                "</div>"
+            );
+            $("#category_submit").html(
+              'Save Category'
+            );
+            $("#create_category")[0].reset();
+          }
+        },
+        error: function (jqXhr) {
+        
+          if (jqXhr.status >= 400) {
+            $("#category_submit").html(
+              'Save Category'
+            );
+            let json = $.parseJSON(jqXhr.responseText);
+            console.log(json);
+            let errorsContainer = $(".categoryAddMsg");
+
+            if (json.clientErrors) {
+              errorsContainer.innerHTML = "";
+              let errorsList = "";
+              for (let i = 0; i < json.clientErrors.length; i++) {
+                errorsList += `<div class = 'alert alert-danger alert-dismissible fade show' role = 'alert'><button type = 'button' class = 'close' data-dismiss = 'alert' aria-label= 'close'> <span aria-hidden = 'true'>&times;</span></button> ${json.clientErrors[i].msg}
+                  </div>
+                    `;
+              }
+              errorsContainer.html(errorsList);
+            } else {
+              $(".categoryAddMsg")
+                .html(`<div class = 'mb-3 alert alert-danger alert-dismissible fade show' role = 'alert'><button type = 'button' class = 'close' data-dismiss = 'alert' aria-label= 'close'> <span aria-hidden = 'true'>&times;</span></button> ${json.error}
+                </div>
+              `);
+            }
+          }
+        },
+      });
+    });
+  });
+
   //logout
   $(function () {
     $("#logout").on("click", function (e) {

@@ -40,7 +40,7 @@
 								        <a class="nav-link" id="tab-account-link" data-toggle="tab" href="#tab-category" role="tab" aria-controls="tab-category" aria-selected="false">Add Category</a>
 								    </li>
 									<li class="nav-item">
-								        <a class="nav-link" id="tab-account-link" data-toggle="tab" href="#sub-category" role="tab" aria-controls="tab-subcategory" aria-selected="false">Add Sub-Category</a>
+								        <a class="nav-link add_sub" id="tab-account-link" data-toggle="tab" href="#sub-category" role="tab" aria-controls="tab-subcategory" aria-selected="false">Add Sub-Category</a>
 								    </li>
 								    <li class="nav-item">
 								        <a class="nav-link" href="/">Sign Out</a>
@@ -308,7 +308,6 @@
 														  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
 														  <a href="#" class="btn btn-primary">Go somewhere</a>              
 														</div>
-											  
 													  </div>
 													</div>
 												  </div>
@@ -403,54 +402,34 @@
 		            						<label>Address</label>
 		            						<textarea class="form-control" id="contact_address" name="contact_address"></textarea>
 
-
-											
-		            						
-
 		                					<button type="submit" class="btn btn-outline-primary-2">
 			                					<span>SAVE CHANGES</span>
 			            						<i class="icon-long-arrow-right"></i>
 			                				</button>
 			                			</form>
 								    </div><!-- .End .tab-pane -->
-
-
 									<div class="tab-pane fade" id="tab-category" role="tabpanel" aria-labelledby="tab-downloads-link">
-								    	
-
-									
 										<h4>Add Category</h4>
-										<form >
+										<form id="create_category">
 											<div class="warpper">
-											
-											
-
 												<div class="panels">
 													<div class="row">
+
 														<div class="col-sm-12">
-															<label>category *</label>
-															<input type="text" class="form-control" name="add_category" required>
+															<div style="text-align:center" class="categoryAddMsg"></div>
+
+															<label for="add_category">Category *</label>
+															<input type="text" class="form-control" id="add_category" name="add_category">
 														</div>
-														
-													  <button type="submit" class="btn btn-primary btn-round btn-center">Save Category</button>   
+													  <button type="submit" id="category_submit" class="btn btn-primary btn-round btn-center">Save Category</button>   
 												</div>
-												
-											
 											</div>
 										</form>
 								    </div><!-- .End .tab-pane -->
-
-
 									<div class="tab-pane fade" id="sub-category" role="tabpanel" aria-labelledby="tab-downloads-link">
-								    	
-
-									
 										<h4>Sub Category</h4>
-										<form >
+										<form id="create_sub_category" >
 											<div class="warpper">
-											
-											
-
 												<div class="panels">
 													<div class="row">
 														<div class="col-sm-12">
