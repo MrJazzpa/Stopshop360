@@ -28,7 +28,7 @@ router.get("/change_password", alreadyAuthenticated, (req, res) => {
 });
 
 router.get("/products", (req, res) => {
-  res.render("product");
+  res.render("users/product");
 });
 
 router.get("/dashboard", ensureAuthenticated, (req, res) => {
