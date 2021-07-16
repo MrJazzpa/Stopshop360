@@ -1,0 +1,18 @@
+<div>
+														<select class="form-select form-select-lg mb-2 col-sm-12 Addcategory" aria-label=".form-select-lg example" id="add_category" name="add_category" style="height: 50px;">
+															<option selected value="Select Category">Select Category</option>
+															<option value="1">Cloths</option>
+															<option value="2">Bags</option>
+															<option value="3">bridal dressing</option>
+															<option value="3">Party Accessories</option>
+															<option value="3">Hair dressing</option>
+															<option value="3">Catering</option>
+															<option value="3">Barber</option>
+															<option value="3">Makeup Artist</option>
+															<option value="3">Catering Services</option>
+															<option value="3">Wedding Planners</option>
+															<option value="3">Tailor Services</option>
+														  </select>
+
+													</div>
+													  <button type="submit" class="btn btn-primary btn-round btn-center">Save Category</button>   
