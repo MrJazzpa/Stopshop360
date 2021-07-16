@@ -25,7 +25,7 @@
 								        <a class="nav-link active" id="tab-dashboard-link" data-toggle="tab" href="#tab-dashboard" role="tab" aria-controls="tab-dashboard" aria-selected="true">Dashboard</a>
 								    </li>
 								    <li class="nav-item">
-								        <a class="nav-link" id="tab-orders-link" data-toggle="tab" href="#tab-orders" role="tab" aria-controls="tab-orders" aria-selected="false">Create Product</a>
+								        <a class="nav-link product_create" id="tab-orders-link" data-toggle="tab" href="#tab-orders" role="tab" aria-controls="tab-orders" aria-selected="false">Create Product</a>
 								    </li>
 								    <li class="nav-item">
 								        <a class="nav-link" id="tab-downloads-link" data-toggle="tab" href="#tab-downloads" role="tab" aria-controls="tab-downloads" aria-selected="false">Booking Services Upload</a>
@@ -36,14 +36,18 @@
 								    <li class="nav-item">
 								        <a class="nav-link" id="tab-account-link" data-toggle="tab" href="#tab-account" role="tab" aria-controls="tab-account" aria-selected="false">Account Details</a>
 								    </li>
+									<% if (user.isAdmin) { %>
+
 									<li class="nav-item">
 								        <a class="nav-link" id="tab-account-link" data-toggle="tab" href="#tab-category" role="tab" aria-controls="tab-category" aria-selected="false">Add Category</a>
 								    </li>
 									<li class="nav-item">
 								        <a class="nav-link add_sub" id="tab-account-link" data-toggle="tab" href="#sub-category" role="tab" aria-controls="tab-subcategory" aria-selected="false">Add Sub-Category</a>
 								    </li>
+									<% } %>
+
 								    <li class="nav-item">
-								        <a class="nav-link" href="/">Sign Out</a>
+								        <a style ="cursor:pointer"class="nav-link logout">Sign Out</a>
 								    </li>
 								</ul>
 	                		</aside><!-- End .col-lg-3 -->
@@ -148,18 +152,7 @@
 													   <div class="medium">
 	
 														  <select class="form-select form-select-lg mb-2 col-sm-5 s" aria-label=".form-select-lg example" id="category" name="category">
-															<option selected value="Select Category">Select Category</option>
-															<option value="1">Cloths</option>
-															<option value="2">Bags</option>
-															<option value="3">bridal dressing</option>
-															<option value="3">Party Accessories</option>
-															<option value="3">Hair dressing</option>
-															<option value="3">Catering</option>
-															<option value="3">Barber</option>
-															<option value="3">Makeup Artist</option>
-															<option value="3">Catering Services</option>
-															<option value="3">Wedding Planners</option>
-															<option value="3">Tailor Services</option>
+															<option value="">Select Category</option>
 														  </select>
 														  
 														  <select class="form-select form-select-lg  col-sm-5 s" aria-label=".form-select-lg example" id="location" name="location">
@@ -213,7 +206,7 @@
 	
 														  <div class="form-group">
 															
-															<a data-toggle="tab" href="#two"  class="btn btn-secondry btn-round btn-center">Next</a>  
+															<a data-toggle="tab" href="#two"  class="btn btn-secondry btn-round btn-center text-white">Next</a>  
 	
 														  </div>
 	
@@ -239,13 +232,7 @@
 																<div class="col-sm-6">
 																	<label>Type</label>
 																	<div include="form-input-select()">
-																		<select required name="type">
-																		  <option value="" >type</option>
-																		  <option value="1">Ruben</option>
-																		  <option value="2">David</option>
-																		  <option value="3">James</option>
-																		  <option value="4">Marc</option>
-																		  <option value="5">Anthony</option>
+																		<select name="type" id="type">
 																		</select>
 																 </div>
 																</div><!-- End .col-sm-6 -->
@@ -433,35 +420,21 @@
 												<div class="panels">
 													<div class="row">
 														<div class="col-sm-12">
-															<label> Sub Category *</label>
-															<select class="form-select form-select-lg mb-2 col-sm-12 Addcategory" aria-label=".form-select-lg example" id="sub_category" name="sub_category" style="height: 50px;">
-																<option selected value="Select Category">Select Category</option>
-																<option value="1">Cloths</option>
-																<option value="2">Bags</option>
-																<option value="3">bridal dressing</option>
-																<option value="3">Party Accessories</option>
-																<option value="3">Hair dressing</option>
-																<option value="3">Catering</option>
-																<option value="3">Barber</option>
-																<option value="3">Makeup Artist</option>
-																<option value="3">Catering Services</option>
-																<option value="3">Wedding Planners</option>
-																<option value="3">Tailor Services</option>
+															<div style="text-align:center;"class="catCreationMsg"></div>
+
+															<label> Category *</label>
+															<select class="form-select form-select-lg mb-2 col-sm-12" aria-label=".form-select-lg example" id="category_records" name="category" style="height: 50px;">
+																<option value="">Select Category</option>
 															  </select>
-
 														</div>
-
 													</div>
 													<div class="row">
 														<div class="col-sm-12">
 															<label> Sub Category *</label>
-															<input type="text" class="form-control" name="sub_category" required>
+															<input type="text" class="form-control" id="sub_category" name="sub_category">
 														</div>
-														
-													  <button type="submit" class="btn btn-primary btn-round btn-center">Save Sub-Category</button>   
+													  <button type="submit" id="sub_cat" class="btn btn-primary btn-round btn-center">Save Sub-Category</button>   
 												</div>
-												
-											
 											</div>
 										</form>
 								    </div><!-- .End .tab-pane -->

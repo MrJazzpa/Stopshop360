@@ -125,11 +125,11 @@ const productCreationRules = () => {
       .trim()
       .escape()
       .withMessage("Title is required"),
-    body("type", "Type is required")
+    body("type", "Sub category is required")
       .notEmpty()
       .trim()
       .escape()
-      .withMessage("Type is required"),
+      .withMessage("Sub category is required"),
     body("condition", "Condition is required")
       .notEmpty()
       .trim()
@@ -202,6 +202,34 @@ const categoryValidate = (req, res, next) => {
   });
 };
 
+const subCategoryRules = () => {
+  return [
+    body("category")
+      .trim()
+      .escape()
+      .notEmpty()
+      .withMessage("Category field is required"),
+    body("sub_category")
+      .trim()
+      .escape()
+      .notEmpty()
+      .withMessage("Sub category field is required"),
+  ];
+};
+
+const subCategoryValidate = (req, res, next) => {
+  const errors = validationResult(req);
+  const clientErrors = [];
+  errors.array().map((err) => clientErrors.push({ msg: err.msg }));
+  if (clientErrors.length == 0) {
+    return next();
+  }
+  console.log(clientErrors);
+  return res.status(400).send({
+    clientErrors,
+  });
+};
+
 module.exports = {
   userValidationRules,
   validate,
@@ -212,5 +240,7 @@ module.exports = {
   productCreationRules,
   productValidate,
   categoryRules,
-  categoryValidate
+  categoryValidate,
+  subCategoryRules,
+  subCategoryValidate
 };

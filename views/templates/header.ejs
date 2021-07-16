@@ -79,7 +79,7 @@
                             </li>
                             <% if (user) { %>
                                <li class="welcomeUser"> <a href="/dashboard"> Welcome! <%= user.firstname %></a></li>
-                                <li class="welcomeUser" id="logout"><a href="">Logout</a></li>
+                                <li class="welcomeUser" class="logout"><a href="">Logout</a></li>
                             <% }else{ %>
                             <li><a href="#signin-modal" data-toggle="modal">Sign in / Sign up</a></li>
                             <% } %>

@@ -270,20 +270,87 @@ $("#create_product").submit(function (e) {
     });
   });
 
+  $(function () {
+    $("#create_sub_category").on("submit", function (e) {
+      e.preventDefault();
+      e.stopImmediatePropagation();
+
+      $("#sub_cat").html("Please wait...");
+      $.ajax({
+        url: "/api/admin/sub_categories",
+        method: "POST",
+        dataType: "json",
+        data: JSON.stringify({
+          category: jQuery("#category_records").val(),
+          sub_category: jQuery("#sub_category").val(),
+        }),
+        contentType: "application/json",
+        success: function (data) {
+          if (data.status == 200) {
+            console.log(data);
+            $(".catCreationMsg").html(
+              "<div class = 'alert alert-success alert-dismissible fade show' role = 'alert'><button type = 'button' class = 'close' data-dismiss = 'alert' aria-label= 'close'> <span aria-hidden = 'true'>&times;</span></button>" +
+                data.message +
+                "</div>"
+            );
+            $("#sub_cat").html("Save Sub-Category");
+            $("#create_sub_category")[0].reset();
+          }
+        },
+        error: function (jqXhr) {
+          if (jqXhr.status >= 400) {
+            $("#sub_cat").html("Save Sub-Category");
+            let json = $.parseJSON(jqXhr.responseText);
+            console.log(json);
+            let errorsContainer = $(".catCreationMsg");
+            if (json.clientErrors) {
+              errorsContainer.innerHTML = "";
+              let errorsList = "";
+              for (let i = 0; i < json.clientErrors.length; i++) {
+                errorsList += `<div class = 'alert alert-danger alert-dismissible fade show' role = 'alert'><button type = 'button' class = 'close' data-dismiss = 'alert' aria-label= 'close'> <span aria-hidden = 'true'>&times;</span></button> ${json.clientErrors[i].msg}
+                  </div>
+                    `;
+                }
+              errorsContainer.html(errorsList);
+            } else {
+              $(".catCreationMsg")
+                .html(`<div class = 'mb-3 alert alert-danger alert-dismissible fade show' role = 'alert'><button type = 'button' class = 'close' data-dismiss = 'alert' aria-label= 'close'> <span aria-hidden = 'true'>&times;</span></button> ${json.error}
+                </div>
+              `);
+            }
+          }
+        },
+      });
+    });
+  });
+
    $(function () {
     $(".add_sub").on("click", function (e) {
       e.preventDefault();
       $.ajax({
-        url: "",
-        method: "POST",
+        url: "/api/admin/categories",
+        method: "GET",
         dataType: "json",
         data: {},
         contentType: "application/json",
-        success: function (response) {
-          // console.log(response);
-          // if (response.status == 200) {
-          //   window.location = "/";
-          // }
+        success: function (data) {
+          if (data.status == 200) {
+             let categories = data.categories;
+             if(categories.length > 0){
+               let categoryContainer = $("#category_records");
+               categoryContainer.innerHTML = "";
+               let catData = "<option value=''>Select category</option>";
+             for(let i =0; i<categories.length; i++){
+                catData += `<option value='${categories[i]}'>${categories[i]}</option>`;
+             }
+             categoryContainer.html(catData);
+            }else{
+              let categoryContainer = $("#category_records");
+              categoryContainer.innerHTML = "";
+              let catData = `<option value=''>No category item available</option>`;
+              categoryContainer.html(catData);
+            }
+          }
         },
         error: function (jqXhr) {},
       });
@@ -291,8 +358,76 @@ $("#create_product").submit(function (e) {
   });
 
   $(function () {
+    $(".product_create").on("click", function (e) {
+      e.preventDefault();
+      $.ajax({
+        url: "/api/admin/categories",
+        method: "GET",
+        dataType: "json",
+        data: {},
+        contentType: "application/json",
+        success: function (data) {
+          if (data.status == 200) {
+             let categories = data.categories;
+             if(categories.length > 0){
+               let categoryContainer = $("#category");
+               categoryContainer.innerHTML = "";
+               let catData = "<option value=''>Select category</option>";
+             for(let i =0; i<categories.length; i++){
+                catData += `<option value='${categories[i]}'>${categories[i]}</option>`;
+             }
+             categoryContainer.html(catData);
+            }else{
+              let categoryContainer = $("#category");
+              categoryContainer.innerHTML = "";
+              let catData = `<option value=''>No category item available</option>`;
+              categoryContainer.html(catData);
+            }
+          }
+        },
+        error: function (jqXhr) {},
+      });
+    });
+  });
+
+  $('#category').on('change', function(e) {               
+    e.preventDefault();
+    let category = jQuery("#category").val();
+    $.ajax({
+      url: `/api/admin/${category}/subCategories`,
+      method: "GET",
+      dataType: "json",
+      data: {},
+      contentType: "application/json",
+      success: function (data) {
+        if (data.status == 200) {
+           let subCategories = data.subCategories;
+           console.log(subCategories);
+           if(subCategories.length > 0){
+             let categoryContainer = $("#type");
+             categoryContainer.innerHTML = "";
+             let catData = "<option value=''>Select sub category</option>";
+           for(let i =0; i<subCategories.length; i++){
+              catData += `<option value='${subCategories[i].name}'>${subCategories[i].name}</option>`;
+           }
+           categoryContainer.html(catData);
+          }else{
+            let categoryContainer = $("#type");
+            categoryContainer.innerHTML = "";
+            let catData = `<option value=''>No sub category available</option>`;
+            categoryContainer.html(catData);
+          }
+        }
+      },
+      error: function (jqXhr) {},
+    });
+  });
+
+  $(function () {
     $("#create_category").on("submit", function (e) {
       e.preventDefault();
+      e.stopImmediatePropagation();
+
       $("#category_submit").html("Please wait...");
       $.ajax({
         url: "/api/admin/create_category",
@@ -349,7 +484,7 @@ $("#create_product").submit(function (e) {
 
   //logout
   $(function () {
-    $("#logout").on("click", function (e) {
+    $(".logout").on("click", function (e) {
       e.preventDefault();
       $("#logout").html("Please wait...");
       $.ajax({
