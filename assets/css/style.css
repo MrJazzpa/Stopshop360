@@ -8299,7 +8299,7 @@ p {
 .banner-badge .banner-link:hover .banner-link-text,
 .banner-badge .banner-link:focus .banner-link-text {
   opacity: 1;
-  background-color: #c96;
+  background-color: red;
   transform: translateY(0);
   -webkit-transform: translateY(0);
 }

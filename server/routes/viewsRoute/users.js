@@ -26,13 +26,17 @@ router.get("/contact",  (req, res) => {
 router.get("/change_password", alreadyAuthenticated, (req, res) => {
   res.render("change_password");
 });
-
-router.get("/products", (req, res) => {
-  res.render("users/product");
+router.get("/products", ensureAuthenticated, (req, res) => {
+  res.render("users/products");
+});
+router.get("/product_view", (req, res) => {
+  res.render("users/product-sticky");
 });
 
 router.get("/dashboard", ensureAuthenticated, (req, res) => {
   res.render("users/dashboard");
 });
+
+
 
 module.exports = router;
