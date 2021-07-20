@@ -1,117 +1,116 @@
 // Main Js File
 
 $(document).ready(function () {
-    //"use strict";
-$("#create_product").submit(function (e) {
-  e.preventDefault();
-  e.stopImmediatePropagation();
-  // alert("hello");
-  let formData = new FormData(this);
-  $("#btn-create-Product").html("Please wait...");
-  $.ajax({
-    async: true,
-    type:  "POST",
-    url: "/api/products/upload_product",
-    data: formData,
-    cache: false,
-    processData: false,
-    contentType: false,
-    success: function (data) {
-      if (data.status == 200) {
-        $(".successMsg").html(
-          "<div class = 'alert alert-success alert-dismissible fade show' role = 'alert'><button type = 'button' class = 'close' data-dismiss = 'alert' aria-label= 'close'> <span aria-hidden = 'true'>&times;</span></button>" +
-            data.message +
-            "</div>"
-        );
-        $("#btn-create-Product").html("Post AD");
-        $("#create_product")[0].reset();
-      }
-    },
-    error: function (jqXhr) {
-      $("#btn-create-Product").html("Post AD");
-      if (jqXhr.status >= 400) {
-        $("#btn-signin").html(
-          "<span>LOG IN</span><i class='icon-long-arrow-right'></i>"
-        );
-        let json = $.parseJSON(jqXhr.responseText);
-        console.log(json);
-        let errorsContainer = $(".successMsg");
-
-        if (json.clientErrors) {
-          errorsContainer.innerHTML = "";
-          let errorsList = "";
-          for (let i = 0; i < json.clientErrors.length; i++) {
-            errorsList += `<div class = 'alert alert-danger alert-dismissible fade show' role = 'alert'><button type = 'button' class = 'close' data-dismiss = 'alert' aria-label= 'close'> <span aria-hidden = 'true'>&times;</span></button> ${json.clientErrors[i].msg}
-              </div>
-                `;
-          }
-          errorsContainer.html(errorsList);
-        } else {
-          $(".successMsg")
-            .html(`<div class = 'mb-3 alert alert-danger alert-dismissible fade show' role = 'alert'><button type = 'button' class = 'close' data-dismiss = 'alert' aria-label= 'close'> <span aria-hidden = 'true'>&times;</span></button> ${json.error}
-            </div>
-          `);
-        }
-      }
-    },
-});
-});
-  //user registration block
-  $(function () {
-    $("#register-form").on("submit", function (e) {
+  //"use strict";
+  $("#create_product").submit(function (e) {
     e.preventDefault();
-    $("#btn-reg").html("Please wait...");
+    e.stopImmediatePropagation();
+    // alert("hello");
+    let formData = new FormData(this);
+    $("#btn-create-Product").html("Please wait...");
     $.ajax({
-      url: "/api/users/register",
-      method: "POST",
-      dataType: "json",
-      data: JSON.stringify({
-        email: jQuery("#email").val(),
-        firstname: jQuery("#firstname").val(),
-        lastname: jQuery("#lastname").val(),
-        phone: jQuery("#phone").val(),
-        password: jQuery("#regPassword").val(),
-        confirmPassword: jQuery("#conPassword").val(),
-      }),
-      contentType: "application/json",
-      success: function (response) {
-        if (response.status == 200) {
-          console.log(response);
-          $(".successRegMsg").html(
+      async: true,
+      type: "POST",
+      url: "/api/products/upload_product",
+      data: formData,
+      cache: false,
+      processData: false,
+      contentType: false,
+      success: function (data) {
+        if (data.status == 200) {
+          $(".successMsg").html(
             "<div class = 'alert alert-success alert-dismissible fade show' role = 'alert'><button type = 'button' class = 'close' data-dismiss = 'alert' aria-label= 'close'> <span aria-hidden = 'true'>&times;</span></button>" +
-              response.message +
+              data.message +
               "</div>"
           );
-          $("#btn-reg").html(
-            "<span>SIGN UP</span><i class='icon-long-arrow-right'></i>"
-          );
-          $("#register-form")[0].reset();
-          localStorage.setItem("userIdentity", JSON.stringify(response._id));
-          window.location = "/verify_code";
+          $("#btn-create-Product").html("Post AD");
+          $("#create_product")[0].reset();
         }
       },
       error: function (jqXhr) {
-        if (jqXhr.status == 400) {
-          $("#btn-reg").html(
-            "<span>SIGN UP</span><i class='icon-long-arrow-right'></i>"
+        $("#btn-create-Product").html("Post AD");
+        if (jqXhr.status >= 400) {
+          $("#btn-signin").html(
+            "<span>LOG IN</span><i class='icon-long-arrow-right'></i>"
           );
           let json = $.parseJSON(jqXhr.responseText);
           console.log(json);
-          let errorsContainer = $(".successRegMsg");
-          errorsContainer.innerHTML = "";
-          let errorsList = "";
-          for (let i = 0; i < json.extractedErrors.length; i++) {
-            errorsList += `<div class = 'alert alert-danger alert-dismissible fade show' role = 'alert'><button type = 'button' class = 'close' data-dismiss = 'alert' aria-label= 'close'> <span aria-hidden = 'true'>&times;</span></button> ${json.extractedErrors[i].msg}
+          let errorsContainer = $(".successMsg");
+
+          if (json.clientErrors) {
+            errorsContainer.innerHTML = "";
+            let errorsList = "";
+            for (let i = 0; i < json.clientErrors.length; i++) {
+              errorsList += `<div class = 'alert alert-danger alert-dismissible fade show' role = 'alert'><button type = 'button' class = 'close' data-dismiss = 'alert' aria-label= 'close'> <span aria-hidden = 'true'>&times;</span></button> ${json.clientErrors[i].msg}
               </div>
                 `;
+            }
+            errorsContainer.html(errorsList);
+          } else {
+            $(".successMsg")
+              .html(`<div class = 'mb-3 alert alert-danger alert-dismissible fade show' role = 'alert'><button type = 'button' class = 'close' data-dismiss = 'alert' aria-label= 'close'> <span aria-hidden = 'true'>&times;</span></button> ${json.error}
+            </div>
+          `);
           }
-          errorsContainer.html(errorsList);
         }
       },
     });
   });
-});
-
+  //user registration block
+  $(function () {
+    $("#register-form").on("submit", function (e) {
+      e.preventDefault();
+      $("#btn-reg").html("Please wait...");
+      $.ajax({
+        url: "/api/users/register",
+        method: "POST",
+        dataType: "json",
+        data: JSON.stringify({
+          email: jQuery("#email").val(),
+          firstname: jQuery("#firstname").val(),
+          lastname: jQuery("#lastname").val(),
+          phone: jQuery("#phone").val(),
+          password: jQuery("#regPassword").val(),
+          confirmPassword: jQuery("#conPassword").val(),
+        }),
+        contentType: "application/json",
+        success: function (response) {
+          if (response.status == 200) {
+            console.log(response);
+            $(".successRegMsg").html(
+              "<div class = 'alert alert-success alert-dismissible fade show' role = 'alert'><button type = 'button' class = 'close' data-dismiss = 'alert' aria-label= 'close'> <span aria-hidden = 'true'>&times;</span></button>" +
+                response.message +
+                "</div>"
+            );
+            $("#btn-reg").html(
+              "<span>SIGN UP</span><i class='icon-long-arrow-right'></i>"
+            );
+            $("#register-form")[0].reset();
+            localStorage.setItem("userIdentity", JSON.stringify(response._id));
+            window.location = "/verify_code";
+          }
+        },
+        error: function (jqXhr) {
+          if (jqXhr.status == 400) {
+            $("#btn-reg").html(
+              "<span>SIGN UP</span><i class='icon-long-arrow-right'></i>"
+            );
+            let json = $.parseJSON(jqXhr.responseText);
+            console.log(json);
+            let errorsContainer = $(".successRegMsg");
+            errorsContainer.innerHTML = "";
+            let errorsList = "";
+            for (let i = 0; i < json.extractedErrors.length; i++) {
+              errorsList += `<div class = 'alert alert-danger alert-dismissible fade show' role = 'alert'><button type = 'button' class = 'close' data-dismiss = 'alert' aria-label= 'close'> <span aria-hidden = 'true'>&times;</span></button> ${json.extractedErrors[i].msg}
+              </div>
+                `;
+            }
+            errorsContainer.html(errorsList);
+          }
+        },
+      });
+    });
+  });
 
   $("#verifier").submit(function (e) {
     e.preventDefault();
@@ -310,7 +309,7 @@ $("#create_product").submit(function (e) {
                 errorsList += `<div class = 'alert alert-danger alert-dismissible fade show' role = 'alert'><button type = 'button' class = 'close' data-dismiss = 'alert' aria-label= 'close'> <span aria-hidden = 'true'>&times;</span></button> ${json.clientErrors[i].msg}
                   </div>
                     `;
-                }
+              }
               errorsContainer.html(errorsList);
             } else {
               $(".catCreationMsg")
@@ -324,27 +323,27 @@ $("#create_product").submit(function (e) {
     });
   });
 
-   $(function () {
+  $(function () {
     $(".add_sub").on("click", function (e) {
       e.preventDefault();
       $.ajax({
-        url: "/api/admin/categories",
+        url: "/api/products/categories",
         method: "GET",
         dataType: "json",
         data: {},
         contentType: "application/json",
         success: function (data) {
           if (data.status == 200) {
-             let categories = data.categories;
-             if(categories.length > 0){
-               let categoryContainer = $("#category_records");
-               categoryContainer.innerHTML = "";
-               let catData = "<option value=''>Select category</option>";
-             for(let i =0; i<categories.length; i++){
+            let categories = data.categories;
+            if (categories.length > 0) {
+              let categoryContainer = $("#category_records");
+              categoryContainer.innerHTML = "";
+              let catData = "<option value=''>Select category</option>";
+              for (let i = 0; i < categories.length; i++) {
                 catData += `<option value='${categories[i]}'>${categories[i]}</option>`;
-             }
-             categoryContainer.html(catData);
-            }else{
+              }
+              categoryContainer.html(catData);
+            } else {
               let categoryContainer = $("#category_records");
               categoryContainer.innerHTML = "";
               let catData = `<option value=''>No category item available</option>`;
@@ -361,23 +360,23 @@ $("#create_product").submit(function (e) {
     $(".product_create").on("click", function (e) {
       e.preventDefault();
       $.ajax({
-        url: "/api/admin/categories",
+        url: "/api/products/categories",
         method: "GET",
         dataType: "json",
         data: {},
         contentType: "application/json",
         success: function (data) {
           if (data.status == 200) {
-             let categories = data.categories;
-             if(categories.length > 0){
-               let categoryContainer = $("#category");
-               categoryContainer.innerHTML = "";
-               let catData = "<option value=''>Select category</option>";
-             for(let i =0; i<categories.length; i++){
+            let categories = data.categories;
+            if (categories.length > 0) {
+              let categoryContainer = $("#category");
+              categoryContainer.innerHTML = "";
+              let catData = "<option value=''>Select category</option>";
+              for (let i = 0; i < categories.length; i++) {
                 catData += `<option value='${categories[i]}'>${categories[i]}</option>`;
-             }
-             categoryContainer.html(catData);
-            }else{
+              }
+              categoryContainer.html(catData);
+            } else {
               let categoryContainer = $("#category");
               categoryContainer.innerHTML = "";
               let catData = `<option value=''>No category item available</option>`;
@@ -390,28 +389,28 @@ $("#create_product").submit(function (e) {
     });
   });
 
-  $('#category').on('change', function(e) {               
+  $("#category").on("change", function (e) {
     e.preventDefault();
     let category = jQuery("#category").val();
     $.ajax({
-      url: `/api/admin/${category}/subCategories`,
+      url: `/api/products/${category}/subCategories`,
       method: "GET",
       dataType: "json",
       data: {},
       contentType: "application/json",
       success: function (data) {
         if (data.status == 200) {
-           let subCategories = data.subCategories;
-           console.log(subCategories);
-           if(subCategories.length > 0){
-             let categoryContainer = $("#type");
-             categoryContainer.innerHTML = "";
-             let catData = "<option value=''>Select sub category</option>";
-           for(let i =0; i<subCategories.length; i++){
+          let subCategories = data.subCategories;
+          console.log(subCategories);
+          if (subCategories.length > 0) {
+            let categoryContainer = $("#type");
+            categoryContainer.innerHTML = "";
+            let catData = "<option value=''>Select sub category</option>";
+            for (let i = 0; i < subCategories.length; i++) {
               catData += `<option value='${subCategories[i].name}'>${subCategories[i].name}</option>`;
-           }
-           categoryContainer.html(catData);
-          }else{
+            }
+            categoryContainer.html(catData);
+          } else {
             let categoryContainer = $("#type");
             categoryContainer.innerHTML = "";
             let catData = `<option value=''>No sub category available</option>`;
@@ -445,18 +444,13 @@ $("#create_product").submit(function (e) {
                 response.message +
                 "</div>"
             );
-            $("#category_submit").html(
-              'Save Category'
-            );
+            $("#category_submit").html("Save Category");
             $("#create_category")[0].reset();
           }
         },
         error: function (jqXhr) {
-        
           if (jqXhr.status >= 400) {
-            $("#category_submit").html(
-              'Save Category'
-            );
+            $("#category_submit").html("Save Category");
             let json = $.parseJSON(jqXhr.responseText);
             console.log(json);
             let errorsContainer = $(".categoryAddMsg");
@@ -504,16 +498,48 @@ $("#create_product").submit(function (e) {
     });
   });
 
-
-  
+  $(".products_loader").hover(function (e) {
+    e.stopImmediatePropagation();
+    $.ajax({
+      url: `/api/products/categories/ui`,
+      method: "GET",
+      dataType: "json",
+      data: {},
+      contentType: "application/json",
+      success: function (data) {
+        console.log();
+        if (data.status == 200) {
+          let categories = data.categories;
+          // console.log(categories);
+          if (categories.length > 0) {
+            let categoryContainer = $(".products_categoriesz");
+            categoryContainer.innerHTML = "";
+            let catData = "";
+            for (let i = 0; i < categories.length; i++) {
+              catData += `<li class="item-lead"><a href="/products?category=${categories[i].category}">${
+                categories[i].category
+              }</a></li>
+                  ${categories[i].subCategory.map(
+                    (sub) => `<li><a href="/products?subcategory=${sub.name}">${sub.name}</a></li>`
+                  )}`;
+            }
+            categoryContainer.html(catData);
+          } else {
+            let categoryContainer = $(".products_categoriesz");
+            categoryContainer.innerHTML = "";
+            let catData = `<li>No category available</li>`;
+            categoryContainer.html(catData);
+          }
+        }
+      },
+      error: function (jqXhr) {},
+    });
+  });
 
   owlCarousels();
   quantityInputs();
 
   // Header Search Toggle
-
-
-
 
   var $searchWrapper = $(".header-search-wrapper"),
     $body = $("body"),
@@ -541,7 +567,6 @@ $("#create_product").submit(function (e) {
   // Sticky header
   var catDropdown = $(".category-dropdown"),
     catInitVal = catDropdown.data("visible");
-
   if ($(".sticky-header").length && $(window).width() >= 992) {
     var sticky = new Waypoint.Sticky({
       element: $(".sticky-header")[0],
@@ -936,7 +961,6 @@ $("#create_product").submit(function (e) {
 
         galleryArr.push(obj);
       });
-    
 
     $("#btn-separated-gallery").on("click", function (e) {
       if ($.fn.magnificPopup) {
@@ -1369,4 +1393,3 @@ $("#create_product").submit(function (e) {
     }, 10000);
   }
 });
-

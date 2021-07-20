@@ -3,6 +3,8 @@ const router = express.Router();
 const path = require("path");
 const multer = require("multer");
 const Product = require("../models/productsModel");
+const Category = require("../models/categoryModel");
+
 
 const {
   productCreationRules,
@@ -35,6 +37,32 @@ const imageUpload = multer({
     }
     cb(undefined, true);
   },
+});
+
+router.get("/categories", async (req, res) => {
+  const categories = await Category.find().distinct("category");
+  res.send({ status: 200, categories: categories });
+});
+
+//category for ui
+router.get("/categories/ui", async (req, res) => {
+  const categories = await Category.find();
+  res.send({ status: 200, categories: categories });
+});
+
+router.get("/:category/subcategories", async (req, res) => {
+  const category = req.params.category;
+  const fetchCategory = await Category.findOne({category});
+  if(fetchCategory){
+    return res
+    .status(200)
+    .send({status:200, subCategories: fetchCategory.subCategory});
+  }
+  return res.status(400).send({message: "Category not found"});
+});
+
+router.get("/", async (req, res) => {
+
 });
 
 router.post(
