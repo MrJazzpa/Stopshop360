@@ -8329,8 +8329,8 @@ p {
 }
 .social-icon:hover,
 .social-icon:focus {
-  color: #c96;
-  border-color: #c96;
+  color: red;
+  border-color: red;
   background-color: transparent;
 }
 .social-icon.social-facebook {
@@ -11133,6 +11133,7 @@ button:focus {
 }
 .product-details-accordion .card .card-title a {
   background-color: #fafafa;
+  color: #333;
 }
 .product-details-accordion .card .card-title a:not(.collapsed) {
   background-color: #fff;
