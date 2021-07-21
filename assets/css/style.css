@@ -6744,8 +6744,8 @@ p {
 }
 .btn-product:hover span,
 .btn-product:focus span {
-  color: #c96;
-  box-shadow: 0 1px 0 0 #c96;
+  color: white;
+  box-shadow: 0 1px 0 0 white;
 }
 .product-action-dark {
   background-color: #333333;

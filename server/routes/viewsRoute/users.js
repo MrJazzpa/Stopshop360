@@ -45,12 +45,12 @@ router.get("/products", async(req, res) => {
   const categoryFilter = category ? { category: {$regex: category, $options: "i"} } : {};
   const subCategoryFilter = subCategory ? { type: { $regex: subCategory, $options: "i" } } : {};
 
-  const categoryProducts = await Product.find({
+  const productsData = await Product.find({
     ...categoryFilter,
     ...subCategoryFilter
-  });
-  console.log(categoryProducts);
-  res.render("users/products", {productsData: categoryProducts, category, subCategory});
+  }).sort({_id: -1});
+  //console.log(productsData);
+  res.render("users/products", {productsData, category, subCategory});
 });
 
 
