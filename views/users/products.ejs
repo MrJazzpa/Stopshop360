@@ -26,22 +26,20 @@
 
                     <div class="row">
                         
-                        <div class="col-lg-6">
+                        <div class="col-lg-12">
                             <div class="products">
                                 <div class="row">
                                     <% if (productsData.length > 0){%> 
-                                        <%  for (let i=0; i<productsData.length; i++){ %>
+                                        <%  for (let i=0; i < productsData.length; i++){ %>
                                             
-
-                                            <div class="col-6">
+                                            <div class="col-lg-3">
                                                 <div class="product product-2">
                                                     <figure class="product-media">
                                                         <span class="product-label label-circle label-top">new</span>
                                                         <span class="product-label label-circle label-sale">Sale</span>
                                                         <a  href="/details?product=<%=productsData[i]._id %>">
-                                                            <img src="<%=productsData[i].image[i]%>" alt="Product image" class="product-image">
+                                                            <img src= "<%= productsData[i].image[0]%>" alt="" class="product-image">
                                                         </a>
-        
                                                         <div class="product-action-vertical">
                                                             <a href="/details?product=<%=productsData[i]._id %>" class="btn-product-icon btn-wishlist btn-expandable"><span>view</span></a>
                                                         </div><!-- End .product-action -->
@@ -69,15 +67,16 @@
                                                         </div><!-- End .rating-container -->
                                                     </div><!-- End .product-body -->
                                                 </div><!-- End .product -->
-                                            </div><!-- End .col-sm-6 -->
-                                    
+                                            </div><!-- End .col-sm-6 -->                                            
                                      <% } %>
                                     <% }else{  %>
-                                        <div class="col-lg-12">
-                                            <div class="alert alert-danger text-center" role="alert">
-                                                No product found for this item in category, please search for other products.    
+
+                                            <div class=" col-lg-12">
+                                                <div class="alert alert-danger text-center" role="alert">
+                                                    No product found for this item in category, please search for other products.    
+                                                </div>
                                             </div>
-                                        </div>
+
                                     <% } %>
 
 
