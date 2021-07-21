@@ -280,7 +280,6 @@ Bootstrap4 Card with Tabs by @mdeuerlein
     margin: 0px;
   }
 }
-<<<<<<< HEAD
 .circle {
   margin: auto;
   width: 12%;
@@ -290,7 +289,6 @@ Bootstrap4 Card with Tabs by @mdeuerlein
   border: solid 2px red;
   border-radius: 50%;
 }
-=======
  .circle{
    margin:auto;
    width: 12%;
@@ -301,7 +299,6 @@ Bootstrap4 Card with Tabs by @mdeuerlein
    border-radius: 50%;
  }
  
->>>>>>> 79872a544af299657b9e4184d5355b18c75bd30a
 
 h4 {
   color: #000;
