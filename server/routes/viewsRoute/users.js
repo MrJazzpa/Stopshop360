@@ -48,7 +48,7 @@ router.get("/products", async(req, res) => {
   const productsData = await Product.find({
     ...categoryFilter,
     ...subCategoryFilter
-  });
+  }).sort({_id: -1});
   //console.log(productsData);
   res.render("users/products", {productsData, category, subCategory});
 });

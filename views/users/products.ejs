@@ -12,6 +12,9 @@
                         <% if(subCategory){ %>
                             Showing <%= subCategory %> record in shop360
                       <%  } %>
+                      <% if(!category && !subCategory){ %>
+                          Showing all products in shop360
+                        <% } %>
                         </h1>
                     <!-- <span>Shop</span></h1> -->
         		</div><!-- End .container-fluid -->
