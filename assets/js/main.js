@@ -963,6 +963,7 @@ $(document).ready(function () {
       });
 
     $("#btn-separated-gallery").on("click", function (e) {
+      alert("loaderd");
       if ($.fn.magnificPopup) {
         $.magnificPopup.open(
           {
