@@ -45,7 +45,7 @@
 
                             <div class="col-md-6">
                                 <div class="product-details sticky-content">
-                                    <h1 class="product-title"><%= product.name %></h1><!-- End .product-title -->
+                                    <h1 class="product-title"><%= product.title %></h1><!-- End .product-title -->
                                     <div class="ratings-container">
                                         <div class="ratings">
                                             <div class="ratings-val" style="width: 80%;"></div><!-- End .ratings-val -->
@@ -64,35 +64,21 @@
 
                                     <div class="product-countdown" data-until="2019, 10, 29"></div><!-- End .product-countdown -->
 
-                                    <div class="details-filter-row details-row-size">
-                                        <label for="size">Size:</label>
-                                        <div class="select-custom">
-                                            <select name="size" id="size" class="form-control">
-                                                <option value="#" selected="selected">Select a size</option>
-                                                <option value="s">Small</option>
-                                                <option value="m">Medium</option>
-                                                <option value="l">Large</option>
-                                                <option value="xl">Extra Large</option>
-                                            </select>
-                                        </div><!-- End .select-custom -->
-
-                                        <a href="#" class="size-guide"><i class="icon-th-list"></i>size guide</a>
-                                    </div><!-- End .details-filter-row -->
-
-                                    <div class="details-filter-row details-row-size">
-                                        <label for="qty">Qty:</label>
-                                        <div class="product-details-quantity">
-                                            <input type="number" id="qty" class="form-control" value="1" min="1" max="10" step="1" data-decimals="0" required>
-                                        </div><!-- End .product-details-quantity -->
-                                    </div><!-- End .details-filter-row -->
 
                                     <div class="product-details-action">
-                                        <a href="#" class="btn-product btn-cart"><span>add to cart</span></a>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <a href="#" class="btn-product btn-cart"><span>chat</span></a>
+                                            </div>
+                                         
+                                            <div class="col-md-6">
+                                                <a href="#booking-modal" data-toggle="modal"class="btn-product btn-cart"><span>Book</span></a>
+                                            </div>
+                                       
+                                        </div>
+                                     
 
-                                        <div class="details-action-wrapper">
-                                            <a href="#" class="btn-product btn-wishlist" title="Wishlist"><span>Add to Wishlist</span></a>
-                                            <a href="#" class="btn-product btn-compare" title="Compare"><span>Add to Compare</span></a>
-                                        </div><!-- End .details-action-wrapper -->
+                                       
                                     </div><!-- End .product-details-action -->
 
                                     <div class="product-details-footer">
@@ -122,14 +108,14 @@
                                             <div id="product-accordion-desc" class="collapse" aria-labelledby="product-desc-heading" data-parent="#product-accordion">
                                                 <div class="card-body">
                                                     <div class="product-desc-content">
-                                                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna viverra non, semper suscipit, posuere a, pede. Donec nec justo eget felis facilisis fermentum. Aliquam porttitor mauris sit amet orci.</p>
+                                                        
                                                         <ul>
-                                                            <li>Nunc nec porttitor turpis. In eu risus enim. In vitae mollis elit. </li>
-                                                            <li>Vivamus finibus vel mauris ut vehicula.</li>
-                                                            <li>Nullam a magna porttitor, dictum risus nec, faucibus sapien.</li>
+                                                            <li> <b>Product Name:</b>  <%=product.title %></li>
+                                                            <li><b>Product Price:</b>  <%=product.price %></li>
+                                                            <li>  <b>Product Condition:</b>  <%=product.condition%></li>
                                                         </ul>
 
-                                                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna viverra non, semper suscipit, posuere a, pede.</p>
+                                                        <p><%=product.description %></p>
                                                     </div><!-- End .product-desc-content -->
                                                 </div><!-- End .card-body -->
                                             </div><!-- End .collapse -->
@@ -139,25 +125,19 @@
                                             <div class="card-header" id="product-info-heading">
                                                 <h2 class="card-title">
                                                     <a role="button" data-toggle="collapse" href="#product-accordion-info" aria-expanded="true" aria-controls="product-accordion-info">
-                                                        Additional Information
+                                                        Seller Information
                                                     </a>
                                                 </h2>
                                             </div><!-- End .card-header -->
                                             <div id="product-accordion-info" class="collapse show" aria-labelledby="product-info-heading" data-parent="#product-accordion">
                                                 <div class="card-body">
                                                     <div class="product-desc-content">
-                                                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna viverra non, semper suscipit, posuere a, pede. Donec nec justo eget felis facilisis fermentum. Aliquam porttitor mauris sit amet orci. </p>
+                                                   
 
-                                                        <h3>Fabric & care</h3>
-                                                        <ul>
-                                                            <li>100% Polyester</li>
-                                                            <li>Do not iron</li>
-                                                            <li>Do not wash</li>
-                                                            <li>Do not bleach</li>
-                                                            <li>Do not tumble dry</li>
-                                                            <li>Professional dry clean only</li>
-                                                        </ul>
-
+                                                        <h3>Name: <%=product.name %></h3>
+                                                        <h3> Email Address: <%=product.email %></h3>
+                                                        <h3>Company: <%=product.name %></h3>
+                                                        <h3>Rating: <%=product.name %></h3>
                                                         <h3>Size</h3>
                                                         <p>S, M, L, XL</p>
                                                     </div><!-- End .product-desc-content -->

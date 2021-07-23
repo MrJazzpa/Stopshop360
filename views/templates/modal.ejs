@@ -114,3 +114,200 @@
             </div><!-- End .modal-content -->
         </div><!-- End .modal-dialog -->
     </div><!-- End .modal -->
+
+
+
+
+
+
+
+    <div class="modal fade" id="booking-modal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true"><i class="icon-close"></i></span>
+                    </button>
+                    <div class="form-box">
+                        <div class="form-tab">
+                            <ul class="nav nav-pills nav-fill nav-border-anim" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" id="signin-tab" data-toggle="tab" href="#booking" role="tab" aria-controls="signin" aria-selected="true">Calendar</a>
+                                </li>
+                                
+                            </ul>
+                            <div class="tab-content" id="tab-content-5">
+                                <div class="tab-pane fade show active" id="booking" role="tabpanel" aria-labelledby="signin-tab">
+                                    <div class="successMsg"></div>
+
+                                    <div class="elegant-calencar">
+                                        <p id="reset"></p>
+                                         <div id="header" class="clearfix">
+                                            <div class="pre-button">></div>
+                                             <div class="head-info">
+                                                 <div class="head-day"></div>
+                                                 
+                                                 <div class="head-month" ></div>
+                                             </div>
+                                             <div class="next-button"><span>></i>
+                                             </span></div>
+                                         </div>
+                                         <table id="calendar">
+                                             <thead>
+                                                 <tr>
+                                                     <th>Sun</th>
+                                                     <th>Mon</th>
+                                                     <th>Tue</th>
+                                                     <th>Wed</th>
+                                                     <th>Thu</th>
+                                                     <th>Fri</th>
+                                                     <th>Sat</th>
+                                                 </tr>
+                                             </thead>
+                                             <tbody>
+                                                 <tr>
+                                                     <td></td>
+                                                     <td></td>
+                                                     <td></td>
+                                                     <td></td>
+                                                     <td></td>
+                                                     <td></td>
+                                                     <td></td>
+                                                 </tr>
+                                                 <tr>
+                                                     <td></td>
+                                                     <td></td>
+                                                     <td></td>
+                                                     <td></td>
+                                                     <td></td>
+                                                     <td></td>
+                                                     <td></td>
+                                                 </tr>
+                                                 <tr>
+                                                     <td></td>
+                                                     <td></td>
+                                                     <td></td>
+                                                     <td></td>
+                                                     <td></td>
+                                                     <td></td>
+                                                     <td></td>
+                                                 </tr>
+                                                 <tr>
+                                                     <td></td>
+                                                     <td></td>
+                                                     <td></td>
+                                                     <td></td>
+                                                     <td></td>
+                                                     <td></td>
+                                                     <td></td>
+                                                 </tr>
+                                                 <tr>
+                                                     <td></td>
+                                                     <td></td>
+                                                     <td></td>
+                                                     <td></td>
+                                                     <td></td>
+                                                     <td></td>
+                                                     <td></td>
+                                                 </tr>
+                                                 <tr>
+                                                     <td></td>
+                                                     <td></td>
+                                                     <td></td>
+                                                     <td></td>
+                                                     <td></td>
+                                                     <td></td>
+                                                     <td></td>
+                                                 </tr>
+                                             </tbody>
+                                         </table>
+                                     </div>
+                                     <br>
+                                     <form>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                
+                                                <input type="text" id="getdate" class="form-control" value="" readonly>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <input type="text" id="getyear" class="form-control" value="" readonly>
+
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label>from</label>
+                                                <select class="form-select form-select-lg mb-2 col-sm-12" aria-label=".form-select-lg example" id="category_records" name="category" style="height: 50px;">
+                                                    <option value="">00.00</option>
+                                                    <option value="0100">01:00</option>
+                                                    <option value="0200">02:00</option>
+                                                    <option value="0300">03:00</option>
+                                                    <option value="0400">04:00</option>
+                                                    <option value="0500">05:00</option>
+                                                    <option value="0600">06:00</option>
+                                                    <option value="0700">07:00</option>
+                                                    <option value="0800">08:00</option>
+                                                    <option value="0900">09:00</option>
+                                                    <option value="1000">10:00</option>
+                                                    <option value="1100">11:00</option>
+                                                    <option value="1200">12:00</option>
+                                                    <option value="1300">13:00</option>
+                                                    <option value="1400">14:00</option>
+                                                    <option value="1500">15:00</option>
+                                                    <option value="1600">16:00</option>
+                                                    <option value="1700">17:00</option>
+                                                    <option value="1800">18:00</option>
+                                                    <option value="1900">19:00</option>
+                                                    <option value="2000">20:00</option>
+                                                    <option value="2100">21:00</option>
+                                                    <option value="2200">22:00</option>
+                                                    <option value="2300">23:00</option>
+                                                  </select>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label>to</label>
+                                                <select class="form-select form-select-lg mb-2 col-sm-12" aria-label=".form-select-lg example" id="category_records" name="category" style="height: 50px;">
+                                                    <option value="">00.00</option>
+                                                    <option value="0100">01:00</option>
+                                                    <option value="0200">02:00</option>
+                                                    <option value="0300">03:00</option>
+                                                    <option value="0400">04:00</option>
+                                                    <option value="0500">05:00</option>
+                                                    <option value="0600">06:00</option>
+                                                    <option value="0700">07:00</option>
+                                                    <option value="0800">08:00</option>
+                                                    <option value="0900">09:00</option>
+                                                    <option value="1000">10:00</option>
+                                                    <option value="1100">11:00</option>
+                                                    <option value="1200">12:00</option>
+                                                    <option value="1300">13:00</option>
+                                                    <option value="1400">14:00</option>
+                                                    <option value="1500">15:00</option>
+                                                    <option value="1600">16:00</option>
+                                                    <option value="1700">17:00</option>
+                                                    <option value="1800">18:00</option>
+                                                    <option value="1900">19:00</option>
+                                                    <option value="2000">20:00</option>
+                                                    <option value="2100">21:00</option>
+                                                    <option value="2200">22:00</option>
+                                                    <option value="2300">23:00</option>
+                                                  </select>
+                                            </div>
+                                            <label for="" class="head-day" style="color: black;"></label>
+                                            <button type="submit" id="sub_cat" class="btn btn-primary btn-round btn-center" >Save Booking</button>
+                                        </div>
+
+                                     </form>
+
+
+
+
+
+
+                                </div><!-- .End .tab-pane -->
+                              
+                            </div><!-- End .tab-content -->
+                        </div><!-- End .form-tab -->
+                    </div><!-- End .form-box -->
+                </div><!-- End .modal-body -->
+            </div><!-- End .modal-content -->
+        </div><!-- End .modal-dialog -->
+    </div><!-- End .modal -->

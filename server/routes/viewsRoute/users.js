@@ -34,7 +34,7 @@ router.get("/details", async (req, res) => {
   if (!productId) {
     return res.render("index");
   }
-  const product = await Product.findById(productId).populate("seller", "email firstname lastname phone" );
+  const product = await Product.findById(productId).populate("seller", "email firstname lastname phone " );
   console.log(product);
   if (product) {
     return res.render("users/product-sticky", { product });
