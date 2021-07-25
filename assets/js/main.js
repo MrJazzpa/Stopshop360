@@ -536,11 +536,54 @@ $(document).ready(function () {
     });
   });
 
+  $(function () {
+    $("#bookForm").on("submit", function (e) {
+      e.preventDefault();
+      e.stopImmediatePropagation();
+      $("#submitBook").html("Please wait...");
+      $.ajax({
+        url: "/api/products/request_booking",
+        method: "POST",
+        dataType: "json",
+        data: JSON.stringify({
+          getdate: jQuery("#getdate").val(),
+          getyear: jQuery("#getyear").val(),
+          from_time: jQuery("#from_time").val(),
+          to_time: jQuery("#to_time").val(),
+          productId: jQuery("#productId").val()
+        }),
+        contentType: "application/json",
+        success: function (response) {
+          if (response.status == 200) {
+            console.log(response);
+            $(".successMsg").html(
+              "<div class = 'alert alert-success alert-dismissible fade show' role = 'alert'><button type = 'button' class = 'close' data-dismiss = 'alert' aria-label= 'close'> <span aria-hidden = 'true'>&times;</span></button>" +
+                response.message +
+                "</div>"
+            );
+            $("#submitBook").html("Save Booking");
+            // $("#create_category")[0].reset();
+          }
+        },
+        error: function (jqXhr) {
+          if (jqXhr.status >= 400) {
+            $("#submitBook").html("Save Booking");
+            let json = $.parseJSON(jqXhr.responseText);
+            console.log(json);
+            $(".successMsg")
+              .html(`<div class = 'mb-3 alert alert-danger alert-dismissible fade show' role = 'alert'><button type = 'button' class = 'close' data-dismiss = 'alert' aria-label= 'close'> <span aria-hidden = 'true'>&times;</span></button> ${json.message}
+                  </div>
+                `);
+            }
+          },
+       });
+     });
+   });
+
   owlCarousels();
   quantityInputs();
 
   // Header Search Toggle
-
   var $searchWrapper = $(".header-search-wrapper"),
     $body = $("body"),
     $searchToggle = $(".search-toggle");
@@ -648,6 +691,10 @@ $(document).ready(function () {
     e.stopPropagation();
     e.preventDefault();
   });
+
+    $('.modal').on('hidden.bs.modal', function () {
+      $('.successMsg').empty();
+    });
 
   // Sidebar Filter - Show & Hide
   var $sidebarToggler = $(".sidebar-toggler");

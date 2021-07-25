@@ -1,6 +1,8 @@
 const express = require("express");
 const router = express.Router();
 const Product = require("../../models/productsModel");
+const Booking = require("../../models/bookingModel");
+
 
 const {
   ensureAuthenticated,
@@ -60,8 +62,11 @@ router.get("/products", async (req, res) => {
   res.render("users/products", { productsData, category, subCategory });
 });
 
-router.get("/dashboard", ensureAuthenticated, (req, res) => {
-  res.render("users/dashboard");
+router.get("/dashboard", ensureAuthenticated, async(req, res) => {
+  const service_provider = req.user._id;
+  const serviceFilter = service_provider ? { service_provider } : {};
+  const totalBookings = await Booking.count({...serviceFilter});
+  res.render("users/dashboard", {totalBookings});
 });
 
 module.exports = router;
