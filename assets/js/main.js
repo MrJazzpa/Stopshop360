@@ -1,7 +1,7 @@
 // Main Js File
 
 $(document).ready(function () {
-  //"use strict";
+  //"use strict"; 
   $("#create_product").submit(function (e) {
     e.preventDefault();
     e.stopImmediatePropagation();

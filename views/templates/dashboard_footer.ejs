@@ -6,9 +6,53 @@
 	<script>
 		$(document).ready(function() {
  			$('#example').DataTable();
-		} );
+			$(function () {
+			$("#updateProductItem").on("submit", function (e) {
+			e.preventDefault();
+			// e.stopImmediatePropagation();
+            let checkItem ="";
+			$(".sub_item").html("Please wait...");
+			if ($('#check_id').is(":checked"))
+			{
+			  checkItem += 1;
+			}else{
+			  checkItem += 0;
+			}
+			$.ajax({
+				url: "/api/admin/update_single",
+				method: "POST",
+				dataType: "json",
+				data: JSON.stringify({
+				checkItem,
+				itemId:  jQuery("#itemId").val(),
+				priority: jQuery("#priority").val(),
+				}),
+				contentType: "application/json",
+				success: function (data) {
+				if (data.status == 200) {
+					console.log(data);
+					$("#updateMsg").html(
+					"<div class = 'alert alert-success alert-dismissible show' role = 'alert'><button type = 'button' class = 'close' data-dismiss = 'alert' aria-label= 'close'> <span aria-hidden = 'true'>&times;</span></button>" +
+						data.message +
+						"</div>"
+					);
+					$(".sub_item").html("Update Item");
+				  }
+				},
+				error: function (jqXhr) {
+				if (jqXhr.status >= 400) {
+					$(".sub_item").html("Update Item");
+					let json = $.parseJSON(jqXhr.responseText);
+					$("#updateMsg")
+						.html(`<div class = 'mb-3 alert alert-danger alert-dismissible show' role = 'alert'><button type = 'button' class = 'close' data-dismiss = 'alert' aria-label= 'close'> <span aria-hidden = 'true'>&times;</span></button> ${json.message}
+						</div>
+					`);
+					}
+				  }
+			  });
+			});
+		});
+	  });
 	</script> 
-
-
 </body>
 </html>

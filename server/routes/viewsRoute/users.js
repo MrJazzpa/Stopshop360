@@ -74,10 +74,11 @@ router.get("/manage_uploads", [ensureAuthenticated, isAdmin], async (req,res)=>{
    const getProducts = await Product.find({});
   res.render("users/manage_uploads", {getProducts});
 });
-router.get("/edit_product",async(req,res)=>{
-   
-  res.render("users/edit_product");
 
+router.get("/edit_product/:id", [ensureAuthenticated, isAdmin], async(req, res)=>{ 
+   const productId = req.params.id;
+   const singleProduct = await Product.findById(productId);
+  res.render("users/edit_product", {singleProduct});
 });
 
 module.exports = router;

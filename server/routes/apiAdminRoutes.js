@@ -1,6 +1,8 @@
 const express = require("express");
 const router = express.Router();
 const Category = require("../models/categoryModel");
+const Product = require("../models/productsModel");
+
 
 const {
   categoryRules,
@@ -81,4 +83,26 @@ router.post(
   }
 );
 
+router.post("/update_single", async(req, res) =>{
+   const { checkItem, itemId, priority } = req.body;
+   const existingProduct = await Product.findById(itemId);
+   if(existingProduct.priority == priority && existingProduct.isConfirmed==checkItem){
+    return res.status(400).json({
+      status: 400,
+      message: "Nothing was updated!",
+    });
+    }
+     const updatedItem = await Product.updateOne(
+      { _id: itemId },
+      { $set: { isConfirmed: checkItem === 0 ? existingProduct.isConfirmed : checkItem, priority } }
+    );
+    console.log(updatedItem);
+    if(updatedItem){
+      return res.status(200).json({
+        _id: updatedItem._id,
+        status: 200,
+        message: "Item has been Updated successfully!",
+      });
+    }
+});
 module.exports = router;

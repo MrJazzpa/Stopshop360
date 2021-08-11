@@ -20,14 +20,15 @@ const productSchema = new mongoose.Schema({
     phone:{type: String},
     type:{type: String},
     condition:{type: String},
+    priority:{type: String, required: true, default:"Featured"},
+    isConfirmed:{type: Number, default: 0, required:true},
     numReviews: {type: Number, default:0},
     seller: { type: mongoose.Schema.Types.ObjectId,  ref: 'User', required: true},
     reviews: [reviewSchema],
 },
 {
     timestamps: true,
-}
-)
+})
 
 const Product = mongoose.model('Product', productSchema)
 

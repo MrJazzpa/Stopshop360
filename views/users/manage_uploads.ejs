@@ -8,6 +8,7 @@
           <th>TITLE</th>
           <th>TYPE</th>
           <th>CONDITION</th>
+          <th>STATUS</th>
           <th>ADMIN ACTIONS</th>
         </tr>
       </thead>
@@ -23,7 +24,8 @@
               <td><%- product.title %></td>
               <td><%- product.type %></td>
               <td><%- product.condition %></td>
-              <td><a type="button" href="/edit_product" class="btn btn-primary">Edit</a>
+              <td><% if (product.isConfirmed==1){ %> <b style="color:green;">Approved <i class="far fa-check-circle"></i></b> <% }else{ %><b style="color:red">Unapproved</b> <% } %></td>
+              <td><a  href="/edit_product/<%=product.id %>" class="btn btn-primary">Edit</a>
                 <a type="button" class="btn btn-danger">Delete</a>        
               </td>
             </tr>
