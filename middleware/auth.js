@@ -14,6 +14,14 @@ module.exports = {
        }
         return next();
     },
+
+    isAdmin: (req, res, next)=>{
+        if(!req.user.isAdmin){
+          req.flash("error_msg", "You don't have privillege to proceed");
+          return res.redirect("/");
+        }
+        return next();
+    }
   };
   
   

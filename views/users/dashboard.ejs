@@ -25,9 +25,11 @@
 								    <li class="nav-item">
 								        <a class="nav-link active" id="tab-dashboard-link" data-toggle="tab" href="#tab-dashboard" role="tab" aria-controls="tab-dashboard" aria-selected="true">Dashboard</a>
 								    </li>
+									<% if (user.isAdmin) { %>
 									<li class="nav-item">
 								        <a class="nav-link " id="tab-dashboard-link"  href="/manage_uploads"   aria-selected="false">Manage Uploaded Data</a>
 								    </li>
+									<% } %>
 								    <li class="nav-item">
 								        <a class="nav-link product_create" id="tab-orders-link" data-toggle="tab" href="#tab-orders" role="tab" aria-controls="tab-orders" aria-selected="false">Create Product</a>
 								    </li>
@@ -41,7 +43,6 @@
 								        <a class="nav-link" id="tab-account-link" data-toggle="tab" href="#tab-account" role="tab" aria-controls="tab-account" aria-selected="false">Account Details</a>
 								    </li>
 									<% if (user.isAdmin) { %>
-
 									<li class="nav-item">
 								        <a class="nav-link" id="tab-account-link" data-toggle="tab" href="#tab-category" role="tab" aria-controls="tab-category" aria-selected="false">Add Category</a>
 								    </li>
@@ -49,7 +50,6 @@
 								        <a class="nav-link add_sub" id="tab-account-link" data-toggle="tab" href="#sub-category" role="tab" aria-controls="tab-subcategory" aria-selected="false">Add Sub-Category</a>
 								    </li>
 									<% } %>
-
 								    <li class="nav-item">
 								        <a style ="cursor:pointer"class="nav-link logout">Sign Out</a>
 								    </li>

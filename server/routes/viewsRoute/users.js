@@ -7,6 +7,7 @@ const Booking = require("../../models/bookingModel");
 const {
   ensureAuthenticated,
   alreadyAuthenticated,
+  isAdmin,
 } = require("../../../middleware/auth");
 
 router.get("/", async(req, res) => {
@@ -69,8 +70,9 @@ router.get("/dashboard", ensureAuthenticated, async(req, res) => {
   res.render("users/dashboard", {totalBookings});
 });
 
-router.get("/manage_uploads",async(req,res)=>{
+router.get("/manage_uploads", [ensureAuthenticated, isAdmin], async (req,res)=>{
+   const getProducts = await Product.find({});
+  res.render("users/manage_uploads", {getProducts});
+});
 
-  res.render("users/manage_uploads");
-})
 module.exports = router;

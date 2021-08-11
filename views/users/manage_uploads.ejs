@@ -1,40 +1,35 @@
 <%-include('../templates/dashboard_header')%>
-    <table id="example" class="table table-hover">
-        <thead style="background-color:#333;color:white">
-            <th>Name</th>
-            <th>Type</th>
-            <th>Brand</th>
-            <th>price</th>
-            <th>Description</th>
-            <th>Uploader</th>
-            <th>Edit</th>
-            <th>Delete</th>
-           
-          </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>Jill</td>
-                <td>Smith</td>
-                <td>50</td>
-                <td>Jill</td>
-                <td>Smith</td>
-                <td>50</td>
-                <td><button type="button" class="btn btn-primary">Edit</button></td>
-                <td><button type="button" class="btn btn-danger">Delete</button></td>
-                
-              </tr>
-              <tr>
-                <td>Eve</td>
-                <td>Jackson</td>
-                <td>94</td>
-                <td>50</td>
-                <td>Eve</td>
-                <td>Jackson</td>
-                <td><button type="button" class="btn btn-primary">Edit</button></td>
-                <td><button type="button" class="btn btn-danger">Delete</button></td>
-              </tr>
-        </tbody>
-      </table> 
-
-      <%-include('../templates/dashboard_footer')%>
+  <div class="container">
+    <table id="example" class="table table-hover table-responsive">
+      <thead style="background-color:#333;color:white">
+          <th>S/N</th>
+          <th>NAME</th>
+          <th>PRICE</th>
+          <th>TITLE</th>
+          <th>TYPE</th>
+          <th>CONDITION</th>
+          <th>ADMIN ACTIONS</th>
+        </tr>
+      </thead>
+      <tbody>
+         <% 
+           if (getProducts.length > 0){
+             let sn=1;
+            getProducts.forEach( product => { %>
+          <tr>
+              <td><%- sn %></td>
+              <td><%- product.name %></td>
+              <td><%- product.price %></td>
+              <td><%- product.title %></td>
+              <td><%- product.type %></td>
+              <td><%- product.condition %></td>
+              <td><button type="button" class="btn btn-primary">Edit</button>
+                <button type="button" class="btn btn-danger">Delete</button>        
+              </td>
+            </tr>
+            <% sn++ %>
+          <% }) }%>
+      </tbody>
+    </table> 
+  </div>
+<%-include('../templates/dashboard_footer')%>
