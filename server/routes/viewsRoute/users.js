@@ -9,9 +9,9 @@ const {
   alreadyAuthenticated,
 } = require("../../../middleware/auth");
 
-router.get("/", (req, res) => {
-  console.log("Request for home recieved");
-  res.render("index");
+router.get("/", async(req, res) => {
+  const productsData = await Product.find({}).sort({ _id: -1 });
+  res.render("index", {productsData});
 });
 
 router.get("/forgot_password", alreadyAuthenticated, (req, res) => {
