@@ -69,4 +69,8 @@ router.get("/dashboard", ensureAuthenticated, async(req, res) => {
   res.render("users/dashboard", {totalBookings});
 });
 
+router.get("/manage_uploads",async(req,res)=>{
+
+  res.render("users/manage_uploads");
+})
 module.exports = router;

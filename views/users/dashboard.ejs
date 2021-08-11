@@ -1,5 +1,6 @@
 <%-include('../templates/header')%>
 <body>
+	
     <div class="page-wrapper">
         <main class="main">
         	
@@ -23,6 +24,9 @@
 	                			<ul class="nav nav-dashboard flex-column mb-3 mb-md-0" role="tablist">
 								    <li class="nav-item">
 								        <a class="nav-link active" id="tab-dashboard-link" data-toggle="tab" href="#tab-dashboard" role="tab" aria-controls="tab-dashboard" aria-selected="true">Dashboard</a>
+								    </li>
+									<li class="nav-item">
+								        <a class="nav-link " id="tab-dashboard-link"  href="/manage_uploads"   aria-selected="false">Manage Uploaded Data</a>
 								    </li>
 								    <li class="nav-item">
 								        <a class="nav-link product_create" id="tab-orders-link" data-toggle="tab" href="#tab-orders" role="tab" aria-controls="tab-orders" aria-selected="false">Create Product</a>
@@ -85,39 +89,8 @@
 										<h3 class="card-title">Uploaded Products</h3>
 										<br>
 										<br>
-										<table class="table table-hover">
-											<thead>
-											  <tr>
-												
-												<th scope="col">ProductID</th>
-												<th scope="col">Category</th>
-												<th scope="col">Price</th>
-												<th scope="col">Image</th>
-											  </tr>
-											</thead>
-											<tbody>
-											  <tr>
-												<th scope="row">1</th>
-												<td>Mark</td>
-												<td>Otto</td>
-												<td>@mdo</td>
-											  </tr>
-											  <tr>
-												<th scope="row">2</th>
-												<td>Jacob</td>
-												<td>Thornton</td>
-												<td>@fat</td>
-											  </tr>
-											  <tr>
-												<th scope="row">3</th>
-												<td colspan="2">Larry the Bird</td>
-												<td>@twitter</td>
-											  </tr>
-											</tbody>
-										  </table>
-
+									
 									   </div>
-
 								    </div><!-- .End .tab-pane -->
 
 								    <div class="tab-pane fade" id="tab-orders" role="tabpanel" aria-labelledby="tab-orders-link">
@@ -447,4 +420,7 @@
         </main><!-- End .main -->
     </div><!-- End .page-wrapper -->
     <%-include('../templates/footer')%>
+	
+
+
 	

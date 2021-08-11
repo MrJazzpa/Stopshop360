@@ -21,8 +21,8 @@ const {
 let transporter = nodemailer.createTransport({
   service: "gmail",
   auth: {
-    user: "wizzyjazzpa4blinks@gmail.com",
-    pass: "Wizzyjazzpa@1",
+    user: "quickstopshop360@gmail.com",
+    pass: "Stopshop360@1",
   },
 });
 
@@ -52,7 +52,7 @@ router.post(
     const encrypt_password = await bcrypt.hash(req.body.password, salt);
     const verify_code = Math.floor(1000 + Math.random() * 9000);
     const mailOptions = {
-      from: "wizzyjazzpa4blinks@gmail.com",
+      from: "quickstopshop360@gmail.com",
       to: req.body.email,
       subject: "Account verification",
       text:

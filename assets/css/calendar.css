@@ -162,17 +162,17 @@
      line-height: 2em;
  }
  
- thead tr {
+ #dthead #table_row {
      color: #e66b6b;
    font-weight: 700;
    text-transform: uppercase;
  }
  
- tbody tr {
+ #table_body #table_row {
      color: #252a25;
  }
  
- tbody td{
+ #table_body #table_data{
      width: 14%;
      border-radius: 50%;
      cursor: pointer;
@@ -180,13 +180,13 @@
      transition:all 0.2s ease-in;
  }
  
- tbody td:hover, .selected {
+ #table_body #table_data:hover, .selected {
      color: #fff;
      background-color: #2a3246;
      border: none;
  }
  
- tbody td:active {
+ #table_body #table_data:active {
      -webkit-transform: scale(0.7);
      -ms-transform: scale(0.7);
      transform: scale(0.7);
