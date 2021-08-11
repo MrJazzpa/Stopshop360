@@ -74,5 +74,10 @@ router.get("/manage_uploads", [ensureAuthenticated, isAdmin], async (req,res)=>{
    const getProducts = await Product.find({});
   res.render("users/manage_uploads", {getProducts});
 });
+router.get("/edit_product",async(req,res)=>{
+   
+  res.render("users/edit_product");
+
+});
 
 module.exports = router;
