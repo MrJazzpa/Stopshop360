@@ -60,12 +60,18 @@
                                     <div class="product-countdown" data-until="2019, 10, 29"></div><!-- End .product-countdown -->
                                     <div class="product-details-action">
                                         <div class="row">
+                                            <% if(product.category=="Sales") { %>
                                             <div class="col-md-6">
                                                 <a href="#" class="btn-product btn-cart"><span>chat</span></a>
                                             </div>
+                                            <% } %>
+
+                                            <% if(product.category=="Booking") { %>
                                             <div class="col-md-6">
                                                 <a href="#booking-modal" data-toggle="modal"class="btn-product btn-cart"><span>Book</span></a>
                                             </div>
+                                            <% } %>
+                                            
                                         </div>
                                     </div><!-- End .product-details-action -->
                                     <div class="product-details-footer">
