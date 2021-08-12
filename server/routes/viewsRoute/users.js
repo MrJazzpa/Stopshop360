@@ -12,9 +12,11 @@ const {
 
 router.get("/", async(req, res) => {
   const featuredPriority = "Featured";
-  const featuredOnsale = "On sale";
-  const featuredTopRated = "Top rated";
+  const featuredOnsale = "On Sale";
+  const featuredTopRated = "Top Rated";
   const featuredTrending = "Trending";
+  const featuredTopSelling ="Top Selling Products";
+
 
   const getFeatured = await Product.find({priority: featuredPriority});
   const getOnsale = await Product.find({priority: featuredOnsale});
@@ -25,9 +27,9 @@ router.get("/", async(req, res) => {
   const getTrendSales = await Product.find({priority: featuredTrending, category:"Sales"});
   const getTrendHiring = await Product.find({priority: featuredTrending, category:"Hiring"});
 
-  const getRatedBooking = await Product.find({priority: featuredTopRated, category:"Booking"});
-  const getRatedSales = await Product.find({priority: featuredTopRated, category:"Sales"});
-  const getRatedHiring = await Product.find({priority: featuredTopRated, category:"Hiring"});
+  const getRatedBooking = await Product.find({priority: featuredTopSelling, category:"Booking"});
+  const getRatedSales = await Product.find({priority: featuredTopSelling, category:"Sales"});
+  const getRatedHiring = await Product.find({priority: featuredTopSelling, category:"Hiring"});
 
 
   const productsData = await Product.find({}).sort({ _id: -1 });

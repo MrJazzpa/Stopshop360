@@ -1,5 +1,4 @@
 <%-include('../templates/header')%>
-
 <body>
     <div class="page-wrapper">
         <main class="main">
@@ -15,7 +14,6 @@
                             <i class="icon-angle-left"></i>
                             <span>Prev</span>
                         </a>
-
                         <a class="product-pager-link product-pager-next" href="#" aria-label="Next" tabindex="-1">
                             <span>Next</span>
                             <i class="icon-angle-right"></i>
@@ -38,7 +36,6 @@
                                     <% } %>
                                 </div><!-- End .product-gallery -->
                             </div><!-- End .col-md-6 -->
-
                             <div class="col-md-6">
                                 <div class="product-details sticky-content">
                                     <h1 class="product-title"><%= product.title %></h1><!-- End .product-title -->
@@ -48,12 +45,10 @@
                                         </div><!-- End .ratings -->
                                         <a class="ratings-text" href="#product-accordion" id="review-link">( 2 Reviews )</a>
                                     </div><!-- End .rating-container -->
-
                                     <div class="product-price">
                                         <span class="new-price">$<%= product.price %></span>
                                         <span class="old-price">$310.00</span>
                                     </div><!-- End .product-price -->
-
                                     <div class="product-content">
                                         <p><%=product.description %> </p>
                                     </div><!-- End .product-content -->
@@ -65,13 +60,11 @@
                                                 <a href="#" class="btn-product btn-cart"><span>chat</span></a>
                                             </div>
                                             <% } %>
-
                                             <% if(product.category=="Booking") { %>
                                             <div class="col-md-6">
                                                 <a href="#booking-modal" data-toggle="modal"class="btn-product btn-cart"><span>Book</span></a>
                                             </div>
                                             <% } %>
-                                            
                                         </div>
                                     </div><!-- End .product-details-action -->
                                     <div class="product-details-footer">
@@ -87,7 +80,6 @@
                                             <a href="#" class="social-icon" title="Pinterest" target="_blank"><i class="icon-pinterest"></i></a>
                                         </div>
                                     </div><!-- End .product-details-footer -->
-
                                     <div class="accordion accordion-plus product-details-accordion" id="product-accordion">
                                         <div class="card card-box card-sm">
                                             <div class="card-header" id="product-desc-heading">
@@ -100,19 +92,16 @@
                                             <div id="product-accordion-desc" class="collapse" aria-labelledby="product-desc-heading" data-parent="#product-accordion">
                                                 <div class="card-body">
                                                     <div class="product-desc-content">
-                                                        
                                                         <ul>
                                                             <li> <b>Product Name:</b>  <%=product.title %></li>
                                                             <li><b>Product Price:</b> $<%=product.price %></li>
                                                             <li>  <b>Product Condition:</b>  <%=product.condition%></li>
                                                         </ul>
-
                                                         <p><%=product.description %></p>
                                                     </div><!-- End .product-desc-content -->
                                                 </div><!-- End .card-body -->
                                             </div><!-- End .collapse -->
                                         </div><!-- End .card -->
-
                                         <div class="card card-box card-sm">
                                             <div class="card-header" id="product-info-heading">
                                                 <h2 class="card-title">
@@ -151,7 +140,6 @@
                                                 </div><!-- End .card-body -->
                                             </div><!-- End .collapse -->
                                         </div><!-- End .card -->
-
                                         <div class="card card-box card-sm">
                                             <div class="card-header" id="product-review-heading">
                                                 <h2 class="card-title">
@@ -253,7 +241,6 @@
                                 <a href="product.html">
                                     <img src="/images/products/product-4.jpg" alt="Product image" class="product-image">
                                 </a>
-
                                 <div class="product-action-vertical">
                                     <a href="#" class="btn-product-icon btn-wishlist btn-expandable"><span>add to wishlist</span></a>
                                     <a href="popup/quickView.html" class="btn-product-icon btn-quickview" title="Quick view"><span>Quick view</span></a>
