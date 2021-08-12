@@ -11,8 +11,38 @@ const {
 } = require("../../../middleware/auth");
 
 router.get("/", async(req, res) => {
+  const featuredPriority = "Featured";
+  const featuredOnsale = "On sale";
+  const featuredTopRated = "Top rated";
+  const featuredTrending = "Trending";
+
+  const getFeatured = await Product.find({priority: featuredPriority});
+  const getOnsale = await Product.find({priority: featuredOnsale});
+  const getTopRated = await Product.find({priority: featuredTopRated});
+  const getTrending = await Product.find({priority: featuredTrending});
+  const getTrendBooking = await Product.find({priority: featuredTrending, category:"Booking"});
+
+  const getTrendSales = await Product.find({priority: featuredTrending, category:"Sales"});
+  const getTrendHiring = await Product.find({priority: featuredTrending, category:"Hiring"});
+
+  const getRatedBooking = await Product.find({priority: featuredTopRated, category:"Booking"});
+  const getRatedSales = await Product.find({priority: featuredTopRated, category:"Sales"});
+  const getRatedHiring = await Product.find({priority: featuredTopRated, category:"Hiring"});
+
+
   const productsData = await Product.find({}).sort({ _id: -1 });
-  res.render("index", {productsData});
+  res.render("index", {productsData, 
+    getFeatured, 
+    getOnsale, 
+    getTopRated, 
+    getTrending, 
+    getTrendBooking, 
+    getTrendSales, 
+    getTrendHiring,
+    getRatedBooking,
+    getRatedSales,
+    getRatedHiring
+  });
 });
 
 router.get("/forgot_password", alreadyAuthenticated, (req, res) => {
@@ -48,13 +78,10 @@ router.get("/details", async (req, res) => {
 router.get("/products", async (req, res) => {
   const category = req.query.category;
   const subCategory = req.query.subcategory;
-  const categoryFilter = category
-    ? { category: { $regex: category, $options: "i" } }
-    : {};
+  const categoryFilter = category ? { category: { $regex: category, $options: "i" } }  : {};
   const subCategoryFilter = subCategory
     ? { type: { $regex: subCategory, $options: "i" } }
     : {};
-
   const productsData = await Product.find({
     ...categoryFilter,
     ...subCategoryFilter,
