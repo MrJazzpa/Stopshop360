@@ -40,6 +40,31 @@
     <link rel="stylesheet" href="css/calendar.css">
     <link  rel="stylesheet" href="css/style.css">
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+   <style>
+       .searchResults{
+        background:#666;
+        border-radius: 10px;
+        position:absolute;
+        top: 125px; 
+        left: 30%;
+        width: 600px;
+        z-index: 100;
+        overflow: auto;
+        height: 200px;
+      }
+       .searchResults li{
+        /* background: #555;  */
+        display: block; 
+        padding: 10px;
+     }
+       .searchResults li a {display:block !important;} 
+       .searchResults li:hover{
+        background: white;
+        cursor:pointer;   
+       }
+
+   </style>
 </head>
 <header class="header header-intro-clearance header-3">
     <div class="header-top">
@@ -99,7 +124,6 @@
                     <span class="sr-only">Toggle mobile menu</span>
                     <i class="icon-bars"></i>
                 </button>
-                
                 <div class="hold_logo">
 
                     <a href="/" class="logo">
@@ -115,11 +139,14 @@
                         <div class="header-search-wrapper search-wrapper-wide">
                             <label for="q" class="sr-only">Search</label>
                             <button class="btn btn-primary" type="submit"><i class="icon-search"></i></button>
-                            <input type="search" class="form-control" name="q" id="q" placeholder="Search product ..." required>
+                            <input type="search" class="form-control"name="q" id="q" placeholder="Search product ..." required>
                         </div><!-- End .header-search-wrapper -->
+
                     </form>
                 </div><!-- End .header-search -->
             </div>
+                
+
             <div class="header-right">
                 <div class="wishlist" >
                     <a href="wishlist.html" title="Wishlist">
@@ -264,3 +291,25 @@
         </div><!-- End .container -->
     </div><!-- End .header-bottom -->
 </header><!-- End .header -->
+
+<ul class="searchResults"> 
+    <li><a href="#">hello world</a> </li>       
+    <li><a href="#">hello world</a> </li>       
+    <li><a href="#">hello world</a> </li>       
+    <li><a href="#">hello world</a> </li>       
+    <li><a href="#">hello world</a> </li>       
+    <li><a href="#">hello world</a> </li>       
+    <li><a href="#">hello world</a> </li>       
+    <li><a href="#">hello world</a> </li>       
+    <li><a href="#">hello world</a> </li>       
+    <li><a href="#">hello world</a> </li>       
+    <li><a href="#">hello world</a> </li>       
+    <li><a href="#">hello world</a> </li>       
+    <li><a href="#">hello world</a> </li>       
+    <li><a href="#">hello world</a> </li>       
+    <li><a href="#">hello world</a> </li>       
+    <li><a href="#">hello world</a> </li>       
+    <li><a href="#">hello world</a> </li>       
+    <li><a href="#">hello world</a> </li>       
+
+</ul>

@@ -580,6 +580,66 @@ $(document).ready(function () {
      });
    });
 
+    function load_data(query) {
+        $.ajax({
+            url: "/",
+            method: "POST",
+            data: JSON.stringify({
+                query
+            }),
+            success: function(data) {
+                if (data.status == 200) {
+                    var profArray = data.result;
+                    if (profArray.length > 0) {
+
+                        profArray.forEach(populateProfession);
+
+                        function populateProfession(item, index) {
+                            $('#profResult').html(`
+                 <a href ="` + base_url + "directory_message/" + item.profid + ` " ><li style = " font-size:18px; font-family:tahoma; cursor:pointer;"class="inline-items=">
+                <div class="author-thumb"><i style = ";margin-left:20px; margin-top:10px; color:#f59642" class="fas fa-briefcase"></i>
+                <span style = "margin-left: 20px; margin-top: -20px; color:white;font-size:20px;">` + item
+                                .profession + `</span>
+                </div>
+                </li>
+               </a>
+              <hr>
+                `);
+
+                }
+
+              }
+
+            }
+          },
+            error: function(jqXhr) {
+                if (jqXhr.status == 400) {
+                    var json = $.parseJSON(jqXhr.responseText);
+                    $("#profResult").html(`
+        <li style = " font-size:17px;  font-family:tahoma; cursor:pointer;"class="inline-items">
+            <span style = "margin-left: 30px; margin-top: 5px; color:white;">` + json.result + `</span>
+        </li>
+           
+          `);
+                }
+            }
+        })
+    }
+
+    $('#productSearch').keyup(function() {
+        var search = $(this).val();
+        if (search != '') {
+            load_data(search);
+        } else {
+            $('#profResult').empty();
+        }
+    });
+
+    $(".searchResults").mouseleave(function() {
+      $(this).hide();
+  });
+
+
   owlCarousels();
   quantityInputs();
 
