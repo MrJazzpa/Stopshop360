@@ -2430,13 +2430,13 @@ blockquote.text-white cite span {
 }
 .mobile-menu li a:hover,
 .mobile-menu li a:focus {
-  color: #c96;
+  color:red;
   text-decoration: none;
   outline: none !important;
 }
 .mobile-menu li.open > a,
 .mobile-menu li.active > a {
-  color: #c96;
+  color:red;
 }
 .mobile-menu li ul {
   margin: 0;
@@ -2524,7 +2524,7 @@ blockquote.text-white cite span {
 }
 .mobile-search .form-control:focus {
   color: #fff;
-  border-color: #c96;
+  border-color:white;
   background-color: #333;
 }
 .mobile-search .btn {
