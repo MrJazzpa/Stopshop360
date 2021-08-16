@@ -580,63 +580,59 @@ $(document).ready(function () {
      });
    });
 
-    function load_data(query) {
+    function load_data(name) {
         $.ajax({
-            url: "/",
-            method: "POST",
-            data: JSON.stringify({
-                query
-            }),
+            url: `/api/products/product_search?name=${name}`,
+            method: "GET",
+            dataType: "json",
+            // data: JSON.stringify({
+            //     name
+            // }),
+            contentType: "application/json",
             success: function(data) {
+              console.log(data);
                 if (data.status == 200) {
-                    var profArray = data.result;
-                    if (profArray.length > 0) {
-
-                        profArray.forEach(populateProfession);
-
-                        function populateProfession(item, index) {
-                            $('#profResult').html(`
-                 <a href ="` + base_url + "directory_message/" + item.profid + ` " ><li style = " font-size:18px; font-family:tahoma; cursor:pointer;"class="inline-items=">
-                <div class="author-thumb"><i style = ";margin-left:20px; margin-top:10px; color:#f59642" class="fas fa-briefcase"></i>
-                <span style = "margin-left: 20px; margin-top: -20px; color:white;font-size:20px;">` + item
-                                .profession + `</span>
-                </div>
-                </li>
-               </a>
-              <hr>
-                `);
-
-                }
-
-              }
-
-            }
-          },
-            error: function(jqXhr) {
+                    let productsData = data.products;
+                    if (productsData.length > 0) {
+                      $('.newSearch').addClass('searchResults');
+                      $('.searchResults').show();
+                      let searchContainer = $(".newSearch");
+                      searchContainer.innerHTML = "";
+                      let searchData = "";
+                      for (let i = 0; i < productsData.length; i++) {
+                        searchData += `<li><a href="products?category=${productsData[i].category}">${productsData[i].name}</a></li>`;
+                      }
+                      searchContainer.html(searchData);
+                    }else{
+                      $('.searchResults').hide();
+                    }
+                 }
+             },
+              error: function(jqXhr) {
                 if (jqXhr.status == 400) {
                     var json = $.parseJSON(jqXhr.responseText);
-                    $("#profResult").html(`
-        <li style = " font-size:17px;  font-family:tahoma; cursor:pointer;"class="inline-items">
-            <span style = "margin-left: 30px; margin-top: 5px; color:white;">` + json.result + `</span>
-        </li>
-           
-          `);
+                    $(".newSearch").html(`<li><a href="#">An error occurred</a></li>`);
                 }
             }
         })
     }
 
+    function countWords(str) {
+      if(str >=3)
+      return str.trim().split(/\s+/).length;
+    }
+
     $('#productSearch').keyup(function() {
-        var search = $(this).val();
-        if (search != '') {
+        let search = $(this).val();
+        if (search != '' && search.length>=3 ) {
             load_data(search);
         } else {
-            $('#profResult').empty();
+            $('.searchResults').hide();
         }
     });
 
-    $(".searchResults").mouseleave(function() {
-      $(this).hide();
+    $(".newSearch").mouseleave(function() {
+      $('.searchResults').hide();
     });
 
   owlCarousels();

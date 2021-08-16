@@ -230,6 +230,30 @@ const subCategoryValidate = (req, res, next) => {
   });
 };
 
+const productSearchRules = () => {
+  return [
+    body("name")
+      .trim()
+      .escape()
+      // .notEmpty()
+      .isLength({ max: 30 })
+      .withMessage("Search field is required"),
+  ];
+};
+
+const productSearchValidate = (req, res, next) => {
+  const errors = validationResult(req);
+  const clientErrors = [];
+  errors.array().map((err) => clientErrors.push({ msg: err.msg }));
+  if (clientErrors.length == 0) {
+    return next();
+  }
+  console.log(clientErrors);
+  return res.status(400).send({
+    clientErrors,
+  });
+};
+
 module.exports = {
   userValidationRules,
   validate,
@@ -242,5 +266,8 @@ module.exports = {
   categoryRules,
   categoryValidate,
   subCategoryRules,
-  subCategoryValidate
+  subCategoryValidate,
+  productSearchRules,
+  productSearchValidate
+
 };

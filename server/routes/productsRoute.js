@@ -10,6 +10,8 @@ const Booking = require("../models/bookingModel");
 const {
   productCreationRules,
   productValidate,
+  productSearchRules,
+  productSearchValidate,
 } = require("../../middleware/validator");
 
 const {
@@ -51,6 +53,18 @@ const imageUpload = multer({
 router.get("/categories", async (req, res) => {
   const categories = await Category.find().distinct("category");
   res.send({ status: 200, categories: categories });
+});
+
+router.get("/product_search", [productSearchRules(), productSearchValidate], async(req, res)=> {
+  const nameVal = req.query.name ;
+  const nameFilter = nameVal ? { "name": {$regex: nameVal, $options: "i"}} : {};
+  const titleFilter = nameVal ? { "title": {$regex: nameVal, $options: "i"} } : {};
+  const categoryFilter = nameVal ? { "category": {$regex: nameVal, $options: "i"}} : {};
+  const products = await Product.find()
+  .or([{...nameFilter}, {...titleFilter}, {...categoryFilter}])
+  .sort({name: 1})
+  .select({name: 1, _id: 1, category: 1 })
+  res.status(200).send({status:200, products });
 });
 
 //category for ui
