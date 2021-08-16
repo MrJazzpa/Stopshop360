@@ -637,8 +637,7 @@ $(document).ready(function () {
 
     $(".searchResults").mouseleave(function() {
       $(this).hide();
-  });
-
+    });
 
   owlCarousels();
   quantityInputs();
