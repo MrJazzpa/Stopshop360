@@ -35,3 +35,8 @@ defaultFile.addEventListener("change", function () {
     fileReader.readAsDataURL(files);
   }
 });
+
+// advert uplaod
+
+
+
