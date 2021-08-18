@@ -175,28 +175,40 @@
                                                             </div><!-- End .row -->
                                                         </div><!-- End .review -->
                                                         <div class="review">
-                                                            <div class="row no-gutters">
-                                                                <div class="col-auto">
-                                                                    <h4><a href="#">John Doe</a></h4>
-                                                                    <div class="ratings-container">
-                                                                        <div class="ratings">
-                                                                            <div class="ratings-val" style="width: 100%;"></div><!-- End .ratings-val -->
-                                                                        </div><!-- End .ratings -->
-                                                                    </div><!-- End .rating-container -->
-                                                                    <span class="review-date">5 days ago</span>
+                                                            <form action="">
+                                                            <div class="row ">
+                                                                <div class="col-md-12">
+                                                                        <label>Your Name</label>
+                                                                        <input type="text" class="form-control" name="name" id="name" required>
                                                                 </div><!-- End .col -->
-                                                                <div class="col">
-                                                                    <h4>Very good</h4>
-                                                                    <div class="review-content">
-                                                                        <p>Sed, molestias, tempore? Ex dolor esse iure hic veniam laborum blanditiis laudantium iste amet. Cum non voluptate eos enim, ab cumque nam, modi, quas iure illum repellendus, blanditiis perspiciatis beatae!</p>
-                                                                    </div><!-- End .review-content -->
-                                                                    <div class="review-action">
-                                                                        <a href="#"><i class="icon-thumbs-up"></i>Helpful (0)</a>
-                                                                        <a href="#"><i class="icon-thumbs-down"></i>Unhelpful (0)</a>
-                                                                    </div><!-- End .review-action -->
-                                                                </div><!-- End .col-auto -->
+                                                                <div class="col-md-12">
+                                                                    <label>Rate seller from a scale of (1-5)</label>
+                                                                    <div include="form-input-select()">
+																		<select required name="rate">
+																		  
+																		  <option value="2">1</option>
+																		  <option value="2">2</option>
+																		  <option value="3">3</option>
+                                                                          <option value="4">4</option>
+																		  <option value="5">5</option>
+																		  
+																		</select>
+																 </div>
+                                                            </div><!-- End .col -->
+                                                                <div class="col-md-12">
+                                                                    <label>comment</label>
+                                                                    <textarea class="form-control" id="comment" name="comment" style="height: 20px;"></textarea>
+
+                                                                </div>
+                                                                <div class="col-md-12">
+                                                                    <button type="submit" class="btn btn-outline-primary-2">
+                                                                        <span>Send Review</span>
+                                                                        <i class="icon-long-arrow-right"></i>
+                                                                    </button>
+                                                                </div>
                                                             </div><!-- End .row -->
-                                                        </div><!-- End .review -->
+                                                          </form>
+                                                     </div><!-- End .review -->
                                                     </div><!-- End .reviews -->
                                                 </div><!-- End .card-body -->
                                             </div><!-- End .collapse -->
