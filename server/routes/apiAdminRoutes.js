@@ -14,13 +14,14 @@ const {
 const {
   ensureAuthenticated,
   alreadyAuthenticated,
+  isAdmin,
 } = require("../../middleware/auth");
 
 
 
 router.post(
   "/create_category",
-  [categoryRules(), categoryValidate],
+  [categoryRules(), categoryValidate, ensureAuthenticated, isAdmin],
   async (req, res, next) => {
     try {
       let clientErrors = [];
@@ -47,7 +48,7 @@ router.post(
 
 router.post(
   "/sub_categories",
-  [subCategoryRules(), subCategoryValidate],
+  [subCategoryRules(), subCategoryValidate, ensureAuthenticated, isAdmin],
   async (req, res, next) => {
     try {
       let clientErrors = [];
@@ -83,7 +84,7 @@ router.post(
   }
 );
 
-router.post("/update_single", async(req, res) =>{
+router.post("/update_single", [ensureAuthenticated, isAdmin], async(req, res) =>{
    const { checkItem, itemId, priority } = req.body;
    const existingProduct = await Product.findById(itemId);
    if(existingProduct.priority == priority && existingProduct.isConfirmed==checkItem){
@@ -105,4 +106,6 @@ router.post("/update_single", async(req, res) =>{
       });
     }
 });
+
+
 module.exports = router;

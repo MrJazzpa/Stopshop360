@@ -172,6 +172,46 @@ const productValidate = (req, res, next) => {
 };
 
 
+
+const bannerCreationRules = () => {
+  return [
+    body("image_title", "Image title is required")
+      .notEmpty()
+      .trim()
+      .escape()
+      .withMessage("Image title is required"),
+    body("top_title", "Top title is required")
+      .notEmpty()
+      .trim()
+      .escape()
+      .withMessage("Top title is required"),
+    body("ad_description", "Description is required")
+      .notEmpty()
+      .trim()
+      .escape()
+      .withMessage("Description is required"),
+    body("adPricing", "Ad Price is required")
+      .notEmpty()
+      .trim()
+      .escape()
+      .withMessage("Ad Price is required"),
+  ];
+};
+
+const bannerValidate = (req, res, next) => {
+  const errors = validationResult(req);
+  const clientErrors = [];
+  errors.array().map((err) => clientErrors.push({ msg: err.msg }));
+  if (clientErrors.length == 0) {
+    return next();
+  }
+  console.log(clientErrors);
+  return res.status(400).send({
+    clientErrors,
+  });
+};
+
+
 const categoryRules = () => {
   return [
     body("category")
@@ -268,6 +308,7 @@ module.exports = {
   subCategoryRules,
   subCategoryValidate,
   productSearchRules,
-  productSearchValidate
-
+  productSearchValidate,
+  bannerCreationRules,
+  bannerValidate,
 };

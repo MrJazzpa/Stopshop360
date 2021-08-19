@@ -580,14 +580,73 @@ $(document).ready(function () {
      });
    });
 
+//banner submissions
+$("#bannerForm").submit(function (e) {
+  e.preventDefault();
+  e.stopImmediatePropagation();
+  let formData = new FormData(this);
+  $("#create_ad").html("Please wait...");
+  $.ajax({
+    async: true,
+    type: "POST",
+    url: "/api/products/upload_banner",
+    data: formData,
+    cache: false,
+    processData: false,
+    contentType: false,
+    success: function (data) {
+      if (data.status == 200) {
+        $(".successMsgBan").html(
+          "<div class = 'alert alert-success alert-dismissible fade show' role = 'alert'><button type = 'button' class = 'close' data-dismiss = 'alert' aria-label= 'close'> <span aria-hidden = 'true'>&times;</span></button>" +
+            data.message +
+            "</div>"
+        );
+        $("#create_ad").html("CREATE BANNER");
+        $("#bannerForm")[0].reset();
+        window.scrollTo({
+          top: 0,
+          left: 0,
+          behavior: 'smooth'
+      })
+      }
+    },
+    error: function (jqXhr) {
+      $("#create_ad").html("CREATE BANNER");
+      window.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: 'smooth'
+    })
+      if (jqXhr.status >= 400) {
+        let json = $.parseJSON(jqXhr.responseText);
+        console.log(json);
+        let errorsContainer = $(".successMsgBan");
+
+        if (json.clientErrors) {
+          errorsContainer.innerHTML = "";
+          let errorsList = "";
+          for (let i = 0; i < json.clientErrors.length; i++) {
+            errorsList += `<div class = 'alert alert-danger alert-dismissible fade show' role = 'alert'><button type = 'button' class = 'close' data-dismiss = 'alert' aria-label= 'close'> <span aria-hidden = 'true'>&times;</span></button> ${json.clientErrors[i].msg}
+            </div>
+              `;
+          }
+          errorsContainer.html(errorsList);
+        } else {
+          $(".successMsgBan")
+            .html(`<div class = 'mb-3 alert alert-danger alert-dismissible fade show' role = 'alert'><button type = 'button' class = 'close' data-dismiss = 'alert' aria-label= 'close'> <span aria-hidden = 'true'>&times;</span></button> ${json.error}
+          </div>
+        `);
+        }
+      }
+    },
+  });
+});
+
     function load_data(name) {
         $.ajax({
             url: `/api/products/product_search?name=${name}`,
             method: "GET",
             dataType: "json",
-            // data: JSON.stringify({
-            //     name
-            // }),
             contentType: "application/json",
             success: function(data) {
               console.log(data);
@@ -610,17 +669,13 @@ $(document).ready(function () {
              },
               error: function(jqXhr) {
                 if (jqXhr.status == 400) {
-                    var json = $.parseJSON(jqXhr.responseText);
+                    let json = $.parseJSON(jqXhr.responseText);
                     $(".newSearch").html(`<li><a href="#">An error occurred</a></li>`);
                 }
             }
         })
     }
 
-    function countWords(str) {
-      if(str >=3)
-      return str.trim().split(/\s+/).length;
-    }
 
     $('#productSearch').keyup(function() {
         let search = $(this).val();

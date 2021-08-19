@@ -2,21 +2,27 @@ const express = require("express");
 const router = express.Router();
 const path = require("path");
 const nodemailer = require("nodemailer");
+const fs = require("fs");
 const multer = require("multer");
+const sharp = require('sharp');
 const Product = require("../models/productsModel");
 const Category = require("../models/categoryModel");
 const Booking = require("../models/bookingModel");
+const Banner = require("../models/bannerModel");
 
 const {
   productCreationRules,
   productValidate,
   productSearchRules,
   productSearchValidate,
+  bannerCreationRules,
+  bannerValidate
 } = require("../../middleware/validator");
 
 const {
   ensureAuthenticated,
   alreadyAuthenticated,
+  isAdmin,
 } = require("../../middleware/auth");
 
 let transporter = nodemailer.createTransport({
@@ -200,6 +206,40 @@ router.post(
       status: 200,
       message: "Product was created successfully",
       product: createdProduct,
+    });
+  },
+  (error, req, res, next) => {
+    return res.status(400).send({ error: error.message });
+  }
+);
+
+
+router.post("/upload_banner", [imageUpload.single("bannerImage"), bannerCreationRules(), bannerValidate, ensureAuthenticated, isAdmin], async (req, res) => {       
+    if (!req.file) {
+      return res.status(400).send({ error: "No file selected" });
+    }
+    const { filename: bannerImage } = req.file;
+    await sharp(req.file.path)
+     .resize(200, 200)
+     .jpeg({ quality: 90 })
+     .toFile(
+         path.resolve(req.file.destination, 'resized', bannerImage)
+     )
+     fs.unlinkSync(req.file.path)
+    
+    const {image_title, top_title, ad_description, adPricing } = req.body;
+
+    const banner = await new Banner({
+      image_title,
+      top_title,
+      description:ad_description,
+      pricing: parseInt(adPricing),
+    });
+    const createdBanner = await banner.save();
+    return res.status(200).send({
+      status: 200,
+      message: "Banner was created successfully",
+      banner: createdBanner,
     });
   },
   (error, req, res, next) => {
