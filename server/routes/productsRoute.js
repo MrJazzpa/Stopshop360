@@ -9,6 +9,7 @@ const Product = require("../models/productsModel");
 const Category = require("../models/categoryModel");
 const Booking = require("../models/bookingModel");
 const Banner = require("../models/bannerModel");
+const SideAdvert = require("../models/sideAdvertModel");
 
 const {
   productCreationRules,
@@ -16,7 +17,9 @@ const {
   productSearchRules,
   productSearchValidate,
   bannerCreationRules,
-  bannerValidate
+  bannerValidate,
+  sideAdCreationRules,
+  sideAdCreationValidate,
 } = require("../../middleware/validator");
 
 const {
@@ -220,20 +223,22 @@ router.post("/upload_banner", [imageUpload.single("bannerImage"), bannerCreation
     }
     const { filename: bannerImage } = req.file;
     await sharp(req.file.path)
-     .resize(200, 200)
+     .resize(780, 400)
      .jpeg({ quality: 90 })
      .toFile(
          path.resolve(req.file.destination, 'resized', bannerImage)
      )
      fs.unlinkSync(req.file.path)
     
-    const {image_title, top_title, ad_description, adPricing } = req.body;
+    const {image_title, top_title, ad_description, adPricing, bannerCategory } = req.body;
 
     const banner = await new Banner({
       image_title,
       top_title,
+      path: `${req.file.destination}resized/${bannerImage}`,
       description:ad_description,
       pricing: parseInt(adPricing),
+      category: bannerCategory,
     });
     const createdBanner = await banner.save();
     return res.status(200).send({
@@ -246,5 +251,41 @@ router.post("/upload_banner", [imageUpload.single("bannerImage"), bannerCreation
     return res.status(400).send({ error: error.message });
   }
 );
+
+
+router.post("/upload_side_advert", [imageUpload.single("sideImage"), sideAdCreationRules(), sideAdCreationValidate, ensureAuthenticated, isAdmin], async (req, res) => {       
+  if (!req.file) {
+    return res.status(400).send({ error: "No file selected" });
+  }
+  const { filename: sideImage } = req.file;
+  await sharp(req.file.path)
+   .resize(370, 120)
+   .jpeg({ quality: 90 })
+   .toFile(
+       path.resolve(req.file.destination, 'resized', sideImage)
+   )
+   fs.unlinkSync(req.file.path)
+  
+  const {side_title, topside_title, sidead_description, side_pricing, sideCategory } = req.body;
+
+  const sideAdvert = await new SideAdvert({
+    side_title,
+    topside_title,
+    description: sidead_description,
+    path: `${req.file.destination}resized/${sideImage}`,
+    pricing: parseInt(side_pricing),
+    category:sideCategory,
+  });
+  
+  const createdSideAdvert = await sideAdvert.save();
+  return res.status(200).send({
+    status: 200,
+    message: "Side Advert was created successfully",
+    banner: createdSideAdvert,
+  });
+},
+(error, req, res, next) => {
+  return res.status(400).send({ error: error.message });
+});
 
 module.exports = router;

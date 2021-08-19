@@ -2,7 +2,8 @@ const express = require("express");
 const router = express.Router();
 const Product = require("../../models/productsModel");
 const Booking = require("../../models/bookingModel");
-
+const Banner = require("../../models/bannerModel");
+const SideAdvert = require("../../models/sideAdvertModel");
 
 const {
   ensureAuthenticated,
@@ -31,6 +32,8 @@ router.get("/", async(req, res) => {
   const getRatedSales = await Product.find({priority: featuredTopSelling, category:"Sales"});
   const getRatedHiring = await Product.find({priority: featuredTopSelling, category:"Hiring"});
 
+  const getBanners = await Banner.find({status:true});
+  const getSideAds = await SideAdvert.find({status:true}).limit(3);
 
   const productsData = await Product.find({}).sort({ _id: -1 });
   res.render("index", {productsData, 
@@ -43,7 +46,9 @@ router.get("/", async(req, res) => {
     getTrendHiring,
     getRatedBooking,
     getRatedSales,
-    getRatedHiring
+    getRatedHiring,
+    getBanners,
+    getSideAds
   });
 });
 

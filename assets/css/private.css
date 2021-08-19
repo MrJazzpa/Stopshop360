@@ -1,9 +1,33 @@
 .welcomeUser {
-  color:whitesmoke;
+  color: whitesmoke;
 }
-.welcomeUser:hover{
+.welcomeUser:hover {
   color: maroon;
 }
 .btn-logout {
+  cursor: pointer;
+}
+
+.searchResults {
+  background: #666;
+  border-radius: 10px;
+  position: absolute;
+  top: 125px;
+  left: 30%;
+  width: 600px;
+  z-index: 100;
+  overflow: auto;
+  height: 200px;
+}
+.searchResults li {
+  /* background: #555;  */
+  display: block;
+  padding: 10px;
+}
+.searchResults li a {
+  display: block !important;
+}
+.searchResults li:hover {
+  background: white;
   cursor: pointer;
 }

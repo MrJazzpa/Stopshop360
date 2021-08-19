@@ -195,6 +195,11 @@ const bannerCreationRules = () => {
       .trim()
       .escape()
       .withMessage("Ad Price is required"),
+    body("bannerCategory", "Banner Category is required")
+    .notEmpty()
+    .trim()
+    .escape()
+    .withMessage("Banner category is required"),
   ];
 };
 
@@ -211,6 +216,49 @@ const bannerValidate = (req, res, next) => {
   });
 };
 
+
+const sideAdCreationRules = () => {
+  return [
+    body("side_title", "Title is required")
+      .notEmpty()
+      .trim()
+      .escape()
+      .withMessage("Title is required"),
+    body("topside_title", "Top side title is required")
+      .notEmpty()
+      .trim()
+      .escape()
+      .withMessage("Top side title is required"),
+    body("sidead_description", "side Advert Description is required")
+      .notEmpty()
+      .trim()
+      .escape()
+      .withMessage("side Advert Description is required"),
+    body("side_pricing", "Advert Price is required")
+      .notEmpty()
+      .trim()
+      .escape()
+      .withMessage("Advert Price is required"),
+    body("sideCategory", "Advert Category is required")
+    .notEmpty()
+    .trim()
+    .escape()
+    .withMessage("Advert category is required"),
+  ];
+};
+
+const sideAdCreationValidate = (req, res, next) => {
+  const errors = validationResult(req);
+  const clientErrors = [];
+  errors.array().map((err) => clientErrors.push({ msg: err.msg }));
+  if (clientErrors.length == 0) {
+    return next();
+  }
+  console.log(clientErrors);
+  return res.status(400).send({
+    clientErrors,
+  });
+};
 
 const categoryRules = () => {
   return [
@@ -311,4 +359,6 @@ module.exports = {
   productSearchValidate,
   bannerCreationRules,
   bannerValidate,
+  sideAdCreationRules,
+  sideAdCreationValidate
 };

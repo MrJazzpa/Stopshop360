@@ -50,10 +50,10 @@
 								        <a class="nav-link add_sub" id="tab-account-link" data-toggle="tab" href="#sub-category" role="tab" aria-controls="tab-subcategory" aria-selected="false">Add Sub-Category</a>
 								    </li>
 									<li class="nav-item">
-								        <a class="nav-link add_sub" id="tab-account-link" data-toggle="tab" href="#upload_advert" role="tab" aria-controls="tab-upload_advert" aria-selected="false">Upload Banner Advert</a>
+								        <a class="nav-link add_sub banner_section" id="tab-account-link" data-toggle="tab" href="#upload_advert" role="tab" aria-controls="tab-upload_advert" aria-selected="false">Upload Banner Advert</a>
 								    </li>
 									<li class="nav-item">
-								        <a class="nav-link add_sub" id="tab-account-link" data-toggle="tab" href="#upload_side" role="tab" aria-controls="tab-upload_side" aria-selected="false">Upload Side Advert</a>
+								        <a class="nav-link add_sub side_advert" id="tab-account-link" data-toggle="tab" href="#upload_side" role="tab" aria-controls="tab-upload_side" aria-selected="false">Upload Side Advert</a>
 								    </li>
 									<% } %>
 								    <li class="nav-item">
@@ -430,10 +430,15 @@
 													</div><!-- End .col-sm-6 -->
 												</div><!-- End .row -->
 												<div class="row">
-													<div class="col-sm-12">
+													<div class="col-sm-6">
 														<label for="adPricing">Pricing*</label>
 														<input type="number" class="form-control" name="adPricing" id="adPricing">
 													</div><!-- End .col-sm-6 -->
+													<div class="col-sm-6">
+														<select class="form-control mt-3"  id="bannerCategory" name="bannerCategory">
+														  <option value="">Select Category</option>
+														</select>
+													</div>
 												</div><!-- End .row -->
 												<div class="row">
 													<div class="col-sm-12">
@@ -465,49 +470,43 @@
 								    </div><!-- .End .tab-pane -->							
 									<!-- Side advert Upload  -->
 									<div class="tab-pane fade" id="upload_side" role="tabpanel" aria-labelledby="tab-downloads-link">
-										<form action="#">
+										<div style="text-align:center"class="successMsgSide"></div>
+											<form id="sideAddForm" enctype="multipart/form-data">
 											<div class="row">
 												<div class="col-sm-6">
 													<label> Image title *</label>
-													<input type="text" class="form-control" name="side_title" id="side_title" required>
+													<input type="text" class="form-control" name="side_title" id="side_title">
 												</div><!-- End .col-sm-6 -->
-
 												<div class="col-sm-6">
 													<label>Top title *</label>
-													<input type="text" class="form-control" name="topside_title" id="topside_title" required>
+													<input type="text" class="form-control" name="topside_title" id="topside_title">
 												</div><!-- End .col-sm-6 -->
 											</div><!-- End .row -->
-
 											<div class="row">
-												<div class="col-sm-12">
+												<div class="col-sm-6">
 													<label>Pricing *</label>
-													<input type="number" class="form-control"name="side_pricing" id="side_pricing" required>
+													<input type="number" class="form-control"name="side_pricing" id="side_pricing">
 												</div><!-- End .col-sm-6 -->
-
+												<div class="col-sm-6">
+													<select class="form-control mt-3"  id="sideCategory" name="sideCategory">
+													  <option value="">Select Category</option>
+													</select>
+												</div>
 											</div><!-- End .row -->
 											<div class="row">
 												<div class="col-sm-12">
 													<label>Advert Description</label>
 														<textarea maxlength="20" class="form-control" id="sidead_description" name="sidead_description"></textarea>
 												</div>
-											</div>
-											<div class="row">
-												<div class="col-sm-12">
-											<select class="form-select form-select-lg mb-2 col-sm-12 s" aria-label=".form-select-lg example" id="category" name="category">
-												<option value="">Select Category</option>
-											  </select>
-											  </div>
-											  </div>
+											</div>				
 											<div class="form-group">
-												<input type="file" id="sideupload_file" name="sideimages" hidden="hidden" />
+												<input type="file" id="sideupload_file" name="sideImage" hidden="hidden" />
 												<!-- Button Markup -->
 												<button id="sideupload-btn" type="button" class="prev_btn left" style="width: 50%;">
 												  CHOOSE FILE
-												</button>
-											
+												</button>	
 												<!-- Choose File TEXT Markup -->
 												<span id="sidespace" style="visibility:hidden"> <strong> No</strong> File, Selected!</span>
-											
 												<!--PREVIEW -->
 												<div class="preview_holder" style="width: 50%; ">
 												  <div id="sidepreview">
@@ -515,18 +514,13 @@
 													<span id="preview_sidetext" class="preview_text">Image Preview</span>
 												  </div>
 												</div>
-											
 											 </div>
-
 											<button type="submit" class="btn btn-outline-primary-2">
-												<span>SAVE CHANGES</span>
+												<span id="create_side">CREATE SIDE ADVERT</span>
 												<i class="icon-long-arrow-right"></i>
 											</button>
-										</form>
-
-									
+										</form>					
 								</div><!-- .End .tab-pane -->
-
 								</div>
 	                		</div><!-- End .col-lg-9 -->
 	                	</div><!-- End .row -->

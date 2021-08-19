@@ -389,6 +389,74 @@ $(document).ready(function () {
     });
   });
 
+
+  $(function () {
+    $(".side_advert").on("click", function (e) {
+      e.preventDefault();
+      $.ajax({
+        url: "/api/products/categories",
+        method: "GET",
+        dataType: "json",
+        data: {},
+        contentType: "application/json",
+        success: function (data) {
+          if (data.status == 200) {
+            let categories = data.categories;
+            if (categories.length > 0) {
+              let categoryContainer = $("#sideCategory");
+              categoryContainer.innerHTML = "";
+              let catData = "<option value=''>Select category</option>";
+              for (let i = 0; i < categories.length; i++) {
+                catData += `<option value='${categories[i]}'>${categories[i]}</option>`;
+              }
+              categoryContainer.html(catData);
+            } else {
+              let categoryContainer = $("#sideCategory");
+              categoryContainer.innerHTML = "";
+              let catData = `<option value=''>No category item available</option>`;
+              categoryContainer.html(catData);
+            }
+          }
+        },
+        error: function (jqXhr) {},
+      });
+    });
+  });
+
+
+  $(function () {
+    $(".banner_section").on("click", function (e) {
+      e.preventDefault();
+      $.ajax({
+        url: "/api/products/categories",
+        method: "GET",
+        dataType: "json",
+        data: {},
+        contentType: "application/json",
+        success: function (data) {
+          if (data.status == 200) {
+            let categories = data.categories;
+            if (categories.length > 0) {
+              let categoryContainer = $("#bannerCategory");
+              categoryContainer.innerHTML = "";
+              let catData = "<option value=''>Select category</option>";
+              for (let i = 0; i < categories.length; i++) {
+                catData += `<option value='${categories[i]}'>${categories[i]}</option>`;
+              }
+              categoryContainer.html(catData);
+            } else {
+              let categoryContainer = $("#bannerCategory");
+              categoryContainer.innerHTML = "";
+              let catData = `<option value=''>No category item available</option>`;
+              categoryContainer.html(catData);
+            }
+          }
+        },
+        error: function (jqXhr) {},
+      });
+    });
+  });
+
   $("#category").on("change", function (e) {
     e.preventDefault();
     let category = jQuery("#category").val();
@@ -619,9 +687,7 @@ $("#bannerForm").submit(function (e) {
     })
       if (jqXhr.status >= 400) {
         let json = $.parseJSON(jqXhr.responseText);
-        console.log(json);
         let errorsContainer = $(".successMsgBan");
-
         if (json.clientErrors) {
           errorsContainer.innerHTML = "";
           let errorsList = "";
@@ -633,6 +699,68 @@ $("#bannerForm").submit(function (e) {
           errorsContainer.html(errorsList);
         } else {
           $(".successMsgBan")
+            .html(`<div class = 'mb-3 alert alert-danger alert-dismissible fade show' role = 'alert'><button type = 'button' class = 'close' data-dismiss = 'alert' aria-label= 'close'> <span aria-hidden = 'true'>&times;</span></button> ${json.error}
+          </div>
+        `);
+        }
+      }
+    },
+  });
+});
+
+
+//Side submissions
+$("#sideAddForm").submit(function (e) {
+  e.preventDefault();
+  e.stopImmediatePropagation();
+  let formData = new FormData(this);
+  $("#create_side").html("Please wait...");
+  $.ajax({
+    async: true,
+    type: "POST",
+    url: "/api/products/upload_side_advert",
+    data: formData,
+    cache: false,
+    processData: false,
+    contentType: false,
+    success: function (data) {
+      if (data.status == 200) {
+        $(".successMsgSide").html(
+          "<div class = 'alert alert-success alert-dismissible fade show' role = 'alert'><button type = 'button' class = 'close' data-dismiss = 'alert' aria-label= 'close'> <span aria-hidden = 'true'>&times;</span></button>" +
+            data.message +
+            "</div>"
+        );
+        $("#create_side").html("CREATE SIDE ADVERT");
+        $("#sideAddForm")[0].reset();
+        window.scrollTo({
+          top: 0,
+          left: 0,
+          behavior: 'smooth'
+        })
+      }
+    },
+    error: function (jqXhr) {
+      $("#create_side").html("CREATE SIDE ADVERT");
+      window.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: 'smooth'
+    })
+      if (jqXhr.status >= 400) {
+        let json = $.parseJSON(jqXhr.responseText);
+        console.log(json)
+        let errorsContainer = $(".successMsgSide");
+        if (json.clientErrors) {
+          errorsContainer.innerHTML = "";
+          let errorsList = "";
+          for (let i = 0; i < json.clientErrors.length; i++) {
+            errorsList += `<div class = 'alert alert-danger alert-dismissible fade show' role = 'alert'><button type = 'button' class = 'close' data-dismiss = 'alert' aria-label= 'close'> <span aria-hidden = 'true'>&times;</span></button> ${json.clientErrors[i].msg}
+            </div>
+              `;
+          }
+          errorsContainer.html(errorsList);
+        } else {
+          $(".successMsgSide")
             .html(`<div class = 'mb-3 alert alert-danger alert-dismissible fade show' role = 'alert'><button type = 'button' class = 'close' data-dismiss = 'alert' aria-label= 'close'> <span aria-hidden = 'true'>&times;</span></button> ${json.error}
           </div>
         `);
