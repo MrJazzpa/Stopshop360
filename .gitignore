@@ -25,3 +25,9 @@ package-lock.json
 /uploads/*.jpg
 /uploads/*.png
 /uploads/*.jpeg
+
+/uploads/resized/*.jpg
+/uploads/resized/*.png
+/uploads/resized/*.jpeg
+
+
