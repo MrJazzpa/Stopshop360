@@ -121,6 +121,11 @@ router.get("/manage_advert", async (req,res)=>{
 router.get("/edit_advert", async (req,res)=>{
   res.render("users/edit_advert");
  });
- 
+ router.get("/manage_sideadvert", async (req,res)=>{
+  res.render("users/manage_sideadvert");
+ });
+ router.get("/edit_sideadvert", async (req,res)=>{
+   res.render("users/edit_sideadvert");
+  });
 
 module.exports = router;
