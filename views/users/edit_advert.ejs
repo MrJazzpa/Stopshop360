@@ -1,0 +1,70 @@
+<%-include('../templates/dashboard_header')%>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-4 text-center profile_image" >
+            <!-- Display product image here-->
+         </div>
+         <form id=""> 
+            <div class="col-sm-8">
+                <div id="updateMsg" style ="margin-bottom: 10px;"></div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label for="uploader name">Image Title<span class="kv-reqd">*</span></label>
+                            <input type="text" class="form-control" name="image_title" id="image_title" value="" readonly>
+                           <input type="hidden" name="itemId" id="itemId" value="">
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label for="title">Top Title</label>
+                            <input type="text" class="form-control" name="top_title" id="top_title" value="" readonly >
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label for="price">Pricing<span class="kv-reqd">*</span></label>
+                            <input type="number" class="form-control" name="pricing" id="pricing" value="" readonly>
+                        </div>
+                    </div>
+                    
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label for="condition">Category</label>
+                            <input type="text" class="form-control" name="category" id="category" value="" readonly>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <label for="title">Description</label>
+                            <textarea  class="form-control" name="Ad_description" id="Ad_description" value="" readonly ></textarea>
+                            
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    
+                    <div class="form-check" style="margin-left:2%">
+                        <input class="form-check-input" type="checkbox" value="" id="check_id">
+                        <label class="form-check-label" for="verify upload" style="margin-left:1%;">
+                          Approve Upload
+                        </label>
+                      </div>
+                </div>
+                <div class="form-group">
+                    <hr>
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-primary btn-lg sub_item">Update Item</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    <div id="kv-avatar-errors-1" class="text-center" style="display:none"></div>
+</div>
+<%-include('../templates/dashboard_footer')%>

@@ -142,7 +142,7 @@ Bootstrap4 Card with Tabs by @mdeuerlein
   color: var(--border-btn);
 }
 .btn-center:visited {
-  background-color: var(--yellow);
+  background-color: var(--red);
 }
 .font-arrow {
   color: var(--yellow);

@@ -115,4 +115,12 @@ router.get("/edit_product/:id", [ensureAuthenticated, isAdmin], async(req, res)=
   res.render("users/edit_product", {singleProduct});
 });
 
+router.get("/manage_advert", async (req,res)=>{
+ res.render("users/manage_advert_upload");
+});
+router.get("/edit_advert", async (req,res)=>{
+  res.render("users/edit_advert");
+ });
+ 
+
 module.exports = router;

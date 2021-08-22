@@ -447,13 +447,25 @@
 													</div>
 												</div>
 												<div class="form-group">
-													<input type="file" id="upload_file" name="bannerImage" hidden="hidden" />	
+													<div class="row">
+														<div class="col-md-6">
+															<input type="file" id="upload_file" name="bannerImage" hidden="hidden" />	
 													<!-- Button Markup -->
-													<button id="upload-btn" type="button" class="prev_btn left" style="width: 50%;">
-													  CHOOSE FILE
-													</button>												
-													<!-- Choose File TEXT Markup -->
-													<span id="space" style="visibility:hidden"> <strong> No</strong> File, Selected!</span>												
+															<button id="upload-btn" type="button" class="prev_btn left" style="width: 50%;">
+															CHOOSE FILE
+															</button>												
+															<!-- Choose File TEXT Markup -->
+															<span id="space" style="visibility:hidden"> <strong> No</strong> File, Selected!</span>	
+														</div>
+
+														<div class="col-lg-6">
+												
+															<a href="/manage_advert" class="btn btn-primary btn-round btn-center" style="height:50px; background-color:white; color:red">View table</a>
+														
+														</div>
+
+													</div>
+																								
 													<!--PREVIEW -->
 													<div class="preview_holder" style="width: 50%; ">
 													  <div id="uppreview">
@@ -500,7 +512,9 @@
 												</div>
 											</div>				
 											<div class="form-group">
-												<input type="file" id="sideupload_file" name="sideImage" hidden="hidden" />
+												<div class="row">
+												<div class="col-md-6">
+													<input type="file" id="sideupload_file" name="sideImage" hidden="hidden" />
 												<!-- Button Markup -->
 												<button id="sideupload-btn" type="button" class="prev_btn left" style="width: 50%;">
 												  CHOOSE FILE
@@ -508,17 +522,32 @@
 												<!-- Choose File TEXT Markup -->
 												<span id="sidespace" style="visibility:hidden"> <strong> No</strong> File, Selected!</span>
 												<!--PREVIEW -->
-												<div class="preview_holder" style="width: 50%; ">
-												  <div id="sidepreview">
-													<img src="" id="preview_sideimg" class="preview_img" />
-													<span id="preview_sidetext" class="preview_text">Image Preview</span>
-												  </div>
 												</div>
+
+												<div class="col-lg-6">
+												
+													<a href="/manage_advert" class="btn btn-primary btn-round btn-center" style="height:50px; background-color:white; color:red">View table</a>
+												
+											    </div>
+												</div>
+												<div class="preview_holder" style="width: 50%; ">
+													<div id="sidepreview">
+													  <img src="" id="preview_sideimg" class="preview_img" />
+													  <span id="preview_sidetext" class="preview_text">Image Preview</span>
+													</div>
+												  </div>
 											 </div>
-											<button type="submit" class="btn btn-outline-primary-2">
-												<span id="create_side">CREATE SIDE ADVERT</span>
-												<i class="icon-long-arrow-right"></i>
-											</button>
+											 
+											<div class="row">
+												<div class="col-md-6">
+													<button type="submit" class="btn btn-outline-primary-2">
+														<span id="create_side">CREATE SIDE ADVERT</span>
+														<i class="icon-long-arrow-right"></i>
+													</button>
+												</div>
+																
+
+											</div>
 										</form>					
 								</div><!-- .End .tab-pane -->
 								</div>
