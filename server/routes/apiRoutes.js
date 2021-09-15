@@ -8,6 +8,7 @@ const fs = require("fs");
 const passport = require("passport");
 const User = require("../models/userModel");
 const Code = require("../models/codesModel");
+const data = require("../../startup/data");
 // const imageUpload = require('../../assets/images');
 const {
   userRegValidationRules,
@@ -25,6 +26,14 @@ let transporter = nodemailer.createTransport({
     pass: "Stopshop360@1",
   },
 });
+
+router.get("/seed", async(req, res) => {
+    const createdUsers = await User.insertMany(data.users);
+    res.send({createdUsers});
+}
+
+
+);
 
 router.post(
   "/register",
