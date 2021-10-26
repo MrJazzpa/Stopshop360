@@ -20,7 +20,9 @@ const {
 } = require("../../middleware/validator");
 
 let transporter = nodemailer.createTransport({
-  service: "gmail",
+  host: "smtp.googlemail.com",
+    port: 465,
+    secure: true,
   auth: {
     user: "quickstopshop360@gmail.com",
     pass: "Stopshop360@1",
