@@ -190,7 +190,7 @@ router.post("/request_code", async (req, res) => {
       }
       const tokenVal = Math.floor(1000 + Math.random() * 9000);
       const mailOptions = {
-        from: "wizzyjazzpa4blinks@gmail.com",
+        from: "quickstopshop360@gmail.com",
         to: newUser.email,
         subject: "Account verification",
         text:
