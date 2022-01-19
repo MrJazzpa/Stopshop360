@@ -19,18 +19,18 @@ router.get("/", async(req, res) => {
   const featuredTopSelling ="Top Selling Products";
 
 
-  const getFeatured = await Product.find({priority: featuredPriority});
-  const getOnsale = await Product.find({priority: featuredOnsale});
-  const getTopRated = await Product.find({priority: featuredTopRated});
-  const getTrending = await Product.find({priority: featuredTrending});
-  const getTrendBooking = await Product.find({priority: featuredTrending, category:"Booking"});
+  const getFeatured = await Product.find({priority: featuredPriority, isConfirmed: 1});
+  const getOnsale = await Product.find({priority: featuredOnsale, isConfirmed: 1});
+  const getTopRated = await Product.find({priority: featuredTopRated, isConfirmed: 1});
+  const getTrending = await Product.find({priority: featuredTrending, isConfirmed: 1});
+  const getTrendBooking = await Product.find({priority: featuredTrending, category:"Booking", isConfirmed: 1});
 
-  const getTrendSales = await Product.find({priority: featuredTrending, category:"Sales"});
-  const getTrendHiring = await Product.find({priority: featuredTrending, category:"Hiring"});
+  const getTrendSales = await Product.find({priority: featuredTrending, category:"Sales", isConfirmed: 1});
+  const getTrendHiring = await Product.find({priority: featuredTrending, category:"Hiring", isConfirmed: 1});
 
-  const getRatedBooking = await Product.find({priority: featuredTopSelling, category:"Booking"});
-  const getRatedSales = await Product.find({priority: featuredTopSelling, category:"Sales"});
-  const getRatedHiring = await Product.find({priority: featuredTopSelling, category:"Hiring"});
+  const getRatedBooking = await Product.find({priority: featuredTopSelling, category:"Booking", isConfirmed: 1});
+  const getRatedSales = await Product.find({priority: featuredTopSelling, category:"Sales", isConfirmed: 1});
+  const getRatedHiring = await Product.find({priority: featuredTopSelling, category:"Hiring", isConfirmed: 1});
 
   const getBanners = await Banner.find({status:true});
   const getSideAds = await SideAdvert.find({status:true}).limit(3);
